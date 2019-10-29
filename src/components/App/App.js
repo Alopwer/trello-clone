@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom';
 
 import Header from '../Header';
 import BoardsPage from '../../pages/BoardsPage/BoardsPage';

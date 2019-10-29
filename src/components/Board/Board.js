@@ -1,12 +1,20 @@
 import React from 'react';
 import './Board.css';
+import { connect } from 'react-redux';
 
-const Board = () => {
+const Board = ({ currentBoard }) => {
     return (
         <div>
-            Board
+            <p>
+                {currentBoard.title}
+            </p>
+            {currentBoard.cover}
         </div>
     )
 }
 
-export default Board
+const mapStateToProps = ({ currentBoard }) => {
+    return { currentBoard }
+}
+
+export default connect(mapStateToProps)(Board)
