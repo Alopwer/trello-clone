@@ -11,3 +11,10 @@ export const setCurrentColor = (color) => {
         payload: color
     }
 }
+
+export const addBoard = (board) => {
+    return {
+        type: 'ADD_BOARD',
+        payload: board
+    }
+}

@@ -1,34 +1,22 @@
 const initialState = {
     boards: [
         {
-            id: '1',
+            id: 1,
             title: 'New board',
             cover: 'rgb(176, 70, 50)'
         },
         {
-            id: '2',
+            id: 2,
             title: 'Test board',
             cover: 'rgb(81, 152, 57)'
         },
         {
-            id: '3',
-            title: 'Test board',
-            cover: 'rgb(0, 174, 204)'
-        },
-        {
-            id: '4',
-            title: 'Test board',
-            cover: 'rgb(0, 174, 204)'
-        },
-        {
-            id: '5',
+            id: 3,
             title: 'Test board',
             cover: 'rgb(0, 174, 204)'
         }
     ],
-    currentBoard: {
-
-    },
+    currentBoard: {},
     currentColor: 'rgb(0, 121, 191)'
 }
 
@@ -43,6 +31,18 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentColor: action.payload
+            }
+        case 'ADD_BOARD':
+            return {
+                ...state,
+                boards : [
+                    ...state.boards.slice(0, action.payload.id), 
+                    {   
+                        id: action.payload.id,
+                        title: action.payload.title,
+                        cover: action.payload.cover
+                    }
+                ]
             }
         default:
             return state

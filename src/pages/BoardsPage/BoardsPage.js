@@ -1,10 +1,10 @@
 import React from 'react';
 import Boards from '../../components/Boards';
 
-const BoardsPage = ({ boards }) => {
+const BoardsPage = () => {
     return (
         <div>
-            <Boards boards={boards}/>
+            <Boards />
         </div>
     )
 }

@@ -2,29 +2,33 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Boards.css';
 
+import { IdContext } from '../../context/id-context';
 import { setCurrentBoard } from '../../actions/index';
 import { connect } from 'react-redux';
 import CreateBoard from './Boards-modal/Create-board';
 
-const Boards = (props) => {
+const Boards = ({ boards, setCurrentBoard }) => {
+    const newId = boards.length ? boards[boards.length - 1].id + 1 : 1
+    const boardsItems = boards.map(board => (
+        <BoardsView 
+            key={board.id} 
+            board={board} 
+            setCurrentBoard={setCurrentBoard}
+        />
+    ))
+
     return (
-        <div className='boards'>
-            <div className='container'>
-                <h2 className='boards-title'>Personal Boards</h2>
-                <div className='boards__wrapper'>
-                    {
-                        props.boards.map(board => (
-                            <BoardsView 
-                                key={board.id} 
-                                board={board} 
-                                setCurrentBoard={props.setCurrentBoard}
-                            />
-                        ))
-                    }
-                    <CreateBoard />
+        <IdContext.Provider value={newId}>
+            <div className='boards'>
+                <div className='container'>
+                    <h2 className='boards-title'>Personal Boards</h2>
+                    <div className='boards__wrapper'>
+                        { boardsItems }
+                        <CreateBoard />
+                    </div>
                 </div>
             </div>
-        </div>
+        </IdContext.Provider>
     )
 }
 
