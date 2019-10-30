@@ -1,0 +1,35 @@
+.header {
+    --bg-color: hsla(0,0%,100%,.3);
+    --bg-color-hover: hsla(0,0%,100%,.2);
+    background: rgb(2, 106, 167);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.header__logo-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    border-radius: 2px;
+    background: var(--bg-color);
+    padding: 0 5px;
+}
+
+.header__logo-link:hover,
+.header-btn button:hover {
+    background: var(--bg-color-hover);
+    transition: background 0.2s;
+}
+
+.header-btn button {
+    color: white;
+    background: var(--bg-color);
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 2px;
+}

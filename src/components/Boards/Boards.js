@@ -4,28 +4,44 @@ import './Boards.css';
 
 import { setCurrentBoard } from '../../actions/index';
 import { connect } from 'react-redux';
+import CreateBoard from './Boards-modal/Create-board';
 
 const Boards = (props) => {
     return (
-        <div>
-            {
-                props.boards.map(board => (
-                    <BoardView 
-                        key={board.id} 
-                        board={board} 
-                        setCurrentBoard={props.setCurrentBoard}/>
-                ))
-            }
+        <div className='boards'>
+            <div className='container'>
+                <h2 className='boards-title'>Personal Boards</h2>
+                <div className='boards__wrapper'>
+                    {
+                        props.boards.map(board => (
+                            <BoardsView 
+                                key={board.id} 
+                                board={board} 
+                                setCurrentBoard={props.setCurrentBoard}
+                            />
+                        ))
+                    }
+                    <CreateBoard />
+                </div>
+            </div>
         </div>
     )
 }
 
-const BoardView = ({ board, setCurrentBoard }) => {
+const BoardsView = ({ board, setCurrentBoard }) => {
     return (
-        <div>
-            <Link to={`/board/${board.id}`} style={{backgroundColor: board.cover}}>
-                <span onClick={() => setCurrentBoard(board.id)}>{board.title}</span>
-            </Link>
+        <div className='boards__item' style={{backgroundColor: board.cover}} >
+            <div className='boards-fade'>
+                <Link 
+                    to={`/board/${board.id}`}  
+                    onClick={() => setCurrentBoard(board.id)}
+                    className='boards__item-link'
+                >
+                    <div className='boards__item-content'>
+                        <span>{board.title}</span>
+                    </div>
+                </Link>
+            </div>
         </div>
     )   
 }
