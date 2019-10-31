@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Lists.css';
 import { connect } from 'react-redux';
-import { addList } from '../../actions';
-import List from '../List'
+import List from '../List';
+import Input from './Input';
 
-const Lists = ({ lists, addList, currentBoard }) => {
-    const items = lists ? lists.map((list, i) => 
-        (
+const Lists = ({ lists, currentBoard }) => {
+    const [inputOpened, setInputOpened] = useState(false)
+
+    const toggleInput = () => {
+        setInputOpened(!inputOpened)
+    }
+
+    const items = lists ? 
+        lists.map((list, i) => 
             <div className='lists-item'>
                 <List
                     key={i}
@@ -15,14 +21,25 @@ const Lists = ({ lists, addList, currentBoard }) => {
                     {list.title}
                 </List>
             </div>
-        )) : false  
+        ) 
+            : 
+        false  
+
+    const addListItem = inputOpened ? 
+        <Input 
+            currentBoard={currentBoard} 
+            toggleInput={toggleInput} 
+            setInputOpened={setInputOpened}
+        /> 
+            :  
+        <button className='lists-btn' onClick={toggleInput}>
+            <span>+</span> Add another title list
+        </button>
 
     return (
         <div className='lists__wrapper'>
             {items}
-            <button className='lists-btn' onClick={() => addList('here must be a title for a new list', currentBoard.id)}>
-                <span>+</span> Add another title list
-            </button>
+            {addListItem}
         </div>
     )
 }
@@ -31,10 +48,4 @@ const mapStateToProps = ({ currentBoard, currentBoard : { lists } }) => {
     return { currentBoard, lists }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addList : (title, id) => dispatch(addList(title, id))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Lists);
+export default connect(mapStateToProps)(Lists);
