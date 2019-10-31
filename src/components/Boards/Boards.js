@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import './Boards.css';
 
 import { IdContext } from '../../context/id-context';
-import { setCurrentBoard } from '../../actions/index';
+import { setCurrentBoard, setCurrentColor } from '../../actions/index';
 import { connect } from 'react-redux';
 import CreateBoard from './Boards-modal/Create-board';
 
-const Boards = ({ boards, setCurrentBoard }) => {
-    const newId = boards.length ? boards[boards.length - 1].id + 1 : 1
+const Boards = ({ boards, setCurrentBoard, setCurrentColor }) => {
+    const newId = boards.length ? boards[boards.length - 1].id + 1 : 0
     const boardsItems = boards.map(board => (
-        <BoardsView 
+        <BoardsCells
             key={board.id} 
             board={board} 
             setCurrentBoard={setCurrentBoard}
+            setCurrentColor={setCurrentColor}
         />
     ))
 
@@ -32,13 +33,16 @@ const Boards = ({ boards, setCurrentBoard }) => {
     )
 }
 
-const BoardsView = ({ board, setCurrentBoard }) => {
+const BoardsCells = ({ board, setCurrentBoard, setCurrentColor }) => {
     return (
         <div className='boards__item' style={{backgroundColor: board.cover}} >
             <div className='boards-fade'>
                 <Link 
                     to={`/board/${board.id}`}  
-                    onClick={() => setCurrentBoard(board.id)}
+                    onClick={() => { 
+                        setCurrentColor(board.cover)
+                        setCurrentBoard(board.id)
+                    }}
                     className='boards__item-link'
                 >
                     <div className='boards__item-content'>
@@ -56,7 +60,8 @@ const mapStateToProps = ({ boards }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentBoard: (id) => dispatch(setCurrentBoard(id))
+        setCurrentBoard: (id) => dispatch(setCurrentBoard(id)),
+        setCurrentColor: (color) => dispatch(setCurrentColor(color))
     }
 }
 

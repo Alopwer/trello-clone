@@ -1,14 +1,15 @@
 import React from 'react';
 import './Board.css';
 import { connect } from 'react-redux';
+import ListsPage from '../../pages/ListsPage/ListsPage'
 
 const Board = ({ currentBoard }) => {
     return (
-        <div>
-            <p>
+        <div style={{background: currentBoard.cover}} className='board'>
+            <h3>
                 {currentBoard.title}
-            </p>
-            {currentBoard.cover}
+            </h3>
+            <ListsPage />
         </div>
     )
 }

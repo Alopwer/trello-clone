@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 
 import '../Boards.css';
 import Modal from 'react-modal';
-import ModalView from './Modal-view';
+import ModalContent from './Modal-content';
 import { setCurrentColor } from '../../../actions';
 import { BackgroundContext } from '../../../context/backgrounds-context';
-
+import { InputContext } from '../../../context/input-content';
 Modal.setAppElement('#root')
 
 const CreateBoard = ({ currentColor, setCurrentColor }) => {
     const [modalOpened, setModalOpened] = useState(false)
     const [input, setInput] = useState('')
-    
+    const inputEl = useRef('')
+
     const openModal = () => {
         setModalOpened(true);
     }
@@ -23,44 +24,32 @@ const CreateBoard = ({ currentColor, setCurrentColor }) => {
     }
 
     return (
-        <div className='boards__item'>
-            <div className='boards-fade'>
-                <div className='boards__add' onClick={openModal}>
-                    <p>Create new board</p>
-                    <span>+</span>
+        <InputContext.Provider value={input}>
+            <div className='boards__item'>
+                <div className='boards-fade'>
+                    <div className='boards__add' onClick={openModal}>
+                        <p>Create new board</p>
+                        <span>+</span>
+                    </div>
+                    <ModalComponent 
+                        modalOpened={modalOpened}
+                        closeModal={closeModal}
+                        currentColor={currentColor}
+                        setCurrentColor={setCurrentColor}
+                        inputEl={inputEl}
+                        setInput={setInput}
+                    />
                 </div>
-                <ModalComponent 
-                    modalOpened={modalOpened}
-                    closeModal={closeModal}
-                    currentColor={currentColor}
-                    setCurrentColor={setCurrentColor}
-                    input={input}
-                    setInput={setInput}
-                />
             </div>
-        </div>
+        </InputContext.Provider>
     )
 }
 
-const ModalComponent = ({ modalOpened, closeModal, currentColor, setCurrentColor, input, setInput }) => {
-    const inputEl = useRef(null);
-    const btnEl = useRef(null);
+const ModalComponent = ({ modalOpened, closeModal, currentColor, setCurrentColor, inputEl, setInput }) => {
     const backgrounds = useContext(BackgroundContext);
 
     const inputChange = () => {
         setInput(inputEl.current.value)
-        onButtonActive();
-    }
-
-    const onButtonActive = () => {
-        const btn = btnEl.current.style;
-        if (inputEl.current.value) {
-            btn.backgroundColor = '#5aac44'
-            btn.color = 'white'
-        } else {
-            btn.backgroundColor = 'white'
-            btn.color = '#a5adba'
-        }
     }
 
     const listItems = backgrounds.map((bg, i) => 
@@ -76,19 +65,17 @@ const ModalComponent = ({ modalOpened, closeModal, currentColor, setCurrentColor
         <Modal 
             isOpen={modalOpened}
             onRequestClose={closeModal}
-            contentLabel="Create new Board"
             className="modal-container"
             overlayClassName="overlay"
-        >   
-            <ModalView 
-                input={input}
+        > 
+            <ModalContent 
                 inputEl={inputEl}
                 inputChange={inputChange}
                 closeModal={closeModal}
-                listItems={listItems}
-                btnEl={btnEl}
                 currentColor={currentColor}
-            />
+            >
+                { listItems }
+            </ModalContent>
         </Modal>
     )
 }

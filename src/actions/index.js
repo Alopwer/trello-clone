@@ -18,3 +18,11 @@ export const addBoard = (board) => {
         payload: board
     }
 }
+
+export const addList = (title, id) => {
+    return {
+        type: 'ADD_LIST',
+        payload: title,
+        value: id
+    }
+}

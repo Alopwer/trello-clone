@@ -4,9 +4,12 @@ import '../Boards.css';
 import { connect } from 'react-redux';
 import { addBoard } from '../../../actions/index';
 import { IdContext } from '../../../context/id-context';
+import { InputContext } from '../../../context/input-content';
 
-const ModalView = ({ input, inputChange, inputEl, btnEl, listItems, closeModal, currentColor, addBoard }) => {
+const ModalContent = ({ inputChange, inputEl, closeModal, currentColor, addBoard, ...props }) => {
+    const input = useContext(InputContext)
     const id = useContext(IdContext)
+    
     const createBoard = () => {
         addBoard({
             title: input,
@@ -31,11 +34,10 @@ const ModalView = ({ input, inputChange, inputEl, btnEl, listItems, closeModal, 
                     <Times closeModal={closeModal}/>
                 </div>
                 <ul className='modal__grid'>
-                    { listItems }
+                    { props.children }
                 </ul>
             </div>
             <button 
-                ref={btnEl}
                 className='modal-button' 
                 disabled={!input}
                 onClick={createBoard}
@@ -52,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(ModalView);
+export default connect(null, mapDispatchToProps)(ModalContent);

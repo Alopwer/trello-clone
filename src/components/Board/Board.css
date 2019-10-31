@@ -1,0 +1,10 @@
+.board {
+    min-height: 95vh;
+    padding: 0 15px;
+    padding-top: 10px;
+}
+
+.board h3 {
+    color: white;
+    margin-bottom: 10px;
+}

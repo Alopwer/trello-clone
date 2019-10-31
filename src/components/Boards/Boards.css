@@ -131,9 +131,13 @@
     border-radius: 3px;
     padding: 8px 10px;
 }
+
+.modal-button:enabled {
+    background: #5aac44;
+    color: white
+}
 .modal-button:enabled div:hover {
     background: rgba(97, 189, 79);
-    padding: 8px 10px;
 }
 
 .closeBtn {

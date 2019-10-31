@@ -20,19 +20,17 @@ const backgrounds = [
 
 const App = () => {
     return (
-        <div>
-            <BackgroundContext.Provider value={backgrounds}>
-                <Header />
-                <Switch>
-                    <Route path='/board/:id'>
-                        <BoardPage />
-                    </Route>
-                    <Route path='/'>
-                        <BoardsPage />
-                    </Route>
-                </Switch>
-            </BackgroundContext.Provider>
-        </div>
+        <BackgroundContext.Provider value={backgrounds}>
+            <Header />
+            <Switch>
+                <Route path='/board/:id'>
+                    <BoardPage />
+                </Route>
+                <Route path='/'>
+                    <BoardsPage />
+                </Route>
+            </Switch>
+        </BackgroundContext.Provider>
     )
 }
 

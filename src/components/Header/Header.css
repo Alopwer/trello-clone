@@ -2,16 +2,21 @@
     --bg-color: hsla(0,0%,100%,.3);
     --bg-color-hover: hsla(0,0%,100%,.2);
     background: rgb(2, 106, 167);
+}
+
+.header__wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding: 0 10px;
+    background: rgba(0,0,0,0.25);
+    min-height: 5vh;
 }
 
 .header__logo-link {
     color: white;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     border-radius: 2px;
     background: var(--bg-color);
     padding: 0 5px;
