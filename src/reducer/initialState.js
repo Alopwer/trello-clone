@@ -5,7 +5,9 @@ export const initialState = {
             title: 'New board',
             cover: 'rgb(176, 70, 50)',
             lists: [
-                {
+                {   
+                    bdId: 0,
+                    listId: 0,
                     title: 'New List1',
                     cards: [
                         {
@@ -14,11 +16,39 @@ export const initialState = {
                     ]
                 },
                 {
+                    bdId: 0,
+                    listId: 1,
                     title: 'New List1',
                     cards: [
                         {
                             title: 'new card'
-                        }
+                        },{
+                            title: 'new card'
+                        },
+                    ]
+                },
+                {
+                    bdId: 0,
+                    listId: 2,
+                    title: 'New List1',
+                    cards: [
+                        {
+                            title: 'new card'
+                        },{
+                            title: 'new card'
+                        },
+                    ]
+                },
+                {
+                    bdId: 0,
+                    listId: 3,
+                    title: 'New List1',
+                    cards: [
+                        {
+                            title: 'new card'
+                        },{
+                            title: 'new card'
+                        },
                     ]
                 },
             ]

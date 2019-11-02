@@ -13,10 +13,11 @@ const Lists = ({ lists, currentBoard }) => {
 
     const items = lists ? 
         lists.map((list, i) => 
-            <div className='lists-item'>
+            <div className='lists-item' key={i}>
                 <List
-                    key={i}
                     cards={list.cards}
+                    id={list.listId}
+                    boardId={list.bdId}
                 >
                     {list.title}
                 </List>

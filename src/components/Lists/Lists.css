@@ -9,7 +9,6 @@
     flex-basis: 250px;
     margin-right: 10px;
     margin-bottom: 10px;
-    padding: 10px;
     border: none;
     height: 100%
 }
@@ -17,6 +16,24 @@
 .lists-btn {
     height: 40px;
     width: 250px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 10px;
+}
+.lists-btn span {
+    position: relative;
+    bottom: 2px;
+    font-size: 1.3rem;
+    padding-right: 10px;
+}
+.lists-btn:hover {
+    background: rgba(255,255,255,0.5);
 }
 
 .input-container {
@@ -46,4 +63,8 @@
     padding: 8px 12px;
     display: inline-block;
     margin: 0 10px 3px 3px;
+}
+
+.input-times:hover {
+    cursor: pointer
 }

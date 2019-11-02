@@ -1,6 +1,7 @@
 import { addBoard } from './addBoard'; 
 import { initialState } from './initialState';
-import { addList } from './addList';
+import { updateLists } from './updateLists';
+import { updateListName } from './updateListName';
 
 const reducer = (state = initialState, action) => {
     const { boards, currentBoard } = state
@@ -27,12 +28,23 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 boards: [
-                    ...boards.slice(0, action.value),
-                    addList(currentBoard, action.payload),
-                    ...boards.slice(action.value + 1)
+                    ...boards.slice(0, action.value.boardId),
+                    updateLists(currentBoard, action.payload, action.value.newId),
+                    ...boards.slice(action.value.boardId + 1)
                 ],
-                currentBoard: addList(currentBoard, action.payload),
+                currentBoard: updateLists(currentBoard, action.payload, action.value.newId),
             }
+        case 'CHANGE_LIST_NAME': {
+            return {
+                ...state,
+                boards: [
+                    ...boards.slice(0, action.boardId),
+                    updateListName(currentBoard, action.listTitle, action.listId, action.boardId),
+                    ...boards.slice(action.boardId + 1)
+                ],
+                currentBoard: updateListName(currentBoard, action.listTitle, action.listId, action.boardId)
+            }
+        }
         default:
             return state
     }

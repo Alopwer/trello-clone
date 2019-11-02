@@ -6,8 +6,19 @@ import Times from '../svg/Times';
 
 const Input = ({ currentBoard, addList, toggleInput, setInputOpened }) => {
     const inputEl = useRef('')
+    const inputComplete = () => {
+        addList(inputEl.current.value, currentBoard.id, currentBoard.lists.length)
+        toggleInput()
+    }
+
     return (
-        <div className='input-container'>
+        <div className='input-container' 
+            onKeyPress={(e) => {
+                if (e.which === 13) {
+                    inputComplete()
+                }
+            }}
+        >
             <input 
                 type='text' 
                 placeholder='Enter list title...' 
@@ -16,11 +27,8 @@ const Input = ({ currentBoard, addList, toggleInput, setInputOpened }) => {
                 ref={inputEl}
             />
             <div>
-                <button 
-                    onClick={() =>  {
-                        addList(inputEl.current.value, currentBoard.id)
-                        toggleInput()
-                    }}
+                <button
+                    onClick={inputComplete}
                     className='input-btn'
                 >
                     Add List
@@ -33,7 +41,7 @@ const Input = ({ currentBoard, addList, toggleInput, setInputOpened }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addList : (title, id) => dispatch(addList(title, id))
+        addList : (title, id, listId) => dispatch(addList(title, id, listId))
     }
 }
 

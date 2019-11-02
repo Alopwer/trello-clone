@@ -4,15 +4,6 @@ export const addBoard = (payload) => {
         id,
         title,
         cover,
-        lists: [
-            {
-                title,
-                cards: [
-                    {
-
-                    }
-                ]
-            }
-        ]
+        lists: []
     }
 }

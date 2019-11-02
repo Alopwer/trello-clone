@@ -19,10 +19,19 @@ export const addBoard = (board) => {
     }
 }
 
-export const addList = (title, id) => {
+export const addList = (title, boardId, newId) => {
     return {
         type: 'ADD_LIST',
         payload: title,
-        value: id
+        value: {boardId, newId}
+    }
+}
+
+export const changeListName = (title, listId, boardId) => {
+    return {
+        type: 'CHANGE_LIST_NAME',
+        listTitle: title,
+        listId,
+        boardId
     }
 }
