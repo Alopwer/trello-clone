@@ -1,15 +1,18 @@
-export const updateListName = (currentBoard, title, id, bdid) => {
+export const updateListName = (currentBoard, payload) => {
+    const { boardId, listId, title } = payload
     return {
         ...currentBoard,
         lists: [
-            ...currentBoard.lists.slice(0, id),
+            ...currentBoard.lists.slice(0, listId),
             {
-                bdId: bdid,
-                listId: id,
+                boardId,
+                listId,
                 title,
-                ...currentBoard.lists[id].cards
+                cards: [
+                    ...currentBoard.lists[listId].cards
+                ]
             },
-            ...currentBoard.lists.slice(id + 1),
+            ...currentBoard.lists.slice(listId + 1),
         ]
     }
 }

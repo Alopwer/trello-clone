@@ -24,6 +24,7 @@ const ModalContent = ({ inputChange, inputEl, closeModal, currentColor, addBoard
             <div className='modal__content-main'>
                 <div style={{background: currentColor}}>
                     <input 
+                        autoFocus
                         value={input} 
                         ref={inputEl} 
                         className='modal-input' 

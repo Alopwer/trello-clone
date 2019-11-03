@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Lists.css';
 import { connect } from 'react-redux';
 import List from '../List';
-import Input from './Input';
+import AddNewItem from '../AddNewItem';
 
 const Lists = ({ lists, currentBoard }) => {
     const [inputOpened, setInputOpened] = useState(false)
@@ -17,7 +17,7 @@ const Lists = ({ lists, currentBoard }) => {
                 <List
                     cards={list.cards}
                     id={list.listId}
-                    boardId={list.bdId}
+                    boardId={list.boardId}
                 >
                     {list.title}
                 </List>
@@ -27,14 +27,14 @@ const Lists = ({ lists, currentBoard }) => {
         false  
 
     const addListItem = inputOpened ? 
-        <Input 
-            currentBoard={currentBoard} 
+        <AddNewItem 
+            currentParent={currentBoard} 
             toggleInput={toggleInput} 
             setInputOpened={setInputOpened}
         /> 
             :  
         <button className='lists-btn' onClick={toggleInput}>
-            <span>+</span> Add another title list
+            <span>+</span> Add another list
         </button>
 
     return (

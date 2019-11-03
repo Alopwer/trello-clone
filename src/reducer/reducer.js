@@ -2,6 +2,7 @@ import { addBoard } from './addBoard';
 import { initialState } from './initialState';
 import { updateLists } from './updateLists';
 import { updateListName } from './updateListName';
+import { updateCards } from './updateCards';
 
 const reducer = (state = initialState, action) => {
     const { boards, currentBoard } = state
@@ -25,26 +26,42 @@ const reducer = (state = initialState, action) => {
                 ]
             }
         case 'ADD_LIST':
+            const { boardId, title, newListId } = action.payload
+            const updatedList = updateLists(currentBoard, title, newListId)
             return {
                 ...state,
                 boards: [
-                    ...boards.slice(0, action.value.boardId),
-                    updateLists(currentBoard, action.payload, action.value.newId),
-                    ...boards.slice(action.value.boardId + 1)
+                    ...boards.slice(0, boardId),
+                    updatedList,
+                    ...boards.slice(boardId + 1)
                 ],
-                currentBoard: updateLists(currentBoard, action.payload, action.value.newId),
+                currentBoard: updatedList
             }
         case 'CHANGE_LIST_NAME': {
+            const { boardId } = action.payload
+            const listWithUpdatedName = updateListName(currentBoard, action.payload)
             return {
                 ...state,
                 boards: [
-                    ...boards.slice(0, action.boardId),
-                    updateListName(currentBoard, action.listTitle, action.listId, action.boardId),
-                    ...boards.slice(action.boardId + 1)
+                    ...boards.slice(0, boardId),
+                    listWithUpdatedName,
+                    ...boards.slice(boardId + 1)
                 ],
-                currentBoard: updateListName(currentBoard, action.listTitle, action.listId, action.boardId)
+                currentBoard: listWithUpdatedName
             }
         }
+        case 'ADD_CARD':
+            const { list } = action.payload
+            const updatedCard = updateCards(currentBoard, action.payload)
+            return {
+                ...state,
+                boards: [
+                    ...boards.slice(0, list.boardId),
+                    updatedCard,
+                    ...boards.slice(list.boardId + 1)
+                ],
+                currentBoard: updatedCard
+            }
         default:
             return state
     }

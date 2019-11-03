@@ -1,11 +1,11 @@
-export const updateLists = (currentBoard, title, lsId) => {
+export const updateLists = (currentBoard, title, listId) => {
     return {
         ...currentBoard,
         lists: [
             ...currentBoard.lists,
             {
-                bdId: currentBoard.id,
-                listId: lsId,
+                boardId: currentBoard.id,
+                listId,
                 title,
                 cards: []
             }

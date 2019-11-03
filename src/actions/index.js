@@ -1,37 +1,57 @@
-export const setCurrentBoard = (boardId) => {
+const setCurrentBoard = (boardId) => {
     return {
         type: 'SET_CURRENT_BOARD',
         payload: boardId
     }
 }
 
-export const setCurrentColor = (color) => {
+const setCurrentColor = (color) => {
     return {
         type: 'SET_CURRENT_COLOR',
         payload: color
     }
 }
 
-export const addBoard = (board) => {
+const addBoard = (board) => {
     return {
         type: 'ADD_BOARD',
         payload: board
     }
 }
 
-export const addList = (title, boardId, newId) => {
+const addList = (value) => {
+    const { title, boardId, newListId } = value
     return {
         type: 'ADD_LIST',
-        payload: title,
-        value: {boardId, newId}
+        payload: {title, boardId, newListId}
     }
 }
 
-export const changeListName = (title, listId, boardId) => {
+const changeListName = (value) => {    
+    const { title, boardId, listId } = value
     return {
         type: 'CHANGE_LIST_NAME',
-        listTitle: title,
-        listId,
-        boardId
+        payload: {
+            title,
+            boardId,
+            listId
+        }
     }
+}
+
+const addCard = (value) => {
+    const { title, list, newCardId } = value
+    return {
+        type: 'ADD_CARD',
+        payload: {title, list, newCardId}
+    }
+}
+
+export {
+    setCurrentBoard,
+    setCurrentColor,
+    addBoard,
+    addList,
+    addCard,
+    changeListName
 }

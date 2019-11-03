@@ -1,13 +1,25 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux'
-import { addList } from '../../actions/index';
-import './Lists.css';
+import { addList, addCard } from '../../actions/index';
+// import '../Lists/Lists.css';
 import Times from '../svg/Times';
 
-const Input = ({ currentBoard, addList, toggleInput, setInputOpened }) => {
+const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpened }) => {
     const inputEl = useRef('')
     const inputComplete = () => {
-        addList(inputEl.current.value, currentBoard.id, currentBoard.lists.length)
+        if (currentParent.hasOwnProperty('boardId')) {
+            addCard({
+                title: inputEl.current.value,
+                list: currentParent, 
+                newCardId: currentParent.cards.length
+            })
+        } else {
+            addList({
+                title: inputEl.current.value,
+                boardId: currentParent.id, 
+                newListId: currentParent.lists.length
+            })
+        }
         toggleInput()
     }
 
@@ -41,8 +53,9 @@ const Input = ({ currentBoard, addList, toggleInput, setInputOpened }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addList : (title, id, listId) => dispatch(addList(title, id, listId))
+        addList : (value) => dispatch(addList(value)),
+        addCard : (value) => dispatch(addCard(value))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Input);
+export default connect(null, mapDispatchToProps)(AddNewItem);

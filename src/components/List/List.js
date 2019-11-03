@@ -7,6 +7,7 @@ import Cards from '../Cards';
 const List = (props) => {
     const { lists, changeListName } = props
     const [value, setValue] = useState(props.children)
+    const currentList = lists.find(list => list.listId === props.id)
     return (
         <div className='list'>
             <input 
@@ -14,15 +15,15 @@ const List = (props) => {
                 value={value}
                 onChange={(e) => {
                     setValue(e.currentTarget.value)
-                    changeListName(
-                        e.currentTarget.value, 
-                        lists.find(list => list.listId === props.id).listId, 
-                        props.boardId
-                    )
+                    changeListName({
+                        title: e.currentTarget.value, 
+                        boardId: props.boardId,
+                        listId: currentList.listId
+                    })
                 }}
             />
             <div className='cards-wrapper'>
-                <Cards cards={props.cards}/>
+                <Cards cards={props.cards} currentList={currentList}/>
             </div>
         </div>
     )
@@ -34,7 +35,7 @@ const mapStateToProps = ({ currentBoard: { lists } }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeListName: (listName, listId, boardId) => dispatch(changeListName(listName, listId, boardId))
+        changeListName: (value) => dispatch(changeListName(value))
     }
 }
 
