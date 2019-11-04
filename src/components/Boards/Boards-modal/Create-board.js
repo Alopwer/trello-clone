@@ -10,6 +10,7 @@ import { InputContext } from '../../../context/input-content';
 Modal.setAppElement('#root')
 
 const CreateBoard = ({ currentColor, setCurrentColor }) => {
+    console.log(Modal)
     const [modalOpened, setModalOpened] = useState(false)
     const [input, setInput] = useState('')
     const inputEl = useRef('')
