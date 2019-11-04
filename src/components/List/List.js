@@ -21,6 +21,7 @@ const List = (props) => {
                         listId: currentList.listId
                     })
                 }}
+                maxLength='22'
             />
             <div className='cards-wrapper'>
                 <Cards cards={props.cards} currentList={currentList}/>

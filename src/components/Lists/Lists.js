@@ -31,6 +31,7 @@ const Lists = ({ lists, currentBoard }) => {
             currentParent={currentBoard} 
             toggleInput={toggleInput} 
             setInputOpened={setInputOpened}
+            parent='list'
         /> 
             :  
         <button className='lists-btn' onClick={toggleInput}>

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from '../Header';
 import BoardsPage from '../../pages/BoardsPage/BoardsPage';
 import BoardPage from '../../pages/BoardPage/BoardPage';
+import CardPage from '../../pages/CardPage/CardPage';
 import { BackgroundContext } from '../../context/backgrounds-context';
 
 const backgrounds = [
@@ -23,6 +24,9 @@ const App = () => {
         <BackgroundContext.Provider value={backgrounds}>
             <Header />
             <Switch>
+                <Route path='/board/:id/card/:cardId'>
+                    <CardPage />
+                </Route>
                 <Route path='/board/:id'>
                     <BoardPage />
                 </Route>

@@ -12,7 +12,8 @@ const Cards = ({ cards, currentList }) => {
 
     const items = cards ? 
         cards.map((card, i) => 
-            <Card title={card.title} className='card-item' key={i}>
+            <Card key={i}>
+                {card.title}
             </Card>
         ) 
             :
@@ -23,6 +24,7 @@ const Cards = ({ cards, currentList }) => {
             currentParent={currentList}
             toggleInput={toggleInput} 
             setInputOpened={setInputOpened}
+            parent='card'
         /> 
             :  
         <button className='cards-btn' onClick={toggleInput}>

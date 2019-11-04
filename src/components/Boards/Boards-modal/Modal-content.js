@@ -31,6 +31,7 @@ const ModalContent = ({ inputChange, inputEl, closeModal, currentColor, addBoard
                         type='text' 
                         placeholder='Add board title' 
                         onChange={inputChange}
+                        maxLength='18'
                     />
                     <Times closeModal={closeModal}/>
                 </div>

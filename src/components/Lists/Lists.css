@@ -10,9 +10,8 @@
     margin-right: 10px;
     margin-bottom: 10px;
     border: none;
-    height: 100%
+    height: 100%;
 }
-
 .lists-btn {
     height: 40px;
     width: 250px;
@@ -23,7 +22,6 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    position: relative;
     padding-left: 10px;
 }
 .lists-btn span {
@@ -34,37 +32,4 @@
 }
 .lists-btn:hover {
     background: rgba(255,255,255,0.5);
-}
-
-.input-container {
-    background: white;
-    width: 250px;
-    border-radius: 3px;
-}
-
-.input-container div {
-    display: flex;
-}
-
-.input {
-    display: block;
-    width: 97%;
-    margin: 3px auto;
-    padding: 8px;
-    border-radius: 3px;
-    border: 2px solid rgb(0, 121, 191)
-}
-
-.input-btn {
-    background-color: #5aac44;
-    border: none;
-    border-radius: 3px;
-    color: white;
-    padding: 8px 12px;
-    display: inline-block;
-    margin: 0 10px 3px 3px;
-}
-
-.input-times:hover {
-    cursor: pointer
 }

@@ -1,0 +1,54 @@
+
+.input-container {
+    background: white;
+    width: 250px;
+    border-radius: 3px;
+    height: 100%;
+}
+
+.input-container div, .cards-input-container div {
+    display: flex;
+}
+
+.input, .cards-input {
+    display: block;
+    width: 97%;
+    margin: 3px auto;
+    padding: 8px;
+    border-radius: 3px;
+    border: 2px solid rgb(0, 121, 191)
+}
+
+.input-btn {
+    background-color: rgb(90, 172, 68);
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    padding: 8px 12px;
+    display: inline-block;
+    margin: 0 10px 3px 3px;
+}
+.input-btn:hover {
+    background-color: rgb(97, 189, 79);
+}
+
+.input-times path:hover {
+    cursor: pointer;
+    fill: rgb(23, 43, 77)
+}
+
+.cards-input {
+    width: 100%;
+    border: none;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    margin: 10px 0;
+}
+.cards-input:hover {
+    border: none;
+}
+
+.cards-input-container {
+    margin: 10px auto 0;
+    background: transparent;
+}
