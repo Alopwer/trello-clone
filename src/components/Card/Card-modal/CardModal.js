@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
 import '../Card.css';
+import CardModalContent from './CardModalContent';
 
 const CardModal = (props) => {
     useEffect(() => {
@@ -16,14 +17,12 @@ const CardModal = (props) => {
 
     return (
         <Modal 
-        isOpen={modalOpened}
-        onRequestClose={closeModal}
-        className="card-modal-container"
-        overlayClassName="card-overlay"
-        > 
-            <div>
-                Here must be content represented by icons, title, labels, checklist, due date,
-            </div>
+            isOpen={modalOpened}
+            onRequestClose={closeModal}
+            className="card-modal-container"
+            overlayClassName="card-overlay"
+        >
+            <CardModalContent />
         </Modal>
     )
 }

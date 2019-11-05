@@ -5,7 +5,7 @@ import Header from '../Header';
 import BoardsPage from '../../pages/BoardsPage/BoardsPage';
 import BoardPage from '../../pages/BoardPage/BoardPage';
 import { BackgroundContext } from '../../context/backgrounds-context';
-import CardModal from '../Card/Card-modal/Card-modal';
+import CardPage from '../../pages/CardPage/CardPage';
 
 const backgrounds = [
     'rgb(0, 121, 191)',
@@ -26,7 +26,7 @@ const App = () => {
             <Switch>
                 <Route path='/board/:id/list/:listId/card/:cardId'>
                     <BoardPage />
-                    <CardModal />
+                    <CardPage />
                 </Route>
                 <Route path='/board/:id'>
                     <BoardPage />

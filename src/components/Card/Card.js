@@ -2,15 +2,12 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './Card.css';
 
-const CardComponent = withRouter(props => <Card {...props} />)
-
-const Card = (props) => {
-
+const Card = ({ location, card}) => {
     return (
-        <Link to={`${props.location.pathname}/list/${props.listId}/card/${props.cardId}`} className='card-item' >
-            {props.children}
+        <Link to={`${location.pathname}/list/${card.listId}/card/${card.cardId}`} className='card-item'>
+            {card.title}
         </Link>
     )
 }
 
-export default CardComponent;
+export default withRouter(Card);

@@ -8,6 +8,7 @@ const List = (props) => {
     const { lists, changeListName } = props
     const [value, setValue] = useState(props.children)
     const currentList = lists.find(list => list.listId === props.id)
+    
     return (
         <div className='list'>
             <input 

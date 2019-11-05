@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Cards.css';
 import Card from '../Card'
-import AddNewItem from '../AddNewItem'
+import AddNewItem from '../AddNewItem';
 
 const Cards = ({ cards, currentList }) => {
     const [inputOpened, setInputOpened] = useState(false)
@@ -12,13 +12,10 @@ const Cards = ({ cards, currentList }) => {
 
     const items = cards ? 
         cards.map((card, i) => 
-            <Card 
-                listId={card.listId}
-                cardId={card.cardId}
+            <Card
+                card={card}
                 key={i}
-            >
-                {card.title}
-            </Card>
+            />
         ) 
             :
         false  
