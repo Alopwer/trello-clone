@@ -12,7 +12,11 @@ const Cards = ({ cards, currentList }) => {
 
     const items = cards ? 
         cards.map((card, i) => 
-            <Card key={i}>
+            <Card 
+                listId={card.listId}
+                cardId={card.cardId}
+                key={i}
+            >
                 {card.title}
             </Card>
         ) 

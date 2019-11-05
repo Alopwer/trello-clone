@@ -4,8 +4,8 @@ import { Route, Switch } from 'react-router-dom';
 import Header from '../Header';
 import BoardsPage from '../../pages/BoardsPage/BoardsPage';
 import BoardPage from '../../pages/BoardPage/BoardPage';
-import CardPage from '../../pages/CardPage/CardPage';
 import { BackgroundContext } from '../../context/backgrounds-context';
+import CardModal from '../Card/Card-modal/Card-modal';
 
 const backgrounds = [
     'rgb(0, 121, 191)',
@@ -24,8 +24,9 @@ const App = () => {
         <BackgroundContext.Provider value={backgrounds}>
             <Header />
             <Switch>
-                <Route path='/board/:id/card/:cardId'>
-                    <CardPage />
+                <Route path='/board/:id/list/:listId/card/:cardId'>
+                    <BoardPage />
+                    <CardModal />
                 </Route>
                 <Route path='/board/:id'>
                     <BoardPage />

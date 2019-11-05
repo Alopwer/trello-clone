@@ -11,7 +11,7 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
     const inputComplete = () => {
         if (currentParent.hasOwnProperty('boardId')) {
             addCard({
-                title: inputEl.current.value,
+                title: inputEl.current.value || 'Default title',
                 list: currentParent, 
                 newCardId: currentParent.cards.length
             })

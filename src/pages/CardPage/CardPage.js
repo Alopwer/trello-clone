@@ -1,11 +1,10 @@
 import React from 'react';
-import Card from '../../components/Card';
+import CardModal from '../../components/Card/Card-modal/Card-modal';
 
 const CardPage = () => {
     return (
         <div>
-            <Card />
-            {/* NEED TO ADD MODAL NOT THE ACTUAL CARD */}
+            <CardModal />
         </div>
     )
 }

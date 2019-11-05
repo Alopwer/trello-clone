@@ -5,7 +5,7 @@ import ListsPage from '../../pages/ListsPage/ListsPage'
 
 const Board = ({ currentBoard }) => {
     return (
-        <div style={{background: currentBoard.cover}} className='board'>
+        <div style={{background: currentBoard.cover}} className='board' id='boardPage'>
             <h3>
                 {currentBoard.title}
             </h3>

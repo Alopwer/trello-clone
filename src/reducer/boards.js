@@ -34,6 +34,7 @@ const updateCards = (currentBoard, payload) => {
                 cards: [
                     ...currentBoard.lists[list.listId].cards,
                     {
+                        listId: list.listId,
                         cardId: newCardId,
                         title
                     }
