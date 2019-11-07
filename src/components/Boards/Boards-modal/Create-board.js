@@ -12,7 +12,6 @@ Modal.setAppElement('#root')
 const CreateBoard = ({ currentColor, setCurrentColor }) => {
     const [modalOpened, setModalOpened] = useState(false)
     const [input, setInput] = useState('')
-    const inputEl = useRef('')
 
     const openModal = () => {
         setModalOpened(true);
@@ -36,7 +35,6 @@ const CreateBoard = ({ currentColor, setCurrentColor }) => {
                         closeModal={closeModal}
                         currentColor={currentColor}
                         setCurrentColor={setCurrentColor}
-                        inputEl={inputEl}
                         setInput={setInput}
                     />
                 </div>
@@ -45,9 +43,10 @@ const CreateBoard = ({ currentColor, setCurrentColor }) => {
     )
 }
 
-const ModalComponent = ({ modalOpened, closeModal, currentColor, setCurrentColor, inputEl, setInput }) => {
+const ModalComponent = ({ modalOpened, closeModal, currentColor, setCurrentColor, setInput }) => {
     const backgrounds = useContext(BackgroundContext);
 
+    const inputEl = useRef('')
     const inputChange = () => {
         setInput(inputEl.current.value)
     }

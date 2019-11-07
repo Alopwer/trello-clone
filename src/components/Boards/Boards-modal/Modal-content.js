@@ -20,7 +20,13 @@ const ModalContent = ({ inputChange, inputEl, closeModal, currentColor, addBoard
     }
 
     return (
-        <div className='modal__content'>
+        <div className='modal__content'
+            onKeyPress={(e) => {
+                if (e.which === 13) {
+                    createBoard()
+                }
+            }}
+        >
             <div className='modal__content-main'>
                 <div style={{background: currentColor}}>
                     <input 

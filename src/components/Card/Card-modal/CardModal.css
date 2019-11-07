@@ -1,0 +1,122 @@
+.card-modal-container {
+    background-color: rgb(244, 245, 247);
+    color: rgb(23, 43, 77);
+    flex-basis: 70%;
+    max-width: 780px;
+    padding: 10px;
+    border-radius: 3px;
+    position: relative;
+}
+
+.card-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.7)
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-content {
+    flex-basis: 75%;
+}
+
+.modal-section {
+    margin-bottom: 20px;
+}
+
+.modal-section-title {
+    margin-bottom: 10px;
+}
+.modal-section-main-title + p {
+    font-size: 0.85rem;
+    color: rgb(94, 108, 132)
+}
+
+.modal-description {
+    resize: none;
+    width: 100%;
+    overflow-y: hidden;
+    border: 2px solid rgba(9, 30, 66, 0);
+    border-radius: 3px;
+    background: rgba(9,30,66,.04);
+    padding: 10px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    min-height: 100px;
+    max-height: 50vh
+}
+.modal-description:focus {
+    background: white;
+    border: 2px solid #0079bf;
+    cursor: text;
+    min-height: 150px;
+    overflow: auto;
+}
+
+.modal-date {
+
+}
+
+.modal-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 7px 10px 3px;
+    border-radius: 70%;
+    transition: all 0.1s linear;
+    cursor: pointer;
+}
+.modal-close:hover {
+    background: rgb(226, 228, 233);
+}
+
+.modal-aside {
+    margin-right: 25px;
+    flex-basis: 18%;
+}
+
+.aside-elements {
+
+}
+
+.aside-title {
+    font-weight: normal;
+}
+
+.aside-list {
+    list-style: none;
+    margin-top: 8px;
+}
+
+.aside-li-button {
+    text-align: left;
+    background: rgba(9,30,66,.04);
+    border: none;
+    color: rgb(23, 43, 77);
+    width: 100%;
+    padding: 8px 10px;
+    margin: 2px 0;
+    cursor: pointer;
+    border-radius: 3px;
+    max-width: 300px;
+}
+.aside-li-button:hover {
+    background: rgb(226, 228, 233);
+}

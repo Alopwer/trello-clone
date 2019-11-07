@@ -36,7 +36,8 @@ const updateCards = (currentBoard, payload) => {
                     {
                         listId: list.listId,
                         cardId: newCardId,
-                        title
+                        title,
+                        descr: ''
                     }
                 ]
             },
@@ -57,6 +58,28 @@ const updateListName = (currentBoard, payload) => {
                 title,
                 cards: [
                     ...currentBoard.lists[listId].cards
+                ]
+            },
+            ...currentBoard.lists.slice(listId + 1),
+        ]
+    }
+}
+
+const updateCardDescr = (currentBoard, payload) => {
+    const { listId, text, cardId } = payload
+    return {
+        ...currentBoard,
+        lists: [
+            ...currentBoard.lists.slice(0, listId),
+            {
+                ...currentBoard.lists[listId],
+                cards: [
+                    ...currentBoard.lists[listId].cards.slice(0, cardId),
+                    {
+                        ...currentBoard.lists[listId].cards[cardId],
+                        descr: text
+                    },
+                    ...currentBoard.lists[listId].cards.slice(cardId + 1),
                 ]
             },
             ...currentBoard.lists.slice(listId + 1),
@@ -98,6 +121,12 @@ const updateBoards = (state, action) => {
                 updateListName(currentBoard, action.payload),
                 ...boards.slice(action.payload.boardId + 1)
             ]
+        case 'UPDATE_CARD_DESCR': 
+            return [
+                ...boards.slice(0, action.payload.boardId),
+                updateCardDescr(currentBoard, action.payload),
+                ...boards.slice(action.payload.boardId + 1)
+            ]
         default: 
             return state.boards
     }
@@ -119,6 +148,8 @@ const updateBoard = (state, action) => {
             return updateCards(currentBoard, action.payload)
         case 'CHANGE_LIST_NAME':
             return updateListName(currentBoard, action.payload)
+        case 'UPDATE_CARD_DESCR':
+            return updateCardDescr(currentBoard, action.payload)
         default: 
             return state.currentBoard
     }
@@ -130,5 +161,6 @@ export {
     updateCards,
     updateListName,
     updateBoards,
-    updateBoard
+    updateBoard,
+    updateCardDescr
 }

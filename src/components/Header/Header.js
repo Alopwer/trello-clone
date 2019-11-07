@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import  './Header.css';
 
-const Header = ({ currentBoard }) => {
+const Header = ({ cover }) => {
     return (
-        <div style={{background: currentBoard.cover}} className='header'>
+        <div style={{background: cover}} className='header'>
             <div className='header__wrapper'>
                 <div className='header__logo'>
                     <Link to='/' className='header__logo-link'>Trello Clone</Link>
@@ -18,8 +18,8 @@ const Header = ({ currentBoard }) => {
     )
 }
 
-const mapStateToProps = ({ currentBoard }) => {
-    return { currentBoard }
+const mapStateToProps = ({ currentBoard : { cover } }) => {
+    return { cover }
 }
 
 export default connect(mapStateToProps)(Header);

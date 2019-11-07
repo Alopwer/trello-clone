@@ -43,7 +43,15 @@ const addCard = (value) => {
     const { title, list, newCardId } = value
     return {
         type: 'ADD_CARD',
-        payload: {title, list, newCardId}
+        payload: { title, list, newCardId }
+    }
+}
+
+const updateCardDescr = (value) => {
+    const { boardId, listId, cardId, text } = value
+    return {
+        type: 'UPDATE_CARD_DESCR',
+        payload: { boardId, listId, cardId, text }
     }
 }
 
@@ -53,5 +61,6 @@ export {
     addBoard,
     addList,
     addCard,
-    changeListName
+    changeListName,
+    updateCardDescr
 }

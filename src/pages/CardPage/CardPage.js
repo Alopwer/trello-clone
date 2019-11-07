@@ -2,11 +2,7 @@ import React from 'react';
 import CardModal from '../../components/Card/Card-modal/CardModal';
 
 const CardPage = () => {
-    return (
-        <div>
-            <CardModal />
-        </div>
-    )
+    return <CardModal />
 }
 
 export default CardPage;
