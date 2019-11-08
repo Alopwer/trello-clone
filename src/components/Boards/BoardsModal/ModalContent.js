@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useRef, useState } from 'react';
 import Times from '../../svg/Times';
-import '../Boards.css';
 import { connect } from 'react-redux';
 import { addBoard } from '../../../actions/index';
-import { IdContext } from '../../../context/id-context';
-import { InputContext } from '../../../context/input-content';
 
-const ModalContent = ({ inputChange, inputEl, closeModal, currentColor, addBoard, ...props }) => {
-    const input = useContext(InputContext)
-    const id = useContext(IdContext)
+const ModalContent = ({ lastId, closeModal, currentColor, addBoard, ...props }) => {
+    const inputEl = useRef('')
+    const [input, setInput] = useState('')
+    
+    const id = lastId ? lastId++ : 0
     
     const createBoard = () => {
         addBoard({
@@ -35,9 +34,9 @@ const ModalContent = ({ inputChange, inputEl, closeModal, currentColor, addBoard
                         ref={inputEl} 
                         className='modal-input' 
                         type='text' 
-                        placeholder='Add board title' 
-                        onChange={inputChange}
+                        placeholder='Add board title'
                         maxLength='18'
+                        onChange={() => setInput(inputEl.current.value)}
                     />
                     <Times closeModal={closeModal}/>
                 </div>
@@ -56,10 +55,14 @@ const ModalContent = ({ inputChange, inputEl, closeModal, currentColor, addBoard
     )
 }
 
+const mapStateToProps = ({ boards, currentColor }) => {
+    return { lastId: boards.length, currentColor }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         addBoard: (board) => dispatch(addBoard(board))
     }
 }
 
-export default connect(null, mapDispatchToProps)(ModalContent);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);

@@ -103,6 +103,8 @@
 .aside-list {
     list-style: none;
     margin-top: 8px;
+    display: flex;
+    flex-direction: column;
 }
 
 .aside-li-button {
@@ -119,4 +121,28 @@
 }
 .aside-li-button:hover {
     background: rgb(226, 228, 233);
+}
+
+@media (max-width: 768px) {
+    .card-modal-container {
+        flex-basis: 90%;
+    }
+    .modal-main {
+        display: flex;
+        flex-direction: column;
+    }
+    .modal-aside {
+        width: 40%
+    }
+    .aside-list li {
+        display: inline;
+    }
+    .aside-li-button {
+       width: 70%;
+       min-width: 100px;
+    }
+}
+
+@media (max-width: 576px) {
+
 }
