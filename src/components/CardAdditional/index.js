@@ -1,9 +1,9 @@
-import Labels from './Labels';
-import DueDate from './DueDate';
-import Checklist from './Checklist';
+import LabelsCreate from './Labels';
+import DueDateCreate from './DueDate';
+import ChecklistCreate from './Checklist';
 
 export {
-    Labels,
-    DueDate,
-    Checklist
+    LabelsCreate,
+    DueDateCreate,
+    ChecklistCreate
 }

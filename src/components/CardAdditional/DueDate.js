@@ -1,9 +1,15 @@
 import React from 'react';
 
-const DueDate = () => {
-    return <div>
-        DueDate
-    </div>
+const DueDateCreate = () => {
+    return (
+        <div>
+            <h5>Change Due Date</h5>
+            {/* ADD TIMES BTN */}
+            <div>
+                
+            </div>
+        </div>
+    )
 }
 
-export default DueDate;
+export default DueDateCreate;

@@ -38,7 +38,9 @@ const ModalContent = ({ lastId, closeModal, currentColor, addBoard, ...props }) 
                         maxLength='18'
                         onChange={() => setInput(inputEl.current.value)}
                     />
-                    <Times closeModal={closeModal}/>
+                    <div onClick={closeModal}>
+                        <Times width='10' className='closeBtn' />
+                    </div>
                 </div>
                 <ul className='modal__grid'>
                     { props.children }

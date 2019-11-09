@@ -33,6 +33,10 @@
     background-color: rgb(97, 189, 79);
 }
 
+.input-times path {
+    fill: #6b778c;
+}
+
 .input-times path:hover {
     cursor: pointer;
     fill: rgb(23, 43, 77)

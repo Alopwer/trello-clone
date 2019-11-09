@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Labels, DueDate, Checklist } from '../../../CardAdditional';
+import { LabelsCreate, DueDateCreate, ChecklistCreate } from '../../../CardAdditional';
 
 const CardModalMain = ({ updateDescr, list, card }) => {
     const [labels, setLabels] = useState(false)
@@ -16,6 +16,20 @@ const CardModalMain = ({ updateDescr, list, card }) => {
         })
     }
 
+    const createListItem = (stateFunc, state, text, firstStateFunc, secondStateFunc) => {
+        return (
+            <li>
+                <button className='aside-li-button' onClick={() => {
+                    stateFunc(!state)
+                    firstStateFunc(false)
+                    secondStateFunc(false)
+                }}>
+                    {text}
+                </button>
+            </li>
+        ) 
+    }
+
     return (
         <div className='modal-main'>
             <div className='modal-content'>
@@ -30,17 +44,36 @@ const CardModalMain = ({ updateDescr, list, card }) => {
                     >
                     </textarea>
                 </div>
-                { checklist && <Checklist /> }
-                { labels && <Labels /> }
-                { dueDate && <DueDate /> }
+                {
+                    card.checklists.map(chkList => (
+                        <div>
+                            {chkList.title}
+                        </div>
+                    ))
+                }
+
+
             </div>
             <aside className='modal-aside'>
                 <div className='aside-elements'>
                     <h5 className='aside-title'>ADD TO CARD</h5>
                         <ul className='aside-list'>
-                            <li><button className='aside-li-button' onClick={() => setDueDate(!dueDate)}>Due Date</button></li>
-                            <li><button className='aside-li-button' onClick={() => setChecklist(!checklist)}>Checklist</button></li>
-                            <li><button className='aside-li-button' onClick={() => setLabels(!labels)}>Labels</button></li>
+                            <div>
+                                { createListItem(setDueDate, dueDate, 'Due Date', setChecklist, setLabels) }
+                                { dueDate && <DueDateCreate /> }
+                            </div>
+                            <div>
+                                { createListItem(setChecklist, checklist, 'Checklist', setDueDate, setLabels) }
+                                { checklist && <ChecklistCreate 
+                                    onClose={setChecklist} 
+                                    boardId={list.boardId} 
+                                    listId={list.listId} 
+                                    cardId={card.cardId} /> } 
+                            </div>
+                            <div>
+                                { createListItem(setLabels, labels, 'Labels', setChecklist, setDueDate) }
+                                { labels && <LabelsCreate /> }
+                            </div>
                         </ul>
                 </div>
             </aside>

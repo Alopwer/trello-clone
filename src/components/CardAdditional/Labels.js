@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Labels = () => {
+const LabelsCreate = () => {
     return <div>
-        Labels
+        LabelsCreate
     </div>
 }
 
-export default Labels;
+export default LabelsCreate;

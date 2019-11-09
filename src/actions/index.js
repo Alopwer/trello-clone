@@ -27,6 +27,14 @@ const addList = (value) => {
     }
 }
 
+const addCard = (value) => {
+    const { title, list, newCardId } = value
+    return {
+        type: 'ADD_CARD',
+        payload: { title, list, newCardId }
+    }
+}
+
 const changeListName = (value) => {    
     const { title, boardId, listId } = value
     return {
@@ -39,19 +47,19 @@ const changeListName = (value) => {
     }
 }
 
-const addCard = (value) => {
-    const { title, list, newCardId } = value
-    return {
-        type: 'ADD_CARD',
-        payload: { title, list, newCardId }
-    }
-}
-
 const updateCardDescr = (value) => {
     const { boardId, listId, cardId, text } = value
     return {
         type: 'UPDATE_CARD_DESCR',
         payload: { boardId, listId, cardId, text }
+    }
+}
+
+const addChecklist = (value) => {
+    const { boardId, listId, cardId, title } = value
+    return {
+        type: 'ADD_CHECKLIST',
+        payload: { boardId, listId, cardId, title }
     }
 }
 
@@ -61,6 +69,7 @@ export {
     addBoard,
     addList,
     addCard,
+    addChecklist,
     changeListName,
     updateCardDescr
 }

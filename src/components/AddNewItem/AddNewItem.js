@@ -48,7 +48,9 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
                 >
                     Add {parent[0].toUpperCase() + parent.slice(1)}
                 </button>
-                <Times className='input-times' setInputOpened={setInputOpened}/>
+                <div onClick={() => setInputOpened(false)}>
+                    <Times className='input-times' width='12' />
+                </div>
             </div>
         </div>
     )

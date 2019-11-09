@@ -1,0 +1,91 @@
+.card__addit {
+    position: absolute;
+    background: white;
+    border-radius: 3px;
+    padding: 10px 10px 5px;
+    border: 1px solid rgba(9,30,66,.13);
+    width: 240px
+}
+
+.card__addit div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(9,30,66,.13);
+}
+
+.card__addit-title + div:hover {
+    cursor: pointer;
+}
+
+.card__addit-times {
+    cursor: pointer
+}
+
+.card__addit-times path {
+    fill:#42526e
+}
+
+.card__addit-times path:hover {
+    fill: rgb(23, 43, 87)
+}
+
+.card__addit-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__addit-content span {
+    font-size: 0.8rem;
+    color: rgb(94, 108, 132);
+    margin-bottom: 5px;
+}
+
+.card__addit-input {
+    border: 2px solid #dfe1e6;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+}
+.card__addit-input:hover {
+    background: rgb(235, 236, 240);
+}
+.card__addit-input:focus {
+    border: 2px solid rgb(0, 121, 191);
+}
+.card__addit-input:focus:hover {
+    background: white;
+}
+
+.card__addit-btn {
+    width: 70px;
+    line-height: 2;
+    padding: 2px 5px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background: rgb(87, 172, 70);
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.card__addit-btn:hover {
+    background: rgb(97, 189, 79)
+}
+
+@media (max-width: 768px) {
+    .card__addit {
+        width: 60vw;
+        left: 120px;
+        top: 0
+    }
+}
+
+@media (max-width: 576px) {
+    .card__addit {
+        width: 50vw;
+        left: 110px;
+    }
+}

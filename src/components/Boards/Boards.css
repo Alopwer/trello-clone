@@ -69,6 +69,8 @@
     margin-right: 10px;
     border-radius: 3px;
     position: relative;
+    display: flex;
+    align-items: flex-start;
 }
 
 .modal-input {
@@ -142,6 +144,8 @@
 
 .closeBtn {
     position: absolute;
-    top: 6px;
-    right: 8px
+    top: 0px;
+    right: -8px;
+    cursor: pointer;
+    fill: white;
 }
