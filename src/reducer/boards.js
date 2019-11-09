@@ -87,8 +87,7 @@ const updateCardDescr = (currentBoard, payload) => {
 }
 
 const updateChecklists = (currentBoard, payload) => {
-    const { listId, title, cardId } = payload
-    console.log(currentBoard.lists[listId].cards[cardId])
+    const { listId, title, cardId, id } = payload
     return {
         ...currentBoard,
         lists: [
@@ -101,10 +100,47 @@ const updateChecklists = (currentBoard, payload) => {
                         ...currentBoard.lists[listId].cards[cardId],
                         checklists: [
                             ...currentBoard.lists[listId].cards[cardId].checklists,
-                            {
+                            {   
+                                id,
+                                cardId,
                                 title,
                                 items: []
                             }
+                        ]
+                    },
+                    ...currentBoard.lists[listId].cards.slice(cardId + 1),
+                ]
+            },
+            ...currentBoard.lists.slice(listId + 1),
+        ]
+    }
+}
+
+const updateChecklistItems = (currentBoard, payload) => {
+    const { cardId, listId, checklistId, title } = payload
+    return {
+        ...currentBoard,
+        lists: [
+            ...currentBoard.lists.slice(0, listId),
+            {
+                ...currentBoard.lists[listId],
+                cards: [
+                    ...currentBoard.lists[listId].cards.slice(0, cardId),
+                    {
+                        ...currentBoard.lists[listId].cards[cardId],
+                        checklists: [
+                            ...currentBoard.lists[listId].cards[cardId].checklists.slice(0, checklistId),
+                            {   
+                                ...currentBoard.lists[listId].cards[cardId].checklists[checklistId],
+                                items: [
+                                    ...currentBoard.lists[listId].cards[cardId].checklists[checklistId].items,
+                                    {
+                                        title,
+                                        done: false
+                                    }
+                                ]
+                            },
+                            ...currentBoard.lists[listId].cards[cardId].checklists.slice(checklistId + 1)
                         ]
                     },
                     ...currentBoard.lists[listId].cards.slice(cardId + 1),
@@ -155,6 +191,12 @@ const updateBoards = (state, action) => {
                 updateChecklists(currentBoard, action.payload),
                 ...boards.slice(action.payload.boardId + 1)
             ]
+        case 'ADD_ITEM':
+                return [
+                    ...boards.slice(0, action.payload.boardId),
+                    updateChecklistItems(currentBoard, action.payload),
+                    ...boards.slice(action.payload.boardId + 1)
+                ]
         case 'UPDATE_CARD_DESCR': 
             return [
                 ...boards.slice(0, action.payload.boardId),
@@ -182,6 +224,8 @@ const updateBoard = (state, action) => {
             return updateCards(currentBoard, action.payload)
         case 'ADD_CHECKLIST':
             return updateChecklists(currentBoard, action.payload)
+        case 'ADD_ITEM':
+            return updateChecklistItems(currentBoard, action.payload)
         case 'CHANGE_LIST_NAME':
             return updateListName(currentBoard, action.payload)
         case 'UPDATE_CARD_DESCR':

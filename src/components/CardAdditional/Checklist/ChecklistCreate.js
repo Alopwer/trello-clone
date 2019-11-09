@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { addChecklist } from '../../actions';
+import { addChecklist } from '../../../actions';
 
-import Times from '../svg/Times';
-import './CardAdditional.css';
+import Times from '../../svg/Times';
+import '../CardAdditional.css';
 
-const ChecklistCreate = ({ onClose, addChecklist, boardId, listId, cardId }) => {
+const ChecklistCreate = ({ onClose, addChecklist, boardId, listId, card }) => {
     const inputEl = useRef('Checklist')
 
     return (
@@ -33,7 +33,8 @@ const ChecklistCreate = ({ onClose, addChecklist, boardId, listId, cardId }) => 
                             title: inputEl.current.value,
                             boardId,
                             listId,
-                            cardId
+                            cardId : card.cardId,
+                            id: card.checklists.length
                         })
                         onClose(false)
                     }}

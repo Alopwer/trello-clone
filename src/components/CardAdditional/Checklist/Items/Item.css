@@ -1,0 +1,55 @@
+.add__item {
+    margin-top: 10px;
+}
+
+.add__item-view div {
+    display: flex;
+    align-items: center;
+}
+
+.add__item-input {
+    margin-bottom: 5px;
+    border: 2px solid transparent;
+    padding: 4px 8px;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.add__item-input:focus {
+    border: 2px solid #0079bf
+}
+
+.add__item-add-btn {
+    background-color: #5aac44;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    padding: 6px 12px;
+    margin-right: 10px;
+}
+.add__item-add-btn:hover {
+    background-color: rgb(97, 189, 79);
+}
+
+.add__item-times {
+    cursor: pointer;
+}
+.add__item-times path {
+    fill: #42526e;
+}
+.add__item-times path:hover {
+    fill: rgb(23, 43, 87);
+}
+
+.add__item-btn {
+    background-color: rgba(9,30,66,.04);
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    padding: 6px 12px;
+    color: rgb(23, 43, 77);
+}
+.add__item-btn:hover {
+    background: rgb(226, 228, 233)
+}

@@ -56,10 +56,18 @@ const updateCardDescr = (value) => {
 }
 
 const addChecklist = (value) => {
-    const { boardId, listId, cardId, title } = value
+    const { boardId, listId, cardId, title, id } = value
     return {
         type: 'ADD_CHECKLIST',
-        payload: { boardId, listId, cardId, title }
+        payload: { boardId, listId, cardId, title, id }
+    }
+}
+
+const addItemToList = (value) => {
+    const { title, checklistId, cardId, listId, boardId } = value
+    return {
+        type: 'ADD_ITEM',
+        payload: { title, checklistId, cardId, listId, boardId }
     }
 }
 
@@ -70,6 +78,7 @@ export {
     addList,
     addCard,
     addChecklist,
+    addItemToList,
     changeListName,
     updateCardDescr
 }

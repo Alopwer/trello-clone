@@ -1,0 +1,36 @@
+.checklist {
+    margin-bottom: 10px;
+}
+
+.checklist__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: rgb(23, 43, 77);
+}
+
+.header-btn {
+    border: none;
+    border-radius: 3px;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: rgba(9,30,66,.04);
+}
+
+.header-btn:hover {
+    background: rgb(226, 228, 233)
+}
+
+.checklist__progress {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.checklist__progress span {
+    font-size: 0.7rem;
+    color: #5e6c84;
+    margin-right: 15px;
+}
