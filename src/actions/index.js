@@ -20,54 +20,44 @@ const addBoard = (board) => {
 }
 
 const addList = (value) => {
-    const { title, boardId, newListId } = value
     return {
         type: 'ADD_LIST',
-        payload: {title, boardId, newListId}
+        payload: value
     }
 }
 
 const addCard = (value) => {
-    const { title, list, newCardId } = value
     return {
         type: 'ADD_CARD',
-        payload: { title, list, newCardId }
+        payload: value
     }
 }
 
 const changeListName = (value) => {    
-    const { title, boardId, listId } = value
     return {
         type: 'CHANGE_LIST_NAME',
-        payload: {
-            title,
-            boardId,
-            listId
-        }
+        payload: value
     }
 }
 
 const updateCardDescr = (value) => {
-    const { boardId, listId, cardId, text } = value
     return {
         type: 'UPDATE_CARD_DESCR',
-        payload: { boardId, listId, cardId, text }
+        payload: value
     }
 }
 
 const addChecklist = (value) => {
-    const { boardId, listId, cardId, title, id } = value
     return {
         type: 'ADD_CHECKLIST',
-        payload: { boardId, listId, cardId, title, id }
+        payload: value
     }
 }
 
 const addItemToList = (value) => {
-    const { title, checklistId, cardId, listId, boardId } = value
     return {
         type: 'ADD_ITEM',
-        payload: { title, checklistId, cardId, listId, boardId }
+        payload: value
     }
 }
 

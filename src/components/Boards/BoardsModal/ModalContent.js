@@ -12,7 +12,7 @@ const ModalContent = ({ lastId, closeModal, currentColor, addBoard, ...props }) 
     const createBoard = () => {
         addBoard({
             title: input,
-            id,
+            boardId: id,
             cover: currentColor
         })
         closeModal()

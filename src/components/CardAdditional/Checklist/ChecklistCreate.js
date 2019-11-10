@@ -34,7 +34,7 @@ const ChecklistCreate = ({ onClose, addChecklist, boardId, listId, card }) => {
                             boardId,
                             listId,
                             cardId : card.cardId,
-                            id: card.checklists.length
+                            checklistId: card.checklists.length
                         })
                         onClose(false)
                     }}

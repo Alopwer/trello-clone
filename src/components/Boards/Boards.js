@@ -7,9 +7,10 @@ import CreateBoard from './BoardsModal/ModalCreateBoard';
 import BoardsCells from './BoardsCells';
 
 const Boards = ({ boards, setCurrentBoard }) => {
+    console.log(boards)
     const boardsItems = boards.map(board => (
         <BoardsCells
-            key={board.id} 
+            key={board.boardId} 
             board={board} 
             setCurrentBoard={setCurrentBoard}
         />

@@ -9,16 +9,17 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
     let className = parent === 'list' ? '' : 'cards-'
 
     const inputComplete = () => {
-        if (currentParent.hasOwnProperty('boardId')) {
+        if (currentParent.hasOwnProperty('boardId') && currentParent.hasOwnProperty('listId')) {
             addCard({
                 title: inputEl.current.value || 'Default title',
-                list: currentParent, 
+                listId: currentParent.listId, 
+                boardId: currentParent.boardId,
                 newCardId: currentParent.cards.length
             })
         } else {
             addList({
                 title: inputEl.current.value || 'Default title',
-                boardId: currentParent.id, 
+                boardId: currentParent.boardId, 
                 newListId: currentParent.lists.length
             })
         }

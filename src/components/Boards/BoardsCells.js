@@ -6,9 +6,9 @@ const BoardsCells = ({ board, setCurrentBoard }) => {
         <div className='boards__item' style={{backgroundColor: board.cover}} >
             <div className='boards-fade'>
                 <Link 
-                    to={`/board/${board.id}`}  
+                    to={`/board/${board.boardId}`}  
                     onClick={() => {
-                        setCurrentBoard(board.id)
+                        setCurrentBoard(board.boardId)
                     }}
                     className='boards__item-link'
                 >

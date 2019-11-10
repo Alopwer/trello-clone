@@ -12,7 +12,7 @@ const AddItem = (props) => {
     const createItem = () => {
         props.addItemToList({
             title: value,
-            checklistId: props.checklist.id,
+            checklistId: props.checklist.checklistId,
             cardId: props.card.cardId,
             listId: props.list.listId,
             boardId: props.list.boardId
