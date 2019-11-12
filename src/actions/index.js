@@ -1,65 +1,52 @@
-const setCurrentBoard = (boardId) => {
-    return {
-        type: 'SET_CURRENT_BOARD',
-        payload: boardId
-    }
-}
+const setCurrentBoard = (boardId) => ({
+    type: 'SET_CURRENT_BOARD',
+    payload: boardId
+})
 
-const setCurrentColor = (color) => {
-    return {
-        type: 'SET_CURRENT_COLOR',
-        payload: color
-    }
-}
+const setCurrentColor = (color) => ({
+    type: 'SET_CURRENT_COLOR',
+    payload: color
+})
 
-const addBoard = (board) => {
-    return {
-        type: 'ADD_BOARD',
-        payload: board
-    }
-}
+const addBoard = (board) => ({
+    type: 'ADD_BOARD',
+    payload: board
+})
 
-const addList = (value) => {
-    return {
-        type: 'ADD_LIST',
-        payload: value
-    }
-}
+const addList = (value) => ({
+    type: 'ADD_LIST',
+    payload: value
+})
 
-const addCard = (value) => {
-    return {
-        type: 'ADD_CARD',
-        payload: value
-    }
-}
+const addCard = (value) => ({
+    type: 'ADD_CARD',
+    payload: value
+})
 
-const changeListName = (value) => {    
-    return {
-        type: 'CHANGE_LIST_NAME',
-        payload: value
-    }
-}
+const changeListName = (value) => ({    
+    type: 'CHANGE_LIST_NAME',
+    payload: value
+})
 
-const updateCardDescr = (value) => {
-    return {
-        type: 'UPDATE_CARD_DESCR',
-        payload: value
-    }
-}
+const updateCardDescr = (value) => ({
+    type: 'UPDATE_CARD_DESCR',
+    payload: value
+})
 
-const addChecklist = (value) => {
-    return {
-        type: 'ADD_CHECKLIST',
-        payload: value
-    }
-}
+const addChecklist = (value) => ({
+    type: 'ADD_CHECKLIST',
+    payload: value
+})
 
-const addItemToList = (value) => {
-    return {
-        type: 'ADD_ITEM',
-        payload: value
-    }
-}
+const addItemToList = (value) => ({
+    type: 'ADD_ITEM',
+    payload: value
+})
+
+const toggleCheckStatus = (value) => ({
+    type: 'TOGGLE_CHECK_STATUS',
+    payload: value
+})
 
 export {
     setCurrentBoard,
@@ -70,5 +57,6 @@ export {
     addChecklist,
     addItemToList,
     changeListName,
-    updateCardDescr
+    updateCardDescr,
+    toggleCheckStatus
 }

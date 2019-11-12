@@ -1,18 +1,16 @@
 import React from 'react';
 import './Boards.css';
 
-import { setCurrentBoard } from '../../actions/index';
 import { connect } from 'react-redux';
 import CreateBoard from './BoardsModal/ModalCreateBoard';
 import BoardsCells from './BoardsCells';
 
-const Boards = ({ boards, setCurrentBoard }) => {
-    console.log(boards)
+const Boards = ({ boards }) => {
+    
     const boardsItems = boards.map(board => (
         <BoardsCells
             key={board.boardId} 
             board={board} 
-            setCurrentBoard={setCurrentBoard}
         />
     ))
 
@@ -33,10 +31,4 @@ const mapStateToProps = ({ boards }) => {
     return { boards }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setCurrentBoard: (id) => dispatch(setCurrentBoard(id))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Boards)
+export default connect(mapStateToProps)(Boards)

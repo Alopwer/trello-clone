@@ -28,6 +28,7 @@ const updateBoards = (state, action, current) => {
         case 'ADD_CHECKLIST': 
         case 'ADD_ITEM':
         case 'UPDATE_CARD_DESCR': 
+        case 'TOGGLE_CHECK_STATUS':
             return [
                 ...boards.slice(0, payload.boardId),
                 current,

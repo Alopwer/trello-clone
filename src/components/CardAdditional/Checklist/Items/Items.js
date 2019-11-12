@@ -3,10 +3,18 @@ import Item from './Item';
 
 const Items = (props) => {
     return (
-        <div>
+        <div className='checklist-items'>
             {
                 props.items.map(item => (
-                    <Item item={item}/>
+                    <div className='checklist__item' key={item.itemId}>
+                        {console.log(item.itemId)}
+                        <Item   
+                            item={item}
+                            cardId={props.cardId}
+                            list={props.list}
+                            checklistId={props.checklistId}
+                        />
+                    </div>
                 ))
             }
         </div>

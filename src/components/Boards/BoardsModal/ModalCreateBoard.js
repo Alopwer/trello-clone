@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { setCurrentColor } from '../../../actions';
 import '../Boards.css';
 import ModalComponent from './ModalComponent';
 
-const CreateBoard = ({ setCurrentColor }) => {
+const CreateBoard = () => {
     const [modalOpened, setModalOpened] = useState(false)
 
     const closeModal = () => {
@@ -14,24 +12,17 @@ const CreateBoard = ({ setCurrentColor }) => {
     return (
         <div className='boards__item'>
             <div className='boards-fade'>
-                <div className='boards__add' onClick={() => setModalOpened(!modalOpened)}>
+                <div className='boards__add' onClick={() => setModalOpened(true)}>
                     <p>Create new board</p>
                     <span>+</span>
                 </div>
                 <ModalComponent 
                     modalOpened={modalOpened}
                     closeModal={closeModal}
-                    setCurrentColor={setCurrentColor}
                 />
             </div>
         </div>
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setCurrentColor: (color) => dispatch(setCurrentColor(color))
-    }
-}
-
-export default connect(null, mapDispatchToProps)(CreateBoard);
+export default CreateBoard;

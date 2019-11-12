@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setCurrentBoard } from '../../actions/index';
 
 const BoardsCells = ({ board, setCurrentBoard }) => {
     return (
@@ -21,4 +23,10 @@ const BoardsCells = ({ board, setCurrentBoard }) => {
     )   
 }
 
-export default BoardsCells;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrentBoard: (id) => dispatch(setCurrentBoard(id))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(BoardsCells);

@@ -2,6 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import ModalContent from './ModalContent';
 import { backgrounds } from '../../../data/backgrounds';
+import { connect } from 'react-redux';
+import { setCurrentColor } from '../../../actions';
 
 Modal.setAppElement('#root')
 
@@ -13,7 +15,8 @@ const ModalComponent = ({ modalOpened, closeModal, setCurrentColor }) => {
                     <div></div>
                 </button>
             </li>
-        ))
+        )
+    )
 
     return (
         <Modal 
@@ -31,4 +34,10 @@ const ModalComponent = ({ modalOpened, closeModal, setCurrentColor }) => {
     )
 }
 
-export default ModalComponent;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrentColor: (color) => dispatch(setCurrentColor(color))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ModalComponent);

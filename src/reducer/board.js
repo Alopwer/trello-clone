@@ -1,4 +1,4 @@
-import { getModifiedList, getModifiedCard, getModifiedChecklist, getModifiedChecklistItems } from './getModifiedParts';
+import { getModifiedList, getModifiedCard, getModifiedChecklist, getModifiedChecklistItems, getModifiedItems } from './getModifiedParts';
 
 const updateLists = (currentBoard, payload) => {
     const { title, newListId } = payload
@@ -73,6 +73,17 @@ const updateChecklistItems = (currentBoard, payload) => {
         ]
     }
 }
+const updateItemsStatus = (currentBoard, payload) => {
+    const { listId } = payload
+    return {
+        ...currentBoard,
+        lists: [
+            ...currentBoard.lists.slice(0, listId),
+            getModifiedItems(currentBoard, payload),
+            ...currentBoard.lists.slice(listId + 1),
+        ]
+    }
+}
 
 const updateBoard = (state, action) => {
     if (state === undefined) {
@@ -96,6 +107,8 @@ const updateBoard = (state, action) => {
             return updateListName(currentBoard, payload)
         case 'UPDATE_CARD_DESCR':
             return updateCardDescr(currentBoard, payload)
+        case 'TOGGLE_CHECK_STATUS':
+            return updateItemsStatus(currentBoard, payload)
         default: 
             return currentBoard
     }

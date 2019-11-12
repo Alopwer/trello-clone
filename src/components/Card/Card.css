@@ -7,7 +7,7 @@
     cursor: pointer;
     padding: 4px 8px;
     text-decoration: none;
-    color: black
+    color: rgb(23, 43, 77);
 }
 
 .card-item:hover {

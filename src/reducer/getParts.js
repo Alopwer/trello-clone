@@ -15,12 +15,13 @@ const getCard = (board, payload) => {
         descr: text
     }
 }
-const getChecklist = (board, payload) => {
-    const { listId, cardId, checklistId, title } = payload
+const getChecklist = (payload, boardLists) => {
+    const { cardId, checklistId, title } = payload
+    const boardCards = boardLists.cards[cardId]
     return {
-        ...board.lists[listId].cards[cardId],
+        ...boardCards,
         checklists: [
-            ...board.lists[listId].cards[cardId].checklists,
+            ...boardCards.checklists,
             {  
                 checklistId,
                 cardId,
@@ -30,23 +31,48 @@ const getChecklist = (board, payload) => {
         ]
     }
 }
-const getChecklistItems = (board, payload) => {
-    const { listId, cardId, checklistId, title } = payload
+const getChecklistItems = (payload, boardLists) => {
+    const { itemId, cardId, checklistId, title } = payload
+    const boardCards = boardLists.cards[cardId]
     return {
-        ...board.lists[listId].cards[cardId],
+        ...boardCards,
         checklists: [
-            ...board.lists[listId].cards[cardId].checklists.slice(0, checklistId),
+            ...boardCards.checklists.slice(0, checklistId),
             {   
-                ...board.lists[listId].cards[cardId].checklists[checklistId],
+                ...boardCards.checklists[checklistId],
                 items: [
-                    ...board.lists[listId].cards[cardId].checklists[checklistId].items,
+                    ...boardCards.checklists[checklistId].items,
                     {
                         title,
-                        done: false
+                        done: false,
+                        itemId
                     }
                 ]
             },
-            ...board.lists[listId].cards[cardId].checklists.slice(checklistId + 1)
+            ...boardCards.checklists.slice(checklistId + 1)
+        ]
+    }
+}
+const getItems = (payload, boardLists) => {
+    const { itemId, cardId, checklistId } = payload
+    const boardCards = boardLists.cards[cardId]
+    const boardChecklists = boardLists.cards[cardId].checklists[checklistId]
+    return {
+        ...boardCards,
+        checklists: [
+            ...boardCards.checklists.slice(0, checklistId),
+            {   
+                ...boardChecklists,
+                items: [
+                    ...boardChecklists.items.slice(0, itemId),
+                    {
+                        ...boardChecklists.items[itemId],
+                        done: !boardChecklists.items[itemId].done
+                    },
+                    ...boardChecklists.items.slice(itemId + 1)
+                ]
+            },
+            ...boardCards.checklists.slice(checklistId + 1)
         ]
     }
 }
@@ -55,5 +81,6 @@ export {
     getList,
     getCard,
     getChecklist,
-    getChecklistItems
+    getChecklistItems,
+    getItems
 }

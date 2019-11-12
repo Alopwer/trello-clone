@@ -10,14 +10,16 @@ const AddItem = (props) => {
     const inputEl = useRef('')
 
     const createItem = () => {
-        props.addItemToList({
-            title: value,
-            checklistId: props.checklist.checklistId,
-            cardId: props.card.cardId,
-            listId: props.list.listId,
-            boardId: props.list.boardId
-        })
-        setAddItem(true)
+        if (value) {
+            props.addItemToList({
+                title: value,
+                checklistId: props.checklist.checklistId,
+                cardId: props.card.cardId,
+                listId: props.list.listId,
+                boardId: props.list.boardId,
+                itemId: props.checklist.items.length
+            })
+        }
         setValue('')
     }
 
@@ -28,7 +30,10 @@ const AddItem = (props) => {
     )
 
     const addItemView = (
-        <div className='add__item-view'>
+        <div 
+            className='add__item-view' 
+            onKeyPress={(e) => e.which === 13 && createItem()}
+        >
             <input 
                 ref={inputEl}
                 value={value}
@@ -36,13 +41,19 @@ const AddItem = (props) => {
                 className='add__item-input' 
                 autoFocus 
                 onChange={() => setValue(inputEl.current.value)} 
-                onBlur={createItem}
+                onBlur={() => {
+                    createItem()
+                    setAddItem(true)
+                }}
             />
             <div>
-                <button className='add__item-add-btn' onClick={createItem}>
+                <button 
+                    className='add__item-add-btn' 
+                    onClick={createItem}
+                >
                     Add
                 </button>
-                <div onClick={createItem}>
+                <div onClick={() => setValue('')}>
                     <Times width='14' className='add__item-times' />
                 </div>
             </div>

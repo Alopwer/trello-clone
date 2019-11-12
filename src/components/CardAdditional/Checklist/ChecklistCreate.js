@@ -8,8 +8,26 @@ import '../CardAdditional.css';
 const ChecklistCreate = ({ onClose, addChecklist, boardId, listId, card }) => {
     const inputEl = useRef('Checklist')
 
+    const createChecklist = () => {
+        addChecklist({
+            title: inputEl.current.value,
+            boardId,
+            listId,
+            cardId : card.cardId,
+            checklistId: card.checklists.length
+        })
+        onClose(false)
+    }
+
     return (
-        <div className='card__addit'>
+        <div 
+            className='card__addit' 
+            onKeyPress={(e) => {
+                if (e.which === 13) {
+                    createChecklist()
+                }
+            }}
+        >
             <div>
                 <h5 className='card_addit-title'>Add Checklist</h5>
                 <div onClick={() => onClose(false)}>
@@ -28,16 +46,7 @@ const ChecklistCreate = ({ onClose, addChecklist, boardId, listId, card }) => {
                 />
                 <button 
                     className='card__addit-btn' 
-                    onClick={() => {
-                        addChecklist({
-                            title: inputEl.current.value,
-                            boardId,
-                            listId,
-                            cardId : card.cardId,
-                            checklistId: card.checklists.length
-                        })
-                        onClose(false)
-                    }}
+                    onClick={createChecklist}
                 >
                     Add
                 </button>

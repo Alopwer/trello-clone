@@ -1,4 +1,4 @@
-import { getList, getCard, getChecklist, getChecklistItems } from "./getParts"
+import { getList, getCard, getChecklist, getChecklistItems, getItems } from "./getParts"
 
 const getModifiedList = (board, payload) => {
     const { listId } = payload
@@ -23,23 +23,37 @@ const getModifiedCard = (board, payload) => {
 }
 const getModifiedChecklist = (board, payload) => {
     const { listId, cardId } = payload
+    const boardLists = board.lists[listId]
     return {
-        ...board.lists[listId],
+        ...boardLists,
         cards: [
-            ...board.lists[listId].cards.slice(0, cardId),
-            getChecklist(board, payload),
-            ...board.lists[listId].cards.slice(cardId + 1),
+            ...boardLists.cards.slice(0, cardId),
+            getChecklist(payload, boardLists),
+            ...boardLists.cards.slice(cardId + 1),
         ]
     }
 }
 const getModifiedChecklistItems = (board, payload) => {
     const { listId, cardId } = payload
+    const boardLists = board.lists[listId]
     return {
-        ...board.lists[listId],
+        ...boardLists,
         cards: [
-            ...board.lists[listId].cards.slice(0, cardId),
-            getChecklistItems(board, payload),
-            ...board.lists[listId].cards.slice(cardId + 1),
+            ...boardLists.cards.slice(0, cardId),
+            getChecklistItems(payload, boardLists),
+            ...boardLists.cards.slice(cardId + 1),
+        ]
+    }
+}
+const getModifiedItems = (board, payload) => {
+    const { listId, cardId } = payload
+    const boardLists = board.lists[listId]
+    return {
+        ...boardLists,
+        cards: [
+            ...boardLists.cards.slice(0, cardId),
+            getItems(payload, boardLists),
+            ...boardLists.cards.slice(cardId + 1),
         ]
     }
 }
@@ -48,5 +62,6 @@ export {
     getModifiedList,
     getModifiedCard,
     getModifiedChecklist,
-    getModifiedChecklistItems
+    getModifiedChecklistItems,
+    getModifiedItems
 }
