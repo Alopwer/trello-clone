@@ -1,33 +1,46 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux'
 import { addList, addCard } from '../../actions/index';
-import './AddNewItem.css';
 import Times from '../svg/Times';
+import './AddNewItem.css';
 
-const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpened, parent }) => {
+const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpened }) => {
     const inputEl = useRef('')
-    let className = parent === 'list' ? '' : 'cards-'
+    const [parent, setParent] = useState(null)
+    const [name, setName] = useState(null)
+
+    useEffect(() => {
+        if (currentParent.hasOwnProperty('cards')) {
+            setParent('cards-')
+            setName('Card')
+        } else {
+            setParent('')
+            setName('List')
+        }
+    }, [])
 
     const inputComplete = () => {
-        if (currentParent.hasOwnProperty('boardId') && currentParent.hasOwnProperty('listId')) {
-            addCard({
-                title: inputEl.current.value || 'Default title',
-                listId: currentParent.listId, 
-                boardId: currentParent.boardId,
-                newCardId: currentParent.cards.length
+        const title = inputEl.current.value || 'Default title'
+        const { boardId } = currentParent
+        if (!parent) {
+            addList({
+                title,
+                boardId, 
+                newListId: currentParent.lists.length
             })
         } else {
-            addList({
-                title: inputEl.current.value || 'Default title',
-                boardId: currentParent.boardId, 
-                newListId: currentParent.lists.length
+            addCard({
+                title,
+                listId: currentParent.listId, 
+                boardId,
+                newCardId: currentParent.cards.length
             })
         }
         toggleInput()
     }
 
     return (
-        <div className={`${className}input-container`}
+        <div className={`${parent}input-container`}
             onKeyPress={(e) => {
                 if (e.which === 13) {
                     inputComplete()
@@ -36,8 +49,8 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
         >
             <input 
                 type='text' 
-                placeholder={`Enter ${parent} title...`}
-                className={`${className}input`}
+                placeholder={`Enter ${name} title...`}
+                className={`${parent}input`}
                 autoFocus
                 ref={inputEl}
                 maxLength='24'
@@ -47,7 +60,7 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
                     onClick={inputComplete}
                     className='input-btn'
                 >
-                    Add {parent[0].toUpperCase() + parent.slice(1)}
+                    Add {name}
                 </button>
                 <div onClick={() => setInputOpened(false)}>
                     <Times className='input-times' width='12' />

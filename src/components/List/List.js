@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { changeListName } from '../../actions/index';
-import './List.css';
 import Cards from '../Cards';
+import './List.css';
 
-const List = (props) => {
-    const { lists, changeListName } = props
-    const [value, setValue] = useState(props.children)
-    const currentList = lists.find(list => list.listId === props.id)
+const List = ({ list, lists, changeListName }) => {
+    const { listId, boardId, title, cards } = list
+
+    const [value, setValue] = useState(title)
+    const currentList = lists.find(list => list.listId === listId)
     
     return (
         <div className='list'>
@@ -18,14 +19,14 @@ const List = (props) => {
                     setValue(e.currentTarget.value)
                     changeListName({
                         title: e.currentTarget.value, 
-                        boardId: props.boardId,
+                        boardId: boardId,
                         listId: currentList.listId
                     })
                 }}
                 maxLength='22'
             />
             <div className='cards-wrapper'>
-                <Cards cards={props.cards} currentList={currentList}/>
+                <Cards cards={cards} currentList={currentList}/>
             </div>
         </div>
     )

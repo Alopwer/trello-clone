@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../Boards.css';
 import ModalComponent from './ModalComponent';
 
 const CreateBoard = () => {

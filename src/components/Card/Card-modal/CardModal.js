@@ -4,15 +4,16 @@ import { withRouter } from 'react-router-dom';
 import './CardModal.css';
 import CardModalContent from './CardModalContent';
 
-const CardModal = (props) => {
+const CardModal = ({ history }) => {
     useEffect(() => {
         Modal.setAppElement('#root')
-    })
+    }, [])
+
     const [modalOpened, setModalOpened] = useState(true)
 
     const closeModal = () => {
         setModalOpened(false);
-        props.history.goBack()
+        history.goBack()
     }
 
     return (

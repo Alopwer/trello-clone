@@ -1,7 +1,17 @@
 import React, { useRef } from 'react';
+import { connect } from 'react-redux';
+import { updateCardDescr } from '../../../actions';
 
-const Description = ({ value, onTextareaChange }) => {
+const Description = ({ value, updateDescr, list, card }) => {
     const textarea = useRef('')
+    const onTextareaChange = (text) => {
+        updateDescr({
+            boardId: list.boardId,
+            listId: list.listId,
+            cardId: card.cardId,
+            text
+        })
+    }
 
     return (
         <div className='modal-section'>
@@ -18,4 +28,10 @@ const Description = ({ value, onTextareaChange }) => {
     )
 }
 
-export default Description;
+const mapDispatchToProps = (dispatch) => {
+    return { 
+        updateDescr : (value) => dispatch(updateCardDescr(value))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Description);

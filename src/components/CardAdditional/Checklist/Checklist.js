@@ -4,28 +4,27 @@ import ProgressBar from '../../ProgressBar';
 import AddItem from './Items/AddItem';
 import Items from './Items/Items';
 
-const Checklist = (props) => {
-    const progress = props.items.length
-    const filteredItems = props.items.filter(item => item.done)
+const Checklist = ({ checklist, card, list }) => {
+    const progress = checklist.items.length
 
     return (
         <>
             <div className='checklist__header'>
-                <p>{props.title}</p>
+                <p>{checklist.title}</p>
                 <button className='header-btn'>Delete</button>
             </div>
             <ProgressBar 
                 progress={progress}
-                items={filteredItems}
+                items={checklist.items}
             />
             <div className='checklist__items'>
                 <Items 
-                    items={props.items} 
-                    cardId={props.card.cardId} 
-                    list={props.list} 
-                    checklistId={props.checklist.checklistId}
+                    items={checklist.items} 
+                    cardId={card.cardId} 
+                    list={list} 
+                    checklistId={checklist.checklistId}
                 />
-                <AddItem card={props.card} list={props.list} checklist={props.checklist}/>
+                <AddItem card={card} list={list} checklist={checklist}/>
             </div>
         </>
     )

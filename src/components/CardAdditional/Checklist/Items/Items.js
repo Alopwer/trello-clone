@@ -7,7 +7,6 @@ const Items = (props) => {
             {
                 props.items.map(item => (
                     <div className='checklist__item' key={item.itemId}>
-                        {console.log(item.itemId)}
                         <Item   
                             item={item}
                             cardId={props.cardId}

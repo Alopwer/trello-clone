@@ -14,13 +14,7 @@ const Lists = ({ lists, currentBoard }) => {
     const items = lists ? 
         lists.map((list, i) => 
             <div className='lists-item' key={i}>
-                <List
-                    cards={list.cards}
-                    id={list.listId}
-                    boardId={list.boardId}
-                >
-                    {list.title}
-                </List>
+                <List list={list} />
             </div>
         ) 
             : 
@@ -31,7 +25,6 @@ const Lists = ({ lists, currentBoard }) => {
             currentParent={currentBoard} 
             toggleInput={toggleInput} 
             setInputOpened={setInputOpened}
-            parent='list'
         /> 
             :  
         <button className='lists-btn' onClick={toggleInput}>

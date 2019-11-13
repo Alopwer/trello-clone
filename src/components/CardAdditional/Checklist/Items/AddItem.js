@@ -1,26 +1,30 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addItemToList } from '../../../../actions/index';
 import Times from '../../../svg/Times';
 import './Item.css';
 
-const AddItem = (props) => {
+const AddItem = ({ addItemToList, checklist, card, list }) => {
+    const inputEl = useRef('')
+
     const [addItem, setAddItem] = useState(true)
     const [value, setValue] = useState('')
-    const inputEl = useRef('')
+
+    useEffect(() => {
+        setValue('')
+    }, [addItem])
 
     const createItem = () => {
         if (value) {
-            props.addItemToList({
+            addItemToList({
                 title: value,
-                checklistId: props.checklist.checklistId,
-                cardId: props.card.cardId,
-                listId: props.list.listId,
-                boardId: props.list.boardId,
-                itemId: props.checklist.items.length
+                checklistId: checklist.checklistId,
+                cardId: card.cardId,
+                listId: list.listId,
+                boardId: list.boardId,
+                itemId: checklist.items.length
             })
         }
-        setValue('')
     }
 
     const addBtn = (
@@ -29,31 +33,22 @@ const AddItem = (props) => {
         </button>
     )
 
-    const addItemView = (
-        <div 
-            className='add__item-view' 
-            onKeyPress={(e) => e.which === 13 && createItem()}
-        >
+    const itemView = (
+        <div className='add__item-view' onKeyPress={(e) => e.which === 13 && createItem()}>
             <input 
                 ref={inputEl}
                 value={value}
                 placeholder='Add an item'
                 className='add__item-input' 
                 autoFocus 
-                onChange={() => setValue(inputEl.current.value)} 
-                onBlur={() => {
-                    createItem()
-                    setAddItem(true)
-                }}
+                onChange={() => setValue(inputEl.current.value)}
+                onBlur={() => setAddItem(true)}
             />
             <div>
-                <button 
-                    className='add__item-add-btn' 
-                    onClick={createItem}
-                >
+                <button className='add__item-add-btn' onMouseDown={createItem}>
                     Add
                 </button>
-                <div onClick={() => setValue('')}>
+                <div onMouseDown={() => setAddItem(true)}>
                     <Times width='14' className='add__item-times' />
                 </div>
             </div>
@@ -62,7 +57,7 @@ const AddItem = (props) => {
 
     return (
         <div className='add__item'>
-            { addItem ? addBtn : addItemView }
+            { addItem ? addBtn : itemView }
         </div>   
     )
 }
