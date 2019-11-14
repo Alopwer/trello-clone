@@ -30,7 +30,7 @@ const Item = ({ item, cardId, list, checklistId, toggleCheckStatus, deleteItem }
             </label>
             <div className='item-delete' onClick={() => { 
                     deleteItem(itemInfo)
-                    setDone(!done)
+                    setDone(false)
                 }}
             >
                 <Times width='8' className='item-delete-times'/>
