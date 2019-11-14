@@ -26,11 +26,12 @@
 .checklist__progress {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
 }
 
 .checklist__progress span {
     font-size: 0.7rem;
     color: #5e6c84;
-    margin-right: 15px;
+    margin-left: 6px;
+    margin-right: 5px;
+    width: 35px;
 }

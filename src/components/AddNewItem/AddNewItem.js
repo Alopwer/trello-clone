@@ -6,8 +6,8 @@ import './AddNewItem.css';
 
 const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpened }) => {
     const inputEl = useRef('')
-    const [parent, setParent] = useState(null)
-    const [name, setName] = useState(null)
+    const [parent, setParent] = useState('cards-')
+    const [name, setName] = useState('Card')
 
     useEffect(() => {
         if (currentParent.hasOwnProperty('cards')) {
@@ -40,13 +40,7 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
     }
 
     return (
-        <div className={`${parent}input-container`}
-            onKeyPress={(e) => {
-                if (e.which === 13) {
-                    inputComplete()
-                }
-            }}
-        >
+        <div className={`${parent}input-container`} onKeyPress={(e) => e.which === 13 && inputComplete()}>
             <input 
                 type='text' 
                 placeholder={`Enter ${name} title...`}

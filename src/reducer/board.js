@@ -84,6 +84,17 @@ const updateItemsStatus = (currentBoard, payload) => {
         ]
     }
 }
+const updateItemsCount = (currentBoard, payload) => {
+    const { listId } = payload
+    return {
+        ...currentBoard,
+        lists: [
+            ...currentBoard.lists.slice(0, listId),
+            getModifiedChecklistItems(currentBoard, payload, true),
+            ...currentBoard.lists.slice(listId + 1),
+        ]
+    }
+}
 
 const updateBoard = (state, action) => {
     if (state === undefined) {
@@ -109,6 +120,8 @@ const updateBoard = (state, action) => {
             return updateCardDescr(currentBoard, payload)
         case 'TOGGLE_CHECK_STATUS':
             return updateItemsStatus(currentBoard, payload)
+        case 'DELETE_ITEM':
+            return updateItemsCount(currentBoard, payload)
         default: 
             return currentBoard
     }

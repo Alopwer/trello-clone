@@ -48,6 +48,11 @@ const toggleCheckStatus = (value) => ({
     payload: value
 })
 
+const deleteItem = (value) => ({
+    type: 'DELETE_ITEM',
+    payload: value
+})
+
 export {
     setCurrentBoard,
     setCurrentColor,
@@ -58,5 +63,6 @@ export {
     addItemToList,
     changeListName,
     updateCardDescr,
-    toggleCheckStatus
+    toggleCheckStatus,
+    deleteItem
 }

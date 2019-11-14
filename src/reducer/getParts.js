@@ -31,23 +31,36 @@ const getChecklist = (payload, boardLists) => {
         ]
     }
 }
-const getChecklistItems = (payload, boardLists) => {
+const getChecklistItems = (payload, boardLists, deleteItem) => {
     const { itemId, cardId, checklistId, title } = payload
     const boardCards = boardLists.cards[cardId]
-    return {
-        ...boardCards,
-        checklists: [
-            ...boardCards.checklists.slice(0, checklistId),
-            {   
-                ...boardCards.checklists[checklistId],
-                items: [
-                    ...boardCards.checklists[checklistId].items,
+    const boardItems = boardCards.checklists[checklistId]
+    const updatedItems = deleteItem ? 
+        [
+            ...boardItems.items.slice(0, itemId),
+            ...boardItems.items
+                .map(item => Object.assign({}, item, {
+                    itemId: item.itemId - 1
+                }))
+                .slice(itemId + 1)
+        ]
+            :
+        [
+            ...boardItems.items,
                     {
                         title,
                         done: false,
                         itemId
                     }
-                ]
+        ]
+    
+    return {
+        ...boardCards,
+        checklists: [
+            ...boardCards.checklists.slice(0, checklistId),
+            {   
+                ...boardItems,
+                items: updatedItems
             },
             ...boardCards.checklists.slice(checklistId + 1)
         ]
