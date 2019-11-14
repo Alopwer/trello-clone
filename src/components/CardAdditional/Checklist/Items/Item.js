@@ -5,7 +5,6 @@ import Times from '../../../svg/Times';
 
 const Item = ({ item, cardId, list, checklistId, toggleCheckStatus, deleteItem }) => {
     const checkboxEl = useRef(null)
-    const [done, setDone] = useState(item.done)
     let itemInfo = {
         itemId : item.itemId,
         cardId,
@@ -19,20 +18,13 @@ const Item = ({ item, cardId, list, checklistId, toggleCheckStatus, deleteItem }
             <label className="checkbox">
                 <input 
                     type="checkbox" 
-                    checked={done}
+                    checked={item.done}
                     ref={checkboxEl}
-                    onChange={() => {
-                        toggleCheckStatus(itemInfo)
-                        setDone(!done)
-                    }}
+                    onChange={() => toggleCheckStatus(itemInfo)}  
                 />
                 <span>{item.title}</span>
             </label>
-            <div className='item-delete' onClick={() => { 
-                    deleteItem(itemInfo)
-                    setDone(false)
-                }}
-            >
+            <div className='item-delete' onClick={() => deleteItem(itemInfo)}>
                 <Times width='8' className='item-delete-times'/>
             </div>
         </>
