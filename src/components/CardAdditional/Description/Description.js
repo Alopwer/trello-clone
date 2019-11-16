@@ -1,8 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { connect } from 'react-redux';
 import { updateCardDescr } from '../../../actions';
+import { ListContext } from '../../Card/Card-modal/CardModalContent';
 
-const Description = ({ value, updateDescr, list, card }) => {
+const Description = ({ updateDescr }) => {
+    const { list, card } = useContext(ListContext)
+
     const textarea = useRef('')
     const onTextareaChange = (text) => {
         updateDescr({
@@ -19,7 +22,7 @@ const Description = ({ value, updateDescr, list, card }) => {
             <textarea 
                 ref={textarea}
                 className='modal-description' 
-                value={value}
+                value={card.descr}
                 placeholder='Add a description...' 
                 onChange={() => onTextareaChange(textarea.current.value)}
             >

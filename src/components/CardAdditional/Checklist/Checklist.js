@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Checklist.css';
 import ProgressBar from '../../ProgressBar';
 import AddItem from './Items/AddItem';
 import Items from './Items/Items';
+import { ListContext } from '../../Card/Card-modal/CardModalContent';
 
-const Checklist = ({ checklist, card, list }) => {
+const Checklist = ({ checklist }) => {
+    const { list, card } = useContext(ListContext)
     const progress = checklist.items.length
 
     return (
@@ -24,7 +26,7 @@ const Checklist = ({ checklist, card, list }) => {
                     list={list} 
                     checklistId={checklist.checklistId}
                 />
-                <AddItem card={card} list={list} checklist={checklist}/>
+                <AddItem checklist={checklist}/>
             </div>
         </>
     )

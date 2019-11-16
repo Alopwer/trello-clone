@@ -53,6 +53,11 @@ const deleteItem = (value) => ({
     payload: value
 })
 
+const updateDueDate = (value) => ({
+    type: 'UPDATE_DUE_DATE',
+    payload: value
+})
+
 export {
     setCurrentBoard,
     setCurrentColor,
@@ -64,5 +69,6 @@ export {
     changeListName,
     updateCardDescr,
     toggleCheckStatus,
-    deleteItem
+    deleteItem,
+    updateDueDate
 }

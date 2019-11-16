@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Item from './Item';
+import { ListContext } from '../../../Card/Card-modal/CardModalContent';
 
-const Items = (props) => {
+const Items = ({ checklistId, items }) => {
+    const { list, card } = useContext(ListContext)
+    
     return (
         <div className='checklist-items'>
             {
-                props.items.map(item => (
+                items.map(item => (
                     <div className='checklist__item' key={item.itemId}>
                         <Item   
                             item={item}
-                            cardId={props.cardId}
-                            list={props.list}
-                            checklistId={props.checklistId}
+                            cardId={card.cardId}
+                            list={list}
+                            checklistId={checklistId}
                         />
                     </div>
                 ))

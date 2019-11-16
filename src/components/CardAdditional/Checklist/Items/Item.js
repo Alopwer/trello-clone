@@ -1,16 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useContext } from 'react';
 import { connect } from 'react-redux';
 import { toggleCheckStatus, deleteItem } from '../../../../actions';
 import Times from '../../../svg/Times';
+import { ListContext } from '../../../Card/Card-modal/CardModalContent';
 
-const Item = ({ item, cardId, list, checklistId, toggleCheckStatus, deleteItem }) => {
+const Item = ({ item, checklistId, toggleCheckStatus, deleteItem }) => {
+    const { list, card } = useContext(ListContext)
     const checkboxEl = useRef(null)
+
     let itemInfo = {
-        itemId : item.itemId,
-        cardId,
+        boardId : list.boardId,
         listId : list.listId,
+        cardId : card.cardId,
         checklistId,
-        boardId : list.boardId
+        itemId : item.itemId
     }
 
     return (

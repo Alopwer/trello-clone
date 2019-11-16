@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import Card from '../Card'
+import { connect } from 'react-redux';
+import Card from '../Card';
 import AddNewItem from '../AddNewItem';
 import './Cards.css';
 
-const Cards = ({ cards, currentList }) => {
+const Cards = ({ listId, currentList, lists }) => {
     const [inputOpened, setInputOpened] = useState(false)
+    const cards = lists.find(list => listId === list.listId).cards
 
     const toggleInput = () => {
         setInputOpened(!inputOpened)
@@ -38,4 +40,8 @@ const Cards = ({ cards, currentList }) => {
     )
 }
 
-export default Cards;
+const mapStateToProps = ({ currentBoard: { lists } }) => {
+    return { lists }
+}
+
+export default connect(mapStateToProps)(Cards);

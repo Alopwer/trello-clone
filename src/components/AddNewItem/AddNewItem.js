@@ -6,8 +6,8 @@ import './AddNewItem.css';
 
 const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpened }) => {
     const inputEl = useRef('')
-    const [parent, setParent] = useState('cards-')
-    const [name, setName] = useState('Card')
+    const [parent, setParent] = useState('')
+    const [name, setName] = useState('List')
 
     useEffect(() => {
         if (currentParent.hasOwnProperty('cards')) {

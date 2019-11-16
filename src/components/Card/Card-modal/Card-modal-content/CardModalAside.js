@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { LabelsCreate, DueDateCreate, ChecklistCreate } from '../../../CardAdditional';
+import { ListContext } from '../../../Card/Card-modal/CardModalContent';
 
-const CardModalAside = ({ list, card }) => {
+const CardModalAside = () => {
+    const { list, card } = useContext(ListContext)
+
     const [labels, setLabels] = useState(false)
     const [dueDate, setDueDate] = useState(false)
     const [checklist, setChecklist] = useState(false)

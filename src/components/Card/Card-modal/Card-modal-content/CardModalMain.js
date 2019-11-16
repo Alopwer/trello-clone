@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Description from '../../../CardAdditional/Description/Description';
 import Checklists from '../../../CardAdditional/Checklist/Checklists';
 import CardModalAside from './CardModalAside';
 import DueDate from '../../../CardAdditional/DueDate/DueDate';
+import { ListContext } from '../CardModalContent';
 
-const CardModalMain = ({ list, card }) => {
+const CardModalMain = ({ card }) => {
+    const ListContextConsumer = useContext(ListContext)
+    console.log(ListContextConsumer)
     return (
         <div className='modal-main'>
             <div className='modal-content'>
-                <Description list={list} card={card} value={card.descr}/>
-                <Checklists checklists={card.checklists} card={card} list={list}/>
+                <Description />
+                <Checklists checklists={card.checklists} />
                 <DueDate />
             </div>
-            <CardModalAside card={card} list={list} />
+            <CardModalAside />
         </div>
     )
 }

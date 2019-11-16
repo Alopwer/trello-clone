@@ -1,4 +1,4 @@
-import { getList, getCard, getChecklist, getChecklistItems, getItems } from "./getParts"
+import { getList, getCard, getChecklist, getChecklistItems, getItems, getDueDate } from "./getParts"
 
 const getModifiedList = (board, payload) => {
     const { listId } = payload
@@ -58,10 +58,24 @@ const getModifiedItems = (board, payload) => {
     }
 }
 
+const getModifiedDueDate = (board, payload) => {
+    const { listId, cardId } = payload
+    const boardLists = board.lists[listId]
+    return {
+        ...boardLists,
+        cards: [
+            ...boardLists.cards.slice(0, cardId),
+            getDueDate(payload, boardLists),
+            ...boardLists.cards.slice(cardId + 1),
+        ]
+    }
+}
+
 export {
     getModifiedList,
     getModifiedCard,
     getModifiedChecklist,
     getModifiedChecklistItems,
-    getModifiedItems
+    getModifiedItems,
+    getModifiedDueDate
 }

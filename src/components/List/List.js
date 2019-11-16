@@ -26,7 +26,7 @@ const List = ({ list, lists, changeListName }) => {
                 maxLength='22'
             />
             <div className='cards-wrapper'>
-                <Cards cards={cards} currentList={currentList}/>
+                <Cards listId={listId} currentList={currentList}/>
             </div>
         </div>
     )

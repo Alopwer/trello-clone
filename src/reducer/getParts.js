@@ -5,7 +5,8 @@ const getList = (payload) => {
         cardId: newCardId,
         title,
         descr: '',
-        checklists: []
+        checklists: [],
+        dueDate: ''
     }
 }
 const getCard = (board, payload) => {
@@ -90,10 +91,20 @@ const getItems = (payload, boardLists) => {
     }
 }
 
+const getDueDate = (payload, boardLists) => {
+    const { cardId, dueDate } = payload
+    const boardCards = boardLists.cards[cardId]
+    return {
+        ...boardCards,
+        dueDate
+    }
+}
+
 export {
     getList,
     getCard,
     getChecklist,
     getChecklistItems,
-    getItems
+    getItems,
+    getDueDate
 }

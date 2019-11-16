@@ -1,4 +1,4 @@
-import { getModifiedList, getModifiedCard, getModifiedChecklist, getModifiedChecklistItems, getModifiedItems } from './getModifiedParts';
+import { getModifiedList, getModifiedCard, getModifiedChecklist, getModifiedChecklistItems, getModifiedItems, getModifiedDueDate } from './getModifiedParts';
 
 const updateLists = (currentBoard, payload) => {
     const { title, newListId } = payload
@@ -96,6 +96,18 @@ const updateItemsCount = (currentBoard, payload) => {
     }
 }
 
+const updateDueDate = (currentBoard, payload) => {
+    const { listId } = payload
+    return {
+        ...currentBoard,
+        lists: [
+            ...currentBoard.lists.slice(0, listId),
+            getModifiedDueDate(currentBoard, payload),
+            ...currentBoard.lists.slice(listId + 1),
+        ]
+    }
+}
+
 const updateBoard = (state, action) => {
     if (state === undefined) {
         return {}
@@ -122,6 +134,8 @@ const updateBoard = (state, action) => {
             return updateItemsStatus(currentBoard, payload)
         case 'DELETE_ITEM':
             return updateItemsCount(currentBoard, payload)
+        case 'UPDATE_DUE_DATE':
+            return updateDueDate(currentBoard, payload)
         default: 
             return currentBoard
     }

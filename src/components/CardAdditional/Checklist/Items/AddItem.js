@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { connect } from 'react-redux';
 import { addItemToList } from '../../../../actions/index';
 import Times from '../../../svg/Times';
+import { ListContext } from '../../../Card/Card-modal/CardModalContent';
 import './Item.css';
 
-const AddItem = ({ addItemToList, checklist, card, list }) => {
+const AddItem = ({ addItemToList, checklist }) => {
+    const { list, card } = useContext(ListContext)
     const inputEl = useRef('')
 
     const [addItem, setAddItem] = useState(true)
