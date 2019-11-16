@@ -23,8 +23,8 @@ const ChecklistCreate = ({ onClose, addChecklist, boardId, listId, card }) => {
         <div className='card__addit' 
             onKeyPress={(e) => e.which === 13 && createChecklist()}
         >
-            <div>
-                <h5 className='card_addit-title'>Add Checklist</h5>
+            <div className='card__addit-checklist'>
+                <h5 className='card__addit-title'>Add Checklist</h5>
                 <div onClick={() => onClose(false)}>
                     <Times width='10' className='card__addit-times'/>
                 </div>

@@ -4,10 +4,13 @@
     border-radius: 3px;
     padding: 10px 10px 5px;
     border: 1px solid rgba(9,30,66,.13);
-    width: 240px
+    width: 300px;
+    max-width: 320px;
+    min-width: 240px;
+    right: 0
 }
 
-.card__addit div:first-child {
+.card__addit-checklist, .card__addit-duedate {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,13 +52,13 @@
     padding: 8px 12px;
     margin-bottom: 10px;
 }
-.card__addit-input:hover {
+.card__addit-input:hover, .input__block-input:hover {
     background: rgb(235, 236, 240);
 }
-.card__addit-input:focus {
+.card__addit-input:focus, .input__block-input:focus {
     border: 2px solid rgb(0, 121, 191);
 }
-.card__addit-input:focus:hover {
+.card__addit-input:focus:hover, .input__block-input:focus:hover {
     background: white;
 }
 
@@ -75,9 +78,69 @@
     background: rgb(97, 189, 79)
 }
 
+/* DUE DATE */
+
+.card__input-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input__block {
+    display: flex;
+    flex-direction: column;
+}
+
+.input__block-input {
+    width: 100px;
+    border: 2px solid #dfe1e6;
+    border-radius: 3px;
+    padding: 6px 10px;
+    margin-bottom: 5px;
+}
+
+.card__btn-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.btn__block-btn {
+    width: 70px;
+    padding: 6px 0;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 3px;
+}
+
+.btn-success {
+    background: #5aac44;
+}
+.btn-success:hover {
+    background: #61bd4f
+}
+
+.btn-warning {
+    background: #cf513d;
+}
+.btn-warning:hover {
+    background: #eb5a46
+}
+
+.card-calendar {
+    border: none;
+    margin-bottom: 15px;
+}
+
+.react-calendar__navigation {
+    margin-bottom: 0;
+    height: 40px
+}
+
 @media (max-width: 768px) {
     .card__addit {
-        width: 60vw;
+        width: 50vw;
         left: 120px;
         top: 0
     }
@@ -85,7 +148,7 @@
 
 @media (max-width: 576px) {
     .card__addit {
-        width: 50vw;
-        left: 110px;
+        width: 83vw;
+        left: 0
     }
 }

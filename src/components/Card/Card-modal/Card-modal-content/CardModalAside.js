@@ -27,7 +27,10 @@ const CardModalAside = ({ list, card }) => {
                     <ul className='aside-list'>
                         <li>
                             { createListItem(setDueDate, dueDate, 'Due Date', setChecklist, setLabels) }
-                            { dueDate && <DueDateCreate /> }
+                            { dueDate && <DueDateCreate 
+                                 onClose={setDueDate} 
+                                 list={list} 
+                                 card={card} /> }
                         </li>
                         <li>
                             { createListItem(setChecklist, checklist, 'Checklist', setDueDate, setLabels) }

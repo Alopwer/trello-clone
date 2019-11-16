@@ -70,28 +70,21 @@
     background: rgb(234, 236, 240);
 }
 
-.checklist__item-checkbox {
-    margin-right: 30px;
-    cursor: pointer;
-}
-
-.checklist__item-title {
-
-}
-
 /* STYLING CHECKBOX */
 
 .checkbox {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 20px;
     cursor: pointer;
     position: relative;
+    margin-left: 5px;
 }
 
-.checkbox > span {
+.checkbox-item-title {
     color: #34495E;
-    padding: 5px 17px;
+    width: 100%;
+    margin-left: 18px;
 }
 
 .checkbox > input {
@@ -106,7 +99,6 @@
     outline: none;
     background-color: white;
     cursor: pointer;
-    margin-left: 5px;
   }
 
 .checkbox > input:hover {
@@ -125,8 +117,8 @@
     color: white;
     position: absolute;
     font-size: 20px;
-    left: 8px;
-    top: 2px;
+    left: 3px;
+    top: -3px;
 }
 
 .checkbox > input:checked:hover {

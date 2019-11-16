@@ -22,8 +22,9 @@ const Item = ({ item, cardId, list, checklistId, toggleCheckStatus, deleteItem }
                     ref={checkboxEl}
                     onChange={() => toggleCheckStatus(itemInfo)}  
                 />
-                <span>{item.title}</span>
+                <span></span>
             </label>
+                <p className='checkbox-item-title'>{item.title}</p>
             <div className='item-delete' onClick={() => deleteItem(itemInfo)}>
                 <Times width='8' className='item-delete-times'/>
             </div>
