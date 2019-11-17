@@ -5,19 +5,19 @@ const checkDate = (date) => {
     const monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
     const [day, month, year] = getDateParts(date)
 
-    if (year < 2001 || year > 3000 || month === 0 || month > 12)
+    if (year < 2019 || year > 3000 || month > 11)
         return false;
 
     if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0))
         monthLength[1] = 29;
 
-    return day > 0 && day <= monthLength[month - 1]
+    return day > 0 && day <= monthLength[month]
 }
 
 const getDateParts = (date) => {
     const parts = date.split("/");
     const day = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10);
+    const month = parseInt(parts[1], 10) - 1;
     const year = parseInt(parts[2], 10);
     return [day, month, year]
 }

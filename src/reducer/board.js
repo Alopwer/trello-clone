@@ -136,6 +136,8 @@ const updateBoard = (state, action) => {
             return updateItemsCount(currentBoard, payload)
         case 'UPDATE_DUE_DATE':
             return updateDueDate(currentBoard, payload)
+        case 'CHANGE_DUE_DATE_STATUS': 
+            return updateDueDate(currentBoard, payload)
         default: 
             return currentBoard
     }

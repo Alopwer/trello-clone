@@ -26,6 +26,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .modal-main {
@@ -35,10 +36,6 @@
 
 .modal-content {
     flex-basis: 75%;
-}
-
-.modal-section {
-    margin-bottom: 20px;
 }
 
 .modal-section-title {
@@ -96,10 +93,6 @@
 .modal-aside {
     margin-right: 25px;
     flex-basis: 18%;
-}
-
-.aside-elements {
-
 }
 
 .aside-title {

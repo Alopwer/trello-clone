@@ -1,10 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { LabelsCreate, DueDateCreate, ChecklistCreate } from '../../../CardAdditional';
-import { ListContext } from '../../../Card/Card-modal/CardModalContent';
 
 const CardModalAside = () => {
-    const { list, card } = useContext(ListContext)
-
     const [labels, setLabels] = useState(false)
     const [dueDate, setDueDate] = useState(false)
     const [checklist, setChecklist] = useState(false)
@@ -30,18 +27,11 @@ const CardModalAside = () => {
                     <ul className='aside-list'>
                         <li>
                             { createListItem(setDueDate, dueDate, 'Due Date', setChecklist, setLabels) }
-                            { dueDate && <DueDateCreate 
-                                 onClose={setDueDate} 
-                                 list={list} 
-                                 card={card} /> }
+                            { dueDate && <DueDateCreate onClose={setDueDate} /> }
                         </li>
                         <li>
                             { createListItem(setChecklist, checklist, 'Checklist', setDueDate, setLabels) }
-                            { checklist && <ChecklistCreate 
-                                onClose={setChecklist} 
-                                boardId={list.boardId} 
-                                listId={list.listId} 
-                                card={card} /> } 
+                            { checklist && <ChecklistCreate onClose={setChecklist} /> } 
                         </li>
                         <li>
                             { createListItem(setLabels, labels, 'Labels', setChecklist, setDueDate) }

@@ -58,6 +58,11 @@ const updateDueDate = (value) => ({
     payload: value
 })
 
+const changeDateStatus = (value) => ({
+    type: 'CHANGE_DUE_DATE_STATUS',
+    payload: value
+})
+
 export {
     setCurrentBoard,
     setCurrentColor,
@@ -70,5 +75,6 @@ export {
     updateCardDescr,
     toggleCheckStatus,
     deleteItem,
-    updateDueDate
+    updateDueDate,
+    changeDateStatus
 }

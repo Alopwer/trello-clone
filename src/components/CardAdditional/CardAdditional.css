@@ -80,6 +80,59 @@
 
 /* DUE DATE */
 
+.date-section {
+    margin-bottom: 12px;
+}
+
+.date-title {
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.date-create {
+    position: absolute;
+    left: 345px;
+    z-index: 1;
+}
+
+.date-btn-block {
+    margin-top: 5px;
+}
+
+.date-content {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    margin-left: 10px;
+}
+
+.date {
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #091e420a;
+    padding: 4px 6px;
+    color: #172b4d;
+    font-size: 0.8rem;
+}
+
+.date:hover {
+    background-color: #e2e4e9;
+}
+
+.date span {
+    display: inline-block;
+    margin-left: 8px;
+    background-color: #5aac44;
+    color: white;
+    border-radius: 3px;
+    padding: 0px 5px;
+}
+
+/* DUE DATE CREATE */
+
 .card__input-block {
     display: flex;
     justify-content: space-between;
@@ -144,11 +197,18 @@
         left: 120px;
         top: 0
     }
+    .date-create {
+        left: -75px;
+    }
 }
 
 @media (max-width: 576px) {
     .card__addit {
         width: 83vw;
         left: 0
+    }
+    .date-create {
+        width: 83vw;
+        left: 5px
     }
 }

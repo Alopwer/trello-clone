@@ -1,18 +1,20 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import { connect } from 'react-redux';
 import { addChecklist } from '../../../actions';
+import { ListContext } from '../../Card/Card-modal/CardModalContent';
 import Times from '../../svg/Times';
 import '../CardAdditional.css';
 
-const ChecklistCreate = ({ onClose, addChecklist, boardId, listId, card }) => {
+const ChecklistCreate = ({ onClose, addChecklist }) => {
+    const { list, card } = useContext(ListContext)
     const inputEl = useRef('Checklist')
     const [inputValue, setInputValue] = useState('')
 
     const createChecklist = () => {
         addChecklist({
             title: inputEl.current.value,
-            boardId,
-            listId,
+            boardId : list.boardId,
+            listId: list.listId,
             cardId : card.cardId,
             checklistId: card.checklists.length
         })

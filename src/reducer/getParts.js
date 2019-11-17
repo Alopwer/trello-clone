@@ -6,7 +6,10 @@ const getList = (payload) => {
         title,
         descr: '',
         checklists: [],
-        dueDate: ''
+        dueDate: {
+            date: '',
+            done: false
+        }
     }
 }
 const getCard = (board, payload) => {
@@ -92,11 +95,34 @@ const getItems = (payload, boardLists) => {
 }
 
 const getDueDate = (payload, boardLists) => {
-    const { cardId, dueDate } = payload
+    const { cardId, value } = payload
     const boardCards = boardLists.cards[cardId]
+
+    if (typeof value === 'string') {
+        if (!value) {
+            return {
+                ...boardCards,
+                dueDate : {
+                    done: false,
+                    date: value
+                }
+            }
+        }
+        return {
+            ...boardCards,
+            dueDate : {
+                ...boardCards.dueDate,
+                date: value
+            }
+        }
+    }
+
     return {
         ...boardCards,
-        dueDate
+        dueDate : {
+            ...boardCards.dueDate,
+            done: value
+        }
     }
 }
 

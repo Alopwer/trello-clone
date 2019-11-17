@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { connect } from 'react-redux';
 import { updateDueDate } from '../../../actions';
 import { checkDate, getDateParts } from './dateFunctions';
 import DueDateMain from './DueDateParts/DueDateMain';
+import { ListContext } from '../../Card/Card-modal/CardModalContent';
 import '../CardAdditional.css';
 
-const DueDateCreate = ({ onClose, updateDueDate, list, card }) => {
+const DueDateCreate = ({ onClose, updateDueDate }) => {
+    const { list, card } = useContext(ListContext)
     const [date, setDate] = useState()
-    const [transformedDate, setTransformedDate] = useState(card.dueDate)
+    const [transformedDate, setTransformedDate] = useState(card.dueDate.date)
 
     useEffect(() => {
         if (date) changeDate(date)
@@ -22,7 +24,7 @@ const DueDateCreate = ({ onClose, updateDueDate, list, card }) => {
 
     const changeDate = (date) => {
         const day = date.getDate()
-        const month = date.getMonth()
+        const month = date.getMonth() + 1
         const year = date.getFullYear()
         setTransformedDate(`${day}/${month}/${year}`)
     }
@@ -33,7 +35,7 @@ const DueDateCreate = ({ onClose, updateDueDate, list, card }) => {
                 boardId: list.boardId,
                 listId: list.listId,
                 cardId: card.cardId,
-                dueDate: value
+                value
             })
         }
         if (value) {
