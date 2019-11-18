@@ -3,22 +3,45 @@ import { connect } from 'react-redux';
 import { changeDateStatus } from '../../../actions'; 
 import DueDateCreate from './DueDateCreate';
 import { ListContext } from '../../Card/Card-modal/CardModalContent';
+import { getDateParts } from './dateFunctions';
 import '../Checklist/Items/Item.css';
 
 const DueDate = ({ dueDate, changeDateStatus }) => {
+    const { date, done } = dueDate  
     const checkbox = useRef('')
     const { list, card } = useContext(ListContext)
+
     const [create, setCreate] = useState(false)
     const [dateStatus, setDateStatus] = useState('')
-    const { date, done } = dueDate  
 
     useEffect(() => {
-        if (done) {
+        if (checkOverdue(date)) {
+            setDateStatus('OVERDUE')
+        } else if (done) {
             setDateStatus('COMPLETED')
         } else { 
             setDateStatus('')
         }
-    }, [done])
+    }, [done, date])
+
+    const checkOverdue = (date) => {
+        const today = new Date()
+        const todayDay = today.getDate()
+        const todayMonth = today.getMonth()
+        const todayYear = today.getFullYear()
+        const [day, month, year] = getDateParts(date)
+        if (todayYear === year) {
+            if (todayMonth === month) {
+                return todayDay > day
+            }
+            return todayMonth > month
+        }
+        return todayYear > year
+    }
+
+    const statusStyle = () => {
+        return dateStatus === 'OVERDUE' ? {background: 'rgb(236, 148, 136)'} : {}
+    }
 
     return (
         <div className='date-section'>
@@ -43,8 +66,8 @@ const DueDate = ({ dueDate, changeDateStatus }) => {
                     className='date' 
                     onClick={() => setCreate(!create)}
                 >
-                    {date} 
-                    { done && <span>{dateStatus}</span> }
+                    { date } 
+                    { done && <span style={statusStyle()}>{ dateStatus }</span> }
                 </button>
                 </div>
                 <div className='date-create'>

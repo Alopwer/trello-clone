@@ -10,9 +10,6 @@ const Header = ({ cover }) => {
                 <div className='header__logo'>
                     <Link to='/' className='header__logo-link'>Trello Clone</Link>
                 </div>
-                <div className='header-btn'>
-                    <button>+</button>
-                </div>
             </div>
         </div>
     )

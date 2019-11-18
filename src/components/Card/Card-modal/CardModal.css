@@ -3,7 +3,8 @@
     color: rgb(23, 43, 77);
     flex-basis: 70%;
     max-width: 780px;
-    padding: 10px;
+    padding: 12px;
+    padding-bottom: 15px;
     border-radius: 3px;
     position: relative;
     margin: 48px 0 80px;
@@ -134,9 +135,6 @@
     }
     .modal-aside {
         width: 40%
-    }
-    .aside-list li {
-        display: inline;
     }
     .aside-li-button {
        width: 70%;

@@ -14,9 +14,7 @@ const BoardsCells = ({ board, setCurrentBoard }) => {
                     }}
                     className='boards__item-link'
                 >
-                    <div className='boards__item-content'>
-                        <span>{board.title}</span>
-                    </div>
+                    <span>{board.title}</span>
                 </Link>
             </div>
         </div>

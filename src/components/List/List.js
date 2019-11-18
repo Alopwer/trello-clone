@@ -5,7 +5,7 @@ import Cards from '../Cards';
 import './List.css';
 
 const List = ({ list, lists, changeListName }) => {
-    const { listId, boardId, title, cards } = list
+    const { listId, boardId, title } = list
 
     const [value, setValue] = useState(title)
     const currentList = lists.find(list => list.listId === listId)

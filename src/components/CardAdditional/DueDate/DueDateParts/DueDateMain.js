@@ -8,7 +8,7 @@ import DueDateInput from './DueDateInput';
 const DueDateMain = ({ date, setDate, onClose, onDueDate, transformedDate, setTransformedDate, changeDate }) => {
     return (
         <div className='card__addit'>
-            <div className='card__addit-duedate'>
+            <div className='card__addit-item'>
                 <h5 className='card__addit-title'>Change Due Date</h5>
                 <div onClick={() => onClose(false)}>
                     <Times width='10' className='card__addit-times'/>

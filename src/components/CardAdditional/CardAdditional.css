@@ -7,10 +7,10 @@
     width: 300px;
     max-width: 320px;
     min-width: 240px;
-    right: 0
+    right: 0;
 }
 
-.card__addit-checklist, .card__addit-duedate {
+.card__addit-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -190,6 +190,72 @@
     margin-bottom: 0;
     height: 40px
 }
+
+/* LABELS */
+
+.labels-title {
+    font-size: 0.9rem;
+    font-weight: lighter;
+}
+
+.labels__list {
+    list-style: none;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.labels__list-item {
+    display: flex;
+    margin-top: 4px;
+}
+
+/* .labels__list-item-color {
+    flex-basis: 90%;
+    border-radius: 3px;
+    background: rgb(0, 36, 57);
+    padding: 5px 8px;
+    color: white;
+    cursor: pointer;
+} */
+.outer-span {
+    flex-basis: 90%;
+    border-radius: 3px;
+    background: rgb(0, 36, 57);
+    padding: 5px 8px;
+    color: white;
+    cursor: pointer;
+}
+.outer-span:hover::before {
+    content: '-';
+    color: white;
+}
+
+.labels__list-item-btn {
+    cursor: pointer;
+}
+
+.labels-create-btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    background: rgba(9, 30, 66, 0.04);
+    padding: 8px 12px;
+    width: 100%;
+    margin-bottom: 6px;
+    transition: all 0.1s;
+    color: #172b4d;
+}
+
+.labels-create-btn:hover {
+    background: rgb(236, 237, 240);
+}
+
+.labels-input {
+    width: 100%
+}
+
 
 @media (max-width: 768px) {
     .card__addit {
