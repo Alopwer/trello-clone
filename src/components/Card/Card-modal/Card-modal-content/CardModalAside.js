@@ -35,7 +35,7 @@ const CardModalAside = () => {
                         </li>
                         <li>
                             { createListItem(setLabels, labels, 'Labels', setChecklist, setDueDate) }
-                            { labels && <LabelsCreate /> }
+                            { labels && <LabelsCreate onClose={setLabels}/> }
                         </li>
                     </ul>
             </div>

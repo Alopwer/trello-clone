@@ -1,14 +1,13 @@
 import React from 'react';
 import Times from '../../svg/Times';
+import Edit from '../../svg/Edit';
 
-const LabelsCreate = () => {
+const LabelsCreate = ({ onClose }) => {
     return (
-        <div className='card__addit' 
-            onKeyPress={(e) => e.which === 13}
-        >
+        <div className='card__addit'>
             <div className='card__addit-item'>
                 <h5 className='card__addit-title'>Labels</h5>
-                <div onClick={() => console.log('close')}>
+                <div onClick={() => onClose(false)}>
                     <Times width='10' className='card__addit-times'/>
                 </div>
             </div>
@@ -21,20 +20,14 @@ const LabelsCreate = () => {
                     <p className='labels-title'>LABELS</p>
                     <ul className='labels__list'>
                         <li className='labels__list-item'>
-                            <span className='outer-span'><span className='labels__list-item-color'>color</span></span>
-                            <span className='labels__list-item-btn'>btn</span>
-                        </li>
-                        <li className='labels__list-item'>
-                            <span className='labels__list-item-color'>color</span>
-                            <span className='labels__list-item-btn'>btn</span>
-                        </li>
-                        <li className='labels__list-item'>
-                            <span className='labels__list-item-color'>color</span>
-                            <span className='labels__list-item-btn'>btn</span>
-                        </li>
-                        <li className='labels__list-item'>
-                            <span className='labels__list-item-color'>color</span>
-                            <span className='labels__list-item-btn'>btn</span>
+                            <div className='outer-div' style={{background: 'blue'}}>
+                                <span className='span-fade'>
+                                    <span className='labels__list-item-color'>color</span>
+                                </span>
+                            </div>
+                            <div className='labels__list-item-btn'>
+                                <Edit width='14'/>
+                            </div>
                         </li>
                     </ul>
                 </div>
