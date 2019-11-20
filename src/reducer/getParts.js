@@ -9,7 +9,8 @@ const getList = (payload) => {
         dueDate: {
             date: '',
             done: false
-        }
+        },
+        labels: []
     }
 }
 const getCard = (board, payload) => {
@@ -126,11 +127,29 @@ const getDueDate = (payload, boardLists) => {
     }
 }
 
+const getLabels = (payload, boardLists) => {
+    const { cardId, name, color, labelId } = payload
+    const boardCards = boardLists.cards[cardId]
+
+    return {
+        ...boardCards,
+        labels : [
+            ...boardCards.labels,
+            {
+                name,
+                color,
+                labelId
+            }
+        ]
+    }
+}
+
 export {
     getList,
     getCard,
     getChecklist,
     getChecklistItems,
     getItems,
-    getDueDate
+    getDueDate,
+    getLabels
 }

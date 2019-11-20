@@ -1,4 +1,4 @@
-import { getModifiedList, getModifiedCard, getModifiedChecklist, getModifiedChecklistItems, getModifiedItems, getModifiedDueDate } from './getModifiedParts';
+import { getModifiedList, getModifiedCard, getModifiedChecklist, getModifiedChecklistItems, getModifiedItems, getModifiedDueDate, getModifiedLabels } from './getModifiedParts';
 
 const updateLists = (currentBoard, payload) => {
     const { title, newListId } = payload
@@ -108,6 +108,18 @@ const updateDueDate = (currentBoard, payload) => {
     }
 }
 
+const updateLabels = (currentBoard, payload) => {
+    const { listId } = payload
+    return {
+        ...currentBoard,
+        lists: [
+            ...currentBoard.lists.slice(0, listId),
+            getModifiedLabels(currentBoard, payload),
+            ...currentBoard.lists.slice(listId + 1),
+        ]
+    }
+}
+
 const updateBoard = (state, action) => {
     if (state === undefined) {
         return {}
@@ -138,6 +150,8 @@ const updateBoard = (state, action) => {
             return updateDueDate(currentBoard, payload)
         case 'CHANGE_DUE_DATE_STATUS': 
             return updateDueDate(currentBoard, payload)
+        case 'CREATE_NEW_LABEL':
+            return updateLabels(currentBoard, payload)
         default: 
             return currentBoard
     }
