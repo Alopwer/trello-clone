@@ -1,0 +1,85 @@
+.card__addit-back {
+    cursor: pointer;
+    color: #6b778c;
+}
+
+.card__addit-back:hover {
+    color: black
+}
+
+.label-name-container label {
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+#name {
+    margin-bottom: 8px;
+}
+
+.label-color-container p {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.label-color-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    margin-bottom: 4px;
+}
+
+.label-list-item {
+    height: 32px;
+    width: 48px;
+    margin: 0 6px 8px 0;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+}
+
+.label-list-item div {
+    height: 32px;
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s;
+}
+
+.light-layer:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.label-btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.label-btn {
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+}
+
+.label-btn span {
+    display: inline-block;
+    padding: 8px 12px;
+    min-width: 70px;
+    cursor: pointer;
+}
+
+.label-btn:hover .light-layer {
+    background: rgba(255, 255, 255, 0.2)
+}
+
+.label-btn:first-child {
+    background: #5aac44;
+}
+
+.label-btn:last-child {
+    background: #cf513d;;
+}
