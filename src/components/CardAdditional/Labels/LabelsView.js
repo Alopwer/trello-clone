@@ -4,7 +4,7 @@ import Times from '../../svg/Times';
 const LabelsView = ({ onClose, items, setItemCreate, setLabel, setColor }) => {
     const onItemCreate = () => {
         setItemCreate(true)
-        setLabel(null)
+        setLabel(false)
         setColor('')
     }
 

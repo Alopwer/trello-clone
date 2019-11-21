@@ -1,9 +1,9 @@
 import React, { useRef, useState, useContext } from 'react';
 import Times from '../../svg/Times';
 
-const LabelItemModify = ({ setItemCreate, onClose, onLabelCreate, colors, colorValue, label }) => {
+const LabelItemModify = ({ setItemCreate, onClose, onLabelSave, colors, colorValue, label }) => {
     const inputEl = useRef('')
-    const name = label && label.name
+    const name = label ? label.name : ''
     const [inputValue, setInputValue] = useState(name)
 
     return (
@@ -19,7 +19,7 @@ const LabelItemModify = ({ setItemCreate, onClose, onLabelCreate, colors, colorV
             </div>
             <div className='labels-container'>
                 <div className='label-name-container'>
-                    <label for='name'>Name</label>
+                    <label htmlFor='name'>Name</label>
                     <input 
                         id='name'
                         className='card__addit-input labels-input'
@@ -39,7 +39,14 @@ const LabelItemModify = ({ setItemCreate, onClose, onLabelCreate, colors, colorV
                 <div className='label-btn-container'>
                     <button 
                         className='label-btn' 
-                        onClick={() => colorValue && inputValue && onLabelCreate(colorValue, inputValue)}
+                        onClick={() => { 
+                            if (colorValue && inputValue) {
+                                return label ? 
+                                    onLabelSave(colorValue, inputValue, label.labelId) 
+                                        : 
+                                    onLabelSave(colorValue, inputValue)
+                            }
+                        }}
                     >
                         <span className='light-layer'>
                             Save
@@ -47,7 +54,6 @@ const LabelItemModify = ({ setItemCreate, onClose, onLabelCreate, colors, colorV
                     </button>
                     <button 
                         className='label-btn' 
-                        onClick={() => onLabelCreate()}
                     >
                         <span className='light-layer'>
                             Delete

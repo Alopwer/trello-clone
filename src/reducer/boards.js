@@ -31,6 +31,8 @@ const updateBoards = (state, action, current) => {
         case 'TOGGLE_CHECK_STATUS':
         case 'DELETE_ITEM':
         case 'CHANGE_DUE_DATE_STATUS':
+        case 'CREATE_NEW_LABEL':
+        case 'UPDATE_LABEL':
             return [
                 ...boards.slice(0, payload.boardId),
                 current,

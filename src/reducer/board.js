@@ -108,13 +108,13 @@ const updateDueDate = (currentBoard, payload) => {
     }
 }
 
-const updateLabels = (currentBoard, payload) => {
+const updateLabels = (currentBoard, payload, update = false) => {
     const { listId } = payload
     return {
         ...currentBoard,
         lists: [
             ...currentBoard.lists.slice(0, listId),
-            getModifiedLabels(currentBoard, payload),
+            getModifiedLabels(currentBoard, payload, update),
             ...currentBoard.lists.slice(listId + 1),
         ]
     }
@@ -152,6 +152,8 @@ const updateBoard = (state, action) => {
             return updateDueDate(currentBoard, payload)
         case 'CREATE_NEW_LABEL':
             return updateLabels(currentBoard, payload)
+        case 'UPDATE_LABEL':
+            return updateLabels(currentBoard, payload, true)
         default: 
             return currentBoard
     }

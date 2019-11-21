@@ -1,43 +1,42 @@
 import React, { useRef, useState, useContext } from 'react';
 import { labelColors } from '../../../data/labelColors';
 import { connect } from 'react-redux';
-import { createNewLabel } from '../../../actions';
+import { createNewLabel, modifiedLabelSave } from '../../../actions';
 import LabelsView from './LabelsView';
 import LabelItemModify from './LabelItemModify';
 import Edit from '../../svg/Edit';
 import { ListContext } from '../../Card/Card-modal/CardModalContent';
 import './Labels.css';
 
-const LabelsCreate = ({ onClose, createNewLabel }) => {
+const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave }) => {
     const { list, card } = useContext(ListContext)
     const [itemCreate, setItemCreate] = useState(false)
     const [colorValue, setColor] = useState('')
-    const [label, setLabel] = useState(null)
-
-    const onLabelCreate = (color, name) => {
-        createNewLabel({
+    const [label, setLabel] = useState(false)
+    
+    const onLabelSave = (color, name, labelId) => {
+        const label = {
             boardId: list.boardId,
             listId: list.listId,
             cardId: card.cardId,
             color,
             name,
-            labelId : card.labels.length
-        })
+        }
+        if (typeof labelId === 'number') {
+            modifiedLabelSave({
+                ...label,
+                labelId
+            })
+        } else {
+            createNewLabel({
+                ...label,
+                labelId : card.labels.length
+            })
+        }
         setItemCreate(false)
-        setLabel(null)
+        setLabel(false)
         setColor('')
     }
-
-    // const onModifiedItemSave = () => {
-    //     modifyLabel({
-    //         boardId: list.boardId,
-    //         listId: list.listId,
-    //         cardId: card.cardId,
-    //         color,
-    //         name,
-    //         labelId : card.labels.length
-    //     })
-    // }
 
     const onPrepareLabel = (label) => {
         setLabel(label)
@@ -46,7 +45,7 @@ const LabelsCreate = ({ onClose, createNewLabel }) => {
     }
 
     const items = card.labels.map(label => (
-        <li className='labels__list-item'>
+        <li className='labels__list-item' key={label.labelId}>
             <div className='outer-div' style={{background: label.color}}>
                 <span className='span-fade'>
                 <span className='labels__list-item-color'>{label.name}</span>
@@ -58,8 +57,8 @@ const LabelsCreate = ({ onClose, createNewLabel }) => {
         </li>
     ))
 
-    const colors = labelColors.map(color => (
-        <li>
+    const colors = labelColors.map((color, i) => (
+        <li key={i}>
             <div 
                 style={{background: color}} 
                 className='label-list-item'
@@ -74,7 +73,7 @@ const LabelsCreate = ({ onClose, createNewLabel }) => {
 
     return itemCreate ? 
         <LabelItemModify 
-            onLabelCreate={onLabelCreate}
+            onLabelSave={onLabelSave}
             setItemCreate={setItemCreate}
             onClose={onClose}
             colors={colors}
@@ -93,7 +92,8 @@ const LabelsCreate = ({ onClose, createNewLabel }) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    createNewLabel: (value) => dispatch(createNewLabel(value))
+    createNewLabel: (value) => dispatch(createNewLabel(value)),
+    modifiedLabelSave: (value) => dispatch(modifiedLabelSave(value))
 })
 
 export default connect(null, mapDispatchToProps)(LabelsCreate);

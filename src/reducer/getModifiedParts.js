@@ -71,14 +71,14 @@ const getModifiedDueDate = (board, payload) => {
     }
 }
 
-const getModifiedLabels = (board, payload) => {
+const getModifiedLabels = (board, payload, update = false) => {
     const { listId, cardId } = payload
     const boardLists = board.lists[listId]
     return {
         ...boardLists,
         cards: [
             ...boardLists.cards.slice(0, cardId),
-            getLabels(payload, boardLists),
+            getLabels(payload, boardLists, update),
             ...boardLists.cards.slice(cardId + 1),
         ]
     }

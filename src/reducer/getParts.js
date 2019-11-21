@@ -127,11 +127,25 @@ const getDueDate = (payload, boardLists) => {
     }
 }
 
-const getLabels = (payload, boardLists) => {
+const getLabels = (payload, boardLists, update) => {
     const { cardId, name, color, labelId } = payload
     const boardCards = boardLists.cards[cardId]
 
-    return {
+    return update ? 
+    {
+        ...boardCards,
+        labels : [
+            ...boardCards.labels.slice(0, labelId),
+            {
+                name,
+                color,
+                labelId
+            },
+            ...boardCards.labels.slice(labelId + 1)
+        ]
+    }
+        :
+    {
         ...boardCards,
         labels : [
             ...boardCards.labels,

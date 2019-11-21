@@ -68,6 +68,11 @@ const createNewLabel = (value) => ({
     payload: value
 })
 
+const modifiedLabelSave = (value) => ({
+    type: 'UPDATE_LABEL',
+    payload: value
+})
+
 export {
     setCurrentBoard,
     setCurrentColor,
@@ -82,5 +87,6 @@ export {
     deleteItem,
     updateDueDate,
     changeDateStatus,
-    createNewLabel
+    createNewLabel,
+    modifiedLabelSave
 }
