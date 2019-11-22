@@ -10,18 +10,22 @@ import './Labels.css';
 
 const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave }) => {
     const { list, card } = useContext(ListContext)
+
     const [itemCreate, setItemCreate] = useState(false)
     const [colorValue, setColor] = useState('')
     const [label, setLabel] = useState(false)
+    const [filter, setFilter] = useState('')
     
-    const onLabelSave = (color, name, labelId) => {
+    const onLabelSave = (color, name, labelId, selected = false) => {
         const label = {
             boardId: list.boardId,
             listId: list.listId,
             cardId: card.cardId,
             color,
             name,
+            selected
         }
+
         if (typeof labelId === 'number') {
             modifiedLabelSave({
                 ...label,
@@ -33,6 +37,7 @@ const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave }) => {
                 labelId : card.labels.length
             })
         }
+
         setItemCreate(false)
         setLabel(false)
         setColor('')
@@ -44,11 +49,16 @@ const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave }) => {
         setItemCreate(true)
     }
 
-    const items = card.labels.map(label => (
-        <li className='labels__list-item' key={label.labelId}>
-            <div className='outer-div' style={{background: label.color}}>
+    const toggleSelectedStatus = ({ color, name, labelId, selected }) => {
+        onLabelSave(color, name, labelId, !selected)
+    }
+
+    const items = card.labels.map(label => label.name.match(filter) && (
+        <li className='labels__list-item' key={ label.labelId }>
+            <div className='outer-div' style={{ background: label.color }} onClick={() => toggleSelectedStatus(label)}>
                 <span className='span-fade'>
-                <span className='labels__list-item-color'>{label.name}</span>
+                    <span className='labels__list-item-color'>{ label.name }</span>
+                    <span className='labels__list-item-color'>{ label.selected && '✓' }</span>
                 </span>
             </div>
             <div className='labels__list-item-btn' onClick={() => onPrepareLabel(label)}>
@@ -65,7 +75,7 @@ const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave }) => {
                 onClick={() => setColor(color)}
             >
                 <div className='light-layer'>
-                    { color === colorValue ? '✓' : '' }
+                    { color === colorValue && '✓' }
                 </div>
             </div>
         </li>
@@ -87,6 +97,7 @@ const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave }) => {
             setItemCreate={setItemCreate}
             setLabel={setLabel}
             setColor={setColor}
+            setFilter={setFilter}
         />
 
 }

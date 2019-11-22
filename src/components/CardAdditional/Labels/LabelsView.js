@@ -1,7 +1,10 @@
 import React, { useRef, useState, useContext } from 'react';
 import Times from '../../svg/Times';
 
-const LabelsView = ({ onClose, items, setItemCreate, setLabel, setColor }) => {
+const LabelsView = ({ onClose, items, setItemCreate, setLabel, setColor, setFilter }) => {
+    const inputEl = useRef('')
+    const [inputValue, setInputValue] = useState('')
+
     const onItemCreate = () => {
         setItemCreate(true)
         setLabel(false)
@@ -18,8 +21,14 @@ const LabelsView = ({ onClose, items, setItemCreate, setLabel, setColor }) => {
             </div>
             <div className='labels-container'>
                 <input 
+                    ref={inputEl}
+                    value={inputValue}
                     className='card__addit-input labels-input'
                     placeholder='Search labels...'    
+                    onChange={() => {
+                        setInputValue(inputEl.current.value)
+                        setFilter(new RegExp(`^${inputEl.current.value}`, 'i'))
+                    }}
                 />
                 <div className='labels-content'>
                     <p className='labels-title'>LABELS</p>

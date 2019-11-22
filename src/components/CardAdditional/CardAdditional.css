@@ -81,12 +81,12 @@
 /* DUE DATE */
 
 .date-section {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .date-title {
-    font-weight: normal;
     font-size: 0.9rem;
+    margin-bottom: 10px;
 }
 
 .date-create {
@@ -195,7 +195,6 @@
 
 .labels-title {
     font-size: 0.9rem;
-    font-weight: lighter;
 }
 
 .labels__list {
@@ -218,10 +217,16 @@
     color: white;
     cursor: pointer;
 }
+
+.span-fade{
+    display: flex;
+    justify-content: space-between;
+}
+
 .outer-div:hover .span-fade{
     background-color: rgba(0,0,0,.3);
     border-radius: 3px;
-    padding: 5px 0;
+    display: flex;
 }
 .labels__list-item-color {
     display: inline-block;
@@ -263,6 +268,42 @@
     width: 100%
 }
 
+/* LABELS SECTION */
+
+.labels-section {
+    margin-bottom: 10px;
+}
+
+.labels-section-title {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.labels-items {
+    display: flex;
+}
+
+.labels-items-list {
+    list-style: none;
+    display: flex;
+}
+
+.labels-items-list li, .labels-add-btn button {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    padding: 4px 6px;
+    cursor: pointer;
+    border: none;
+    color: white
+}
+
+.labels-add-btn button {
+    color: rgb(23, 43, 77);
+    font-size: 1.3rem;
+    background: rgb(234, 236, 240);
+    min-width: 30px;
+}
 
 @media (max-width: 768px) {
     .card__addit {
