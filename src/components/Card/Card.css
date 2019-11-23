@@ -1,13 +1,28 @@
 .card-item {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background: white;
     margin-bottom: 6px;
     border-radius: 3px;
     box-shadow: 0 1px 0 rgba(9,30,66,.25);
     cursor: pointer;
     padding: 4px 8px;
+    color: rgb(23, 43, 77);
+}
+
+.card-item path {
+    fill: rgb(23, 43, 77);
+}
+
+.card-item-times:hover path {
+    fill: rgba(23, 43, 77, 0.781);
+}
+
+.card-item-link {
     text-decoration: none;
     color: rgb(23, 43, 77);
+    flex-basis: 100%;
 }
 
 .card-item:hover {

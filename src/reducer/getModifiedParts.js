@@ -1,7 +1,21 @@
 import { getList, getCard, getChecklist, getChecklistItems, getItems, getDueDate, getLabels } from "./getParts"
 
-const getModifiedList = (board, payload) => {
-    const { listId } = payload
+const getModifiedList = (board, payload, del) => {
+    const { listId, cardId } = payload
+    if (del) {
+        return {
+            ...board.lists[listId],
+            cards: [
+                ...board.lists[listId].cards.slice(0, cardId),
+                ...board.lists[listId].cards
+                    .map(card => Object.assign({}, card, {
+                        cardId: card.cardId - 1
+                    }))
+                    .slice(cardId + 1),
+            ]
+        }
+    }
+
     return {
         ...board.lists[listId],
         cards: [

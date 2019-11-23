@@ -15,13 +15,13 @@ const updateLists = (currentBoard, payload) => {
         ]
     }
 }
-const updateCards = (currentBoard, payload) => {
+const updateCards = (currentBoard, payload, del) => {
     const { listId } = payload
     return {
         ...currentBoard,
         lists: [
             ...currentBoard.lists.slice(0, listId),
-            getModifiedList(currentBoard, payload),
+            getModifiedList(currentBoard, payload, del),
             ...currentBoard.lists.slice(listId + 1),
         ]
     }
@@ -134,6 +134,8 @@ const updateBoard = (state, action) => {
             return updateLists(currentBoard, payload)
         case 'ADD_CARD':
             return updateCards(currentBoard, payload)
+        case 'DELETE_CARD':
+            return updateCards(currentBoard, payload, true)
         case 'ADD_CHECKLIST':
             return updateChecklists(currentBoard, payload)
         case 'DELETE_CHECKLIST':

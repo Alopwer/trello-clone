@@ -24,6 +24,7 @@ const updateBoards = (state, action, current) => {
             ]
         case 'ADD_LIST':
         case 'ADD_CARD':
+        case 'DELETE_CARD':
         case 'CHANGE_LIST_NAME':
         case 'ADD_CHECKLIST': 
         case 'DELETE_CHECKLIST': 

@@ -23,6 +23,11 @@ const addCard = (value) => ({
     payload: value
 })
 
+const deleteCard = (value) => ({
+    type: 'DELETE_CARD',
+    payload: value
+})
+
 const changeListName = (value) => ({    
     type: 'CHANGE_LIST_NAME',
     payload: value
@@ -89,6 +94,7 @@ export {
     addBoard,
     addList,
     addCard,
+    deleteCard,
     addChecklist,
     deleteChecklist,
     addItemToList,
