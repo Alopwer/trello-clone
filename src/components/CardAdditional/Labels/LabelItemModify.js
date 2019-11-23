@@ -54,6 +54,7 @@ const LabelItemModify = ({ setItemCreate, onClose, onLabelSave, colors, colorVal
                     </button>
                     <button 
                         className='label-btn' 
+                        onClick={() => label && onLabelSave(null,null,label.labelId)}
                     >
                         <span className='light-layer'>
                             Delete

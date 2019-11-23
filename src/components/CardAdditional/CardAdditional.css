@@ -288,21 +288,35 @@
     display: flex;
 }
 
+.labels-items-list li {
+    color: white;
+    padding: 4px 6px;
+}
+
 .labels-items-list li, .labels-add-btn button {
     margin-right: 10px;
     margin-bottom: 5px;
     border-radius: 3px;
-    padding: 4px 6px;
     cursor: pointer;
     border: none;
-    color: white
 }
 
-.labels-add-btn button {
+.labels-add-btn {
+    position: relative;
+}
+
+.lbl-btn {
     color: rgb(23, 43, 77);
     font-size: 1.3rem;
     background: rgb(234, 236, 240);
     min-width: 30px;
+    padding: 4px 6px;
+}
+
+.labels-create-block {
+    position: absolute;
+    z-index: 2;
+    left: 300px;
 }
 
 @media (max-width: 768px) {
@@ -314,6 +328,9 @@
     .date-create {
         left: -75px;
     }
+    .labels-create-block {
+        left: -120px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -324,5 +341,8 @@
     .date-create {
         width: 83vw;
         left: 5px
+    }
+    .labels-create-block {
+        left: -140px
     }
 }

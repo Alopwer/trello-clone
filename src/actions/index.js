@@ -38,6 +38,11 @@ const addChecklist = (value) => ({
     payload: value
 })
 
+const deleteChecklist = (value) => ({
+    type: 'DELETE_CHECKLIST',
+    payload: value
+})
+
 const addItemToList = (value) => ({
     type: 'ADD_ITEM',
     payload: value
@@ -73,6 +78,11 @@ const modifiedLabelSave = (value) => ({
     payload: value
 })
 
+const labelDelete = (value) => ({
+    type: 'DELETE_LABEL',
+    payload: value
+})
+
 export {
     setCurrentBoard,
     setCurrentColor,
@@ -80,6 +90,7 @@ export {
     addList,
     addCard,
     addChecklist,
+    deleteChecklist,
     addItemToList,
     changeListName,
     updateCardDescr,
@@ -88,5 +99,6 @@ export {
     updateDueDate,
     changeDateStatus,
     createNewLabel,
-    modifiedLabelSave
+    modifiedLabelSave,
+    labelDelete
 }

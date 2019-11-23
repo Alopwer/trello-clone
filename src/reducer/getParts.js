@@ -20,21 +20,35 @@ const getCard = (board, payload) => {
         descr: text
     }
 }
-const getChecklist = (payload, boardLists) => {
+const getChecklist = (payload, boardLists, del) => {
     const { cardId, checklistId, title } = payload
     const boardCards = boardLists.cards[cardId]
-    return {
-        ...boardCards,
-        checklists: [
-            ...boardCards.checklists,
-            {  
-                checklistId,
-                cardId,
-                title,
-                items: []
-            }
-        ]
-    }
+
+    return del ? 
+        {
+            ...boardCards,
+            checklists: [
+                ...boardCards.checklists.slice(0, checklistId),
+                ...boardCards.checklists
+                    .map(checklist => Object.assign({}, checklist, {
+                        checklistId: checklist.checklistId - 1
+                    }))
+                    .slice(checklistId + 1)
+            ]
+        }
+            :
+        {
+            ...boardCards,
+            checklists: [
+                ...boardCards.checklists,
+                {  
+                    checklistId,
+                    cardId,
+                    title,
+                    items: []
+                }
+            ]
+        }
 }
 const getChecklistItems = (payload, boardLists, deleteItem) => {
     const { itemId, cardId, checklistId, title } = payload
@@ -136,18 +150,31 @@ const getLabels = (payload, boardLists, update) => {
         labelId,
         selected
     }
-
-    return update ? 
-    {
-        ...boardCards,
-        labels : [
-            ...boardCards.labels.slice(0, labelId),
-            label,
-            ...boardCards.labels.slice(labelId + 1)
-        ]
+    
+    if (update === 'delete') {
+        return {
+            ...boardCards,
+            labels : [
+                ...boardCards.labels.slice(0, labelId),
+                ...boardCards.labels
+                    .map(label => Object.assign({}, label, {
+                        labelId: label.labelId - 1
+                    }))
+                    .slice(labelId + 1)
+            ]
+        }
+    } else if (update) {
+        return {
+            ...boardCards,
+            labels : [
+                ...boardCards.labels.slice(0, labelId),
+                label,
+                ...boardCards.labels.slice(labelId + 1)
+            ]
+        }
     }
-        :
-    {
+
+    return {
         ...boardCards,
         labels : [
             ...boardCards.labels,

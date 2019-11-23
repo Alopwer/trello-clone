@@ -5,7 +5,7 @@ import AddItem from './Items/AddItem';
 import Items from './Items/Items';
 import { ListContext } from '../../Card/Card-modal/CardModalContent';
 
-const Checklist = ({ checklist }) => {
+const Checklist = ({ checklist, onDeleteChecklist }) => {
     const { list, card } = useContext(ListContext)
     const progress = checklist.items.length
 
@@ -13,7 +13,7 @@ const Checklist = ({ checklist }) => {
         <>
             <div className='checklist__header'>
                 <p>{checklist.title}</p>
-                <button className='header-btn'>Delete</button>
+                <button className='header-btn' onClick={() => onDeleteChecklist(checklist.checklistId)}>Delete</button>
             </div>
             <ProgressBar 
                 progress={progress}

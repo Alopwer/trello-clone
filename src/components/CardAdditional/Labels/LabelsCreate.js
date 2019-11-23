@@ -1,14 +1,14 @@
 import React, { useRef, useState, useContext } from 'react';
 import { labelColors } from '../../../data/labelColors';
 import { connect } from 'react-redux';
-import { createNewLabel, modifiedLabelSave } from '../../../actions';
+import { createNewLabel, modifiedLabelSave, labelDelete } from '../../../actions';
 import LabelsView from './LabelsView';
 import LabelItemModify from './LabelItemModify';
 import Edit from '../../svg/Edit';
 import { ListContext } from '../../Card/Card-modal/CardModalContent';
 import './Labels.css';
 
-const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave }) => {
+const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave, labelDelete }) => {
     const { list, card } = useContext(ListContext)
 
     const [itemCreate, setItemCreate] = useState(false)
@@ -17,20 +17,30 @@ const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave }) => {
     const [filter, setFilter] = useState('')
     
     const onLabelSave = (color, name, labelId, selected = false) => {
-        const label = {
+        const ids = {
             boardId: list.boardId,
             listId: list.listId,
             cardId: card.cardId,
+        }
+        const label = {
+            ...ids,
             color,
             name,
             selected
         }
 
         if (typeof labelId === 'number') {
-            modifiedLabelSave({
-                ...label,
-                labelId
-            })
+            if (!color) {
+                labelDelete({
+                    ...ids,
+                    labelId
+                })
+            } else {
+                modifiedLabelSave({
+                    ...label,
+                    labelId
+                })
+            }
         } else {
             createNewLabel({
                 ...label,
@@ -104,7 +114,8 @@ const LabelsCreate = ({ onClose, createNewLabel, modifiedLabelSave }) => {
 
 const mapDispatchToProps = (dispatch) => ({
     createNewLabel: (value) => dispatch(createNewLabel(value)),
-    modifiedLabelSave: (value) => dispatch(modifiedLabelSave(value))
+    modifiedLabelSave: (value) => dispatch(modifiedLabelSave(value)),
+    labelDelete: (value) => dispatch(labelDelete(value))
 })
 
 export default connect(null, mapDispatchToProps)(LabelsCreate);

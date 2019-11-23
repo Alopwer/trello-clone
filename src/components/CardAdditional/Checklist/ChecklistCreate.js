@@ -11,7 +11,7 @@ const ChecklistCreate = ({ onClose, addChecklist }) => {
     const [inputValue, setInputValue] = useState('')
 
     const createChecklist = () => {
-        addChecklist({
+        if (inputValue) addChecklist({
             title: inputEl.current.value,
             boardId : list.boardId,
             listId: list.listId,

@@ -21,14 +21,14 @@ const getModifiedCard = (board, payload) => {
         ]
     }
 }
-const getModifiedChecklist = (board, payload) => {
+const getModifiedChecklist = (board, payload, del) => {
     const { listId, cardId } = payload
     const boardLists = board.lists[listId]
     return {
         ...boardLists,
         cards: [
             ...boardLists.cards.slice(0, cardId),
-            getChecklist(payload, boardLists),
+            getChecklist(payload, boardLists, del),
             ...boardLists.cards.slice(cardId + 1),
         ]
     }

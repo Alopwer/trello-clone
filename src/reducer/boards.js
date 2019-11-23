@@ -26,6 +26,7 @@ const updateBoards = (state, action, current) => {
         case 'ADD_CARD':
         case 'CHANGE_LIST_NAME':
         case 'ADD_CHECKLIST': 
+        case 'DELETE_CHECKLIST': 
         case 'ADD_ITEM':
         case 'UPDATE_CARD_DESCR': 
         case 'TOGGLE_CHECK_STATUS':
@@ -33,6 +34,7 @@ const updateBoards = (state, action, current) => {
         case 'CHANGE_DUE_DATE_STATUS':
         case 'CREATE_NEW_LABEL':
         case 'UPDATE_LABEL':
+        case 'DELETE_LABEL':
             return [
                 ...boards.slice(0, payload.boardId),
                 current,

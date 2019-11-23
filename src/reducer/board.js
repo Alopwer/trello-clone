@@ -51,13 +51,13 @@ const updateCardDescr = (currentBoard, payload) => {
         ]
     }
 }
-const updateChecklists = (currentBoard, payload) => {
+const updateChecklists = (currentBoard, payload, del) => {
     const { listId } = payload
     return {
         ...currentBoard,
         lists: [
             ...currentBoard.lists.slice(0, listId),
-            getModifiedChecklist(currentBoard, payload),
+            getModifiedChecklist(currentBoard, payload, del),
             ...currentBoard.lists.slice(listId + 1),
         ]
     }
@@ -136,6 +136,8 @@ const updateBoard = (state, action) => {
             return updateCards(currentBoard, payload)
         case 'ADD_CHECKLIST':
             return updateChecklists(currentBoard, payload)
+        case 'DELETE_CHECKLIST':
+            return updateChecklists(currentBoard, payload, true)
         case 'ADD_ITEM':
             return updateChecklistItems(currentBoard, payload)
         case 'CHANGE_LIST_NAME':
@@ -154,6 +156,8 @@ const updateBoard = (state, action) => {
             return updateLabels(currentBoard, payload)
         case 'UPDATE_LABEL':
             return updateLabels(currentBoard, payload, true)
+        case 'DELETE_LABEL':
+            return updateLabels(currentBoard, payload, 'delete')
         default: 
             return currentBoard
     }
