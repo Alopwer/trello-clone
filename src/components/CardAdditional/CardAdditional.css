@@ -319,6 +319,22 @@
     left: 300px;
 }
 
+.delete-card-btn {
+    margin-top: 10px;
+}
+
+.delete-card-btn button {
+    border: none;
+    border-radius: 3px;
+    color: white;
+    padding: 6px 8px;
+    cursor: pointer;
+    background: #cf513d;
+}
+.delete-card-btn button:hover {
+    background: rgba(207, 81, 61, 0.75);
+}
+
 @media (max-width: 768px) {
     .card__addit {
         width: 50vw;

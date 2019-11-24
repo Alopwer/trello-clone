@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { deleteBoard } from '../../actions';
 import { setCurrentBoard } from '../../actions/index';
+import Times from '../svg/Times';
 
-const BoardsCells = ({ board, setCurrentBoard }) => {
+const BoardsCells = ({ board, setCurrentBoard, deleteBoard }) => {
     return (
         <div className='boards__item' style={{backgroundColor: board.cover}} >
             <div className='boards-fade'>
@@ -16,6 +18,9 @@ const BoardsCells = ({ board, setCurrentBoard }) => {
                 >
                     <span>{board.title}</span>
                 </Link>
+                <div className='board-times' onClick={() => deleteBoard(board.boardId)}>
+                    <Times width={10}/>
+                </div>
             </div>
         </div>
     )   
@@ -23,7 +28,8 @@ const BoardsCells = ({ board, setCurrentBoard }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentBoard: (id) => dispatch(setCurrentBoard(id))
+        setCurrentBoard: (id) => dispatch(setCurrentBoard(id)),
+        deleteBoard: (id) => dispatch(deleteBoard(id))
     }
 }
 

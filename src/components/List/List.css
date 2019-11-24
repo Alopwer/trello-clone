@@ -2,6 +2,29 @@
     padding: 8px;
 }
 
+.list:hover .list-times {
+    display: inline-block;
+}
+
+.list-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.list-times {
+    display: none;
+    cursor: pointer;
+}
+
+.list-times:hover path {
+    fill: rgba(23, 43, 77, 0.75);
+}
+
+.list-times path {
+    fill: rgb(23, 43, 77);
+}
+
 .list-title {
     font-size: 0.9rem;
     color: rgb(23, 43, 77);
@@ -13,6 +36,7 @@
     width: 100%;
     height: 28px;
     border-radius: 3px;
+    margin-right: 10px;
 }
 
 .list-title:focus {

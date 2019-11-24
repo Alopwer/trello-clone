@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { deleteCard } from '../../actions';
 import Card from '../Card';
 import AddNewItem from '../AddNewItem';
 import './Cards.css';
@@ -14,18 +13,10 @@ const Cards = ({ listId, currentList, lists, deleteCard }) => {
         setInputOpened(!inputOpened)
     }
 
-    const onDeleteCard = (cardId) => {
-        deleteCard({
-            boardId: list.boardId,
-            listId: list.listId,
-            cardId
-        })
-    }
-
     const items = cards ? 
         cards.map((card, i) => 
             <div key={i}>
-                <Card card={card} onDeleteCard={onDeleteCard} />
+                <Card card={card} />
             </div>
         ) 
             :
@@ -54,8 +45,4 @@ const mapStateToProps = ({ currentBoard: { lists } }) => {
     return { lists }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    deleteCard: (value) => dispatch(deleteCard(value))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cards);
+export default connect(mapStateToProps)(Cards);

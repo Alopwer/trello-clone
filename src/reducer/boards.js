@@ -22,7 +22,18 @@ const updateBoards = (state, action, current) => {
                 ...boards.slice(0, payload.boardId), 
                 addBoard(payload)
             ]
+        case 'DELETE_BOARD':
+            console.log(payload)
+            return [
+                ...boards.slice(0, payload),
+                ...boards
+                    .map(bd => Object.assign({}, bd, { 
+                        boardId: bd.boardId - 1 
+                    }))
+                    .slice(payload + 1)
+            ]
         case 'ADD_LIST':
+        case 'DELETE_LIST':
         case 'ADD_CARD':
         case 'DELETE_CARD':
         case 'CHANGE_LIST_NAME':

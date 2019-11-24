@@ -19,6 +19,23 @@
     border-radius: 3px;
 }
 
+.boards-fade {
+    position: relative;
+}
+
+.board-times {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+}
+.board-times path{
+    fill: white;
+}
+.board-times:hover path{
+    fill: rgba(255, 255, 255, 0.8);
+}
+
 .boards-fade:hover {
     background: rgba(0,0,0,.15);
     border-radius: 3px;

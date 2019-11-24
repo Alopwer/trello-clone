@@ -1,7 +1,22 @@
 import { getModifiedList, getModifiedCard, getModifiedChecklist, getModifiedChecklistItems, getModifiedItems, getModifiedDueDate, getModifiedLabels } from './getModifiedParts';
 
-const updateLists = (currentBoard, payload) => {
-    const { title, newListId } = payload
+const updateLists = (currentBoard, payload, del) => {
+    const { title, newListId, listId } = payload
+
+    if (del) {
+        return {
+            ...currentBoard,
+            lists: [
+                ...currentBoard.lists.slice(0, listId),
+                ...currentBoard.lists
+                    .map(list => Object.assign({}, list, {
+                        listId: list.listId - 1
+                    }))
+                    .slice(listId + 1)
+            ]
+        }
+    }
+
     return {
         ...currentBoard,
         lists: [
@@ -132,6 +147,8 @@ const updateBoard = (state, action) => {
             return boards.find(board => board.boardId === payload)
         case 'ADD_LIST':
             return updateLists(currentBoard, payload)
+        case 'DELETE_LIST':
+            return updateLists(currentBoard, payload, true)
         case 'ADD_CARD':
             return updateCards(currentBoard, payload)
         case 'DELETE_CARD':

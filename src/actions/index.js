@@ -13,8 +13,18 @@ const addBoard = (board) => ({
     payload: board
 })
 
+const deleteBoard = (board) => ({
+    type: 'DELETE_BOARD',
+    payload: board
+})
+
 const addList = (value) => ({
     type: 'ADD_LIST',
+    payload: value
+})
+
+const deleteList = (value) => ({
+    type: 'DELETE_LIST',
     payload: value
 })
 
@@ -92,7 +102,9 @@ export {
     setCurrentBoard,
     setCurrentColor,
     addBoard,
+    deleteBoard,
     addList,
+    deleteList,
     addCard,
     deleteCard,
     addChecklist,

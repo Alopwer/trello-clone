@@ -12,15 +12,21 @@ const CardModalContent = ({ lists, match, closeModal }) => {
 
     return (
         <ListContext.Provider value={{list, card}}>
-            <CardModalHeader 
-                cardTitle={card.title}
-                listTitle={list.title}
-                closeModal={closeModal}
-            />
-            <CardModalMain 
-                list={list}
-                card={card}
-            />
+            {
+                card 
+                    && 
+                <>
+                    <CardModalHeader 
+                        cardTitle={card.title}
+                        listTitle={list.title}
+                        closeModal={closeModal}
+                    />
+                    <CardModalMain 
+                        list={list}
+                        card={card}
+                    />
+                </>
+            }
         </ListContext.Provider>
     )
 }

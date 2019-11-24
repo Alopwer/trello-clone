@@ -1,7 +1,7 @@
 import React from 'react';
 import './Board.css';
 import { connect } from 'react-redux';
-import ListsPage from '../../pages/ListsPage/ListsPage'
+import ListsPage from '../../pages/ListsPage/ListsPage';
 
 const Board = ({ currentBoard }) => {
     return (
