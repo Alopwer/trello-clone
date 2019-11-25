@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-import './Lists.css';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import List from '../List';
 import AddNewItem from '../AddNewItem';
+import './Lists.css';
 
-const Lists = ({ lists, currentBoard }) => {
+const Lists = ({ boards, match }) => {
     const [inputOpened, setInputOpened] = useState(false)
+    const currentBoard = boards.find(board => board.boardId === +match.params.id)
+    const lists = currentBoard.lists || false
 
     const toggleInput = () => {
         setInputOpened(!inputOpened)
     }
 
-    const items = lists ? 
+    const items = lists &&
         lists.map((list, i) => 
             <div className='lists-item' key={i}>
                 <List list={list} />
             </div>
-        ) 
-            : 
-        false  
+        )
 
     const addListItem = inputOpened ? 
         <AddNewItem 
@@ -39,8 +40,8 @@ const Lists = ({ lists, currentBoard }) => {
     )
 }
 
-const mapStateToProps = ({ currentBoard, currentBoard : { lists } }) => {
-    return { currentBoard, lists }
+const mapStateToProps = ({ boards }) => {
+    return { boards }
 }
 
-export default connect(mapStateToProps)(Lists);
+export default withRouter(connect(mapStateToProps)(Lists));

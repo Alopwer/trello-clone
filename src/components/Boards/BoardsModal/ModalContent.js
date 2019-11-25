@@ -3,7 +3,7 @@ import Times from '../../svg/Times';
 import { connect } from 'react-redux';
 import { addBoard } from '../../../actions/index';
 
-const ModalContent = ({ lastId, closeModal, currentColor, addBoard, ...props }) => {
+const ModalContent = ({ lastId, closeModal, color, addBoard, items }) => {
     const inputEl = useRef('')
     const [input, setInput] = useState('')
     
@@ -13,7 +13,7 @@ const ModalContent = ({ lastId, closeModal, currentColor, addBoard, ...props }) 
         addBoard({
             title: input,
             boardId: id,
-            cover: currentColor
+            cover: color
         })
         closeModal()
     }
@@ -27,7 +27,7 @@ const ModalContent = ({ lastId, closeModal, currentColor, addBoard, ...props }) 
             }}
         >
             <div className='modal__content-main'>
-                <div style={{background: currentColor}}>
+                <div style={{background: color}}>
                     <input 
                         autoFocus
                         value={input} 
@@ -43,7 +43,7 @@ const ModalContent = ({ lastId, closeModal, currentColor, addBoard, ...props }) 
                     </div>
                 </div>
                 <ul className='modal__grid'>
-                    { props.children }
+                    { items }
                 </ul>
             </div>
             <button 
@@ -57,8 +57,8 @@ const ModalContent = ({ lastId, closeModal, currentColor, addBoard, ...props }) 
     )
 }
 
-const mapStateToProps = ({ boards, currentColor }) => {
-    return { lastId: boards.length, currentColor }
+const mapStateToProps = ({ boards }) => {
+    return { lastId: boards.length }
 }
 
 const mapDispatchToProps = (dispatch) => {

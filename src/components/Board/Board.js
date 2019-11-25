@@ -1,9 +1,12 @@
 import React from 'react';
-import './Board.css';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import ListsPage from '../../pages/ListsPage/ListsPage';
+import './Board.css';
 
-const Board = ({ currentBoard }) => {
+const Board = ({ boards, match }) => {
+    const currentBoard = boards.find(board => board.boardId === +match.params.id)
+    
     return (
         <div style={{background: currentBoard.cover}} className='board'>
             <h3>
@@ -14,8 +17,8 @@ const Board = ({ currentBoard }) => {
     )
 }
 
-const mapStateToProps = ({ currentBoard }) => {
-    return { currentBoard }
+const mapStateToProps = ({ boards }) => {
+    return { boards }
 }
 
-export default connect(mapStateToProps)(Board)
+export default withRouter(connect(mapStateToProps)(Board));

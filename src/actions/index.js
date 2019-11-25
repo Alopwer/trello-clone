@@ -1,8 +1,3 @@
-const setCurrentBoard = (boardId) => ({
-    type: 'SET_CURRENT_BOARD',
-    payload: boardId
-})
-
 const setCurrentColor = (color) => ({
     type: 'SET_CURRENT_COLOR',
     payload: color
@@ -99,7 +94,6 @@ const labelDelete = (value) => ({
 })
 
 export {
-    setCurrentBoard,
     setCurrentColor,
     addBoard,
     deleteBoard,

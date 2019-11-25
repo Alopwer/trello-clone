@@ -1,5 +1,22 @@
-import { getModifiedList, getModifiedCard, getModifiedChecklist, getModifiedChecklistItems, getModifiedItems, getModifiedDueDate, getModifiedLabels } from './getModifiedParts';
+import { 
+    getModifiedList, 
+    getModifiedCard, 
+    getModifiedChecklist, 
+    getModifiedChecklistItems, 
+    getModifiedItems, 
+    getModifiedDueDate, 
+    getModifiedLabels 
+} from './getModifiedParts';
 
+const addBoard = (payload) => {
+    const { boardId, title, cover } = payload
+    return {   
+        boardId,
+        title,
+        cover,
+        lists: []
+    }
+}
 const updateLists = (currentBoard, payload, del) => {
     const { title, newListId, listId } = payload
 
@@ -110,7 +127,6 @@ const updateItemsCount = (currentBoard, payload) => {
         ]
     }
 }
-
 const updateDueDate = (currentBoard, payload) => {
     const { listId } = payload
     return {
@@ -122,7 +138,6 @@ const updateDueDate = (currentBoard, payload) => {
         ]
     }
 }
-
 const updateLabels = (currentBoard, payload, update = false) => {
     const { listId } = payload
     return {
@@ -135,57 +150,16 @@ const updateLabels = (currentBoard, payload, update = false) => {
     }
 }
 
-const updateBoard = (state, action) => {
-    if (state === undefined) {
-        return {}
-    }
-    const { boards, currentBoard } = state
-    const { payload } = action
-
-    switch(action.type) {
-        case 'SET_CURRENT_BOARD':
-            return boards.find(board => board.boardId === payload)
-        case 'ADD_LIST':
-            return updateLists(currentBoard, payload)
-        case 'DELETE_LIST':
-            return updateLists(currentBoard, payload, true)
-        case 'ADD_CARD':
-            return updateCards(currentBoard, payload)
-        case 'DELETE_CARD':
-            return updateCards(currentBoard, payload, true)
-        case 'ADD_CHECKLIST':
-            return updateChecklists(currentBoard, payload)
-        case 'DELETE_CHECKLIST':
-            return updateChecklists(currentBoard, payload, true)
-        case 'ADD_ITEM':
-            return updateChecklistItems(currentBoard, payload)
-        case 'CHANGE_LIST_NAME':
-            return updateListName(currentBoard, payload)
-        case 'UPDATE_CARD_DESCR':
-            return updateCardDescr(currentBoard, payload)
-        case 'TOGGLE_CHECK_STATUS':
-            return updateItemsStatus(currentBoard, payload)
-        case 'DELETE_ITEM':
-            return updateItemsCount(currentBoard, payload)
-        case 'UPDATE_DUE_DATE':
-            return updateDueDate(currentBoard, payload)
-        case 'CHANGE_DUE_DATE_STATUS': 
-            return updateDueDate(currentBoard, payload)
-        case 'CREATE_NEW_LABEL':
-            return updateLabels(currentBoard, payload)
-        case 'UPDATE_LABEL':
-            return updateLabels(currentBoard, payload, true)
-        case 'DELETE_LABEL':
-            return updateLabels(currentBoard, payload, 'delete')
-        default: 
-            return currentBoard
-    }
-}
-
 export {
+    addBoard,
     updateLists,
     updateCards,
     updateListName,
-    updateBoard,
-    updateCardDescr
+    updateCardDescr,
+    updateChecklists,
+    updateChecklistItems,
+    updateItemsStatus,
+    updateItemsCount,
+    updateDueDate,
+    updateLabels
 }

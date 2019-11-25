@@ -6,33 +6,27 @@ import CardModalMain from './Card-modal-content/CardModalMain';
 
 const ListContext = React.createContext('')
 
-const CardModalContent = ({ lists, match, closeModal }) => {
-    const list = lists.find(list => list.listId === +match.params.listId)
+const CardModalContent = ({ boards, match, closeModal }) => {
+    const board = boards.find(board => board.boardId === +match.params.id)
+    const list = board.lists.find(list => list.listId === +match.params.listId)
     const card = list.cards.find(card => card.cardId === +match.params.cardId)
 
     return (
-        <ListContext.Provider value={{list, card}}>
+        <ListContext.Provider value={{ list, card }}>
             {
                 card 
                     && 
                 <>
-                    <CardModalHeader 
-                        cardTitle={card.title}
-                        listTitle={list.title}
-                        closeModal={closeModal}
-                    />
-                    <CardModalMain 
-                        list={list}
-                        card={card}
-                    />
+                    <CardModalHeader closeModal={closeModal} />
+                    <CardModalMain />
                 </>
             }
         </ListContext.Provider>
     )
 }
 
-const mapStateToProps = ({ currentBoard : { lists } }) => {
-    return { lists }
+const mapStateToProps = ({ boards }) => {
+    return { boards }
 }
 
 export { ListContext }

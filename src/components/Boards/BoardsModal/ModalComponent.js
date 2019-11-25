@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import ModalContent from './ModalContent';
 import { backgrounds } from '../../../data/backgrounds';
-import { connect } from 'react-redux';
-import { setCurrentColor } from '../../../actions';
 
 Modal.setAppElement('#root')
 
-const ModalComponent = ({ modalOpened, closeModal, setCurrentColor }) => {
+const ModalComponent = ({ modalOpened, closeModal }) => {
+    const [color, setColor] = useState('rgb(0, 121, 191)')
+
     const listItems = backgrounds.map((bg, i) => 
         (
-            <li key={i} className='modal__grid-elem'>
-                <button style={{backgroundColor: bg}} onClick={() => setCurrentColor(bg)}>
+            <li key={i} className='modal__grid-elem' >
+                <button style={{ backgroundColor: bg }} onClick={() => setColor(bg)}>
                     <div></div>
                 </button>
             </li>
@@ -25,19 +25,9 @@ const ModalComponent = ({ modalOpened, closeModal, setCurrentColor }) => {
             className="modal-container"
             overlayClassName="overlay"
         > 
-            <ModalContent 
-                closeModal={closeModal}
-            >
-                { listItems }
-            </ModalContent>
+            <ModalContent closeModal={closeModal} color={color} items={listItems} />
         </Modal>
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setCurrentColor: (color) => dispatch(setCurrentColor(color))
-    }
-}
-
-export default connect(null, mapDispatchToProps)(ModalComponent);
+export default ModalComponent;

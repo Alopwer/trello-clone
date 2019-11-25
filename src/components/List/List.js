@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { deleteList } from '../../actions';
 import { changeListName } from '../../actions/index';
 import Cards from '../Cards';
 import './List.css';
 import Times from '../svg/Times';
 
-const List = ({ list, lists, changeListName, deleteList }) => {
+const List = ({ list, changeListName, deleteList }) => {
     const { listId, boardId, title } = list
 
     const [value, setValue] = useState(title)
-    const currentList = lists.find(list => list.listId === listId)
 
     const onDeleteList = () => {
         deleteList({
@@ -30,7 +30,7 @@ const List = ({ list, lists, changeListName, deleteList }) => {
                         changeListName({
                             title: e.currentTarget.value, 
                             boardId: boardId,
-                            listId: currentList.listId
+                            listId
                         })
                     }}
                     maxLength='22'
@@ -40,14 +40,10 @@ const List = ({ list, lists, changeListName, deleteList }) => {
                 </div>
             </div>
             <div className='cards-wrapper'>
-                <Cards listId={listId} currentList={currentList}/>
+                <Cards list={list} />
             </div>
         </div>
     )
-}
-
-const mapStateToProps = ({ currentBoard: { lists } }) => {
-    return { lists }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -57,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default withRouter(connect(null, mapDispatchToProps)(List));

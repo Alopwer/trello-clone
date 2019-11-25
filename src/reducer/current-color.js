@@ -3,6 +3,6 @@ export const updateColor = (action) => {
         case 'SET_CURRENT_COLOR': 
             return action.payload
         default:
-            return'rgb(0, 121, 191)'
+            return 'rgb(0, 121, 191)'
     }
 }
