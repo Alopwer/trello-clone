@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import { deleteBoard, setCurrentColor } from '../../actions';
 import Times from '../svg/Times';
 
-const BoardsCells = ({ board, deleteBoard, setCurrentColor }) => {
+const BoardsCells = ({ board, deleteBoard }) => {
     return (
         <div className='boards__item' style={{backgroundColor: board.cover}} >
             <div className='boards-fade'>
                 <Link 
                     to={`/board/${board.boardId}`}  
                     className='boards__item-link'
-                    onClick={() => setCurrentColor(board.cover)}
+                    // onClick={() => setCurrentColor(board.cover)}
                 >
                     <span>{board.title}</span>
                 </Link>
@@ -25,8 +25,7 @@ const BoardsCells = ({ board, deleteBoard, setCurrentColor }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteBoard: (id) => dispatch(deleteBoard(id)),
-        setCurrentColor: (value) => dispatch(setCurrentColor(value))
+        deleteBoard: (boardId) => dispatch(deleteBoard(boardId))
     }
 }
 

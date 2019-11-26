@@ -1,16 +1,17 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { addList, addCard } from '../../actions/index';
 import Times from '../svg/Times';
 import './AddNewItem.css';
 
-const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpened }) => {
+const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpened, match, listId }) => {
     const inputEl = useRef('')
     const [parent, setParent] = useState('')
-    const [name, setName] = useState('List')
+    const [name, setName] = useState('')
 
     useEffect(() => {
-        if (currentParent.hasOwnProperty('cards')) {
+        if (currentParent === 'cards') {
             setParent('cards-')
             setName('Card')
         } else {
@@ -21,19 +22,19 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
 
     const inputComplete = () => {
         const title = inputEl.current.value || 'Default title'
-        const { boardId } = currentParent
+        const id = '_' + Math.random().toString(36).substr(2, 9);
+
         if (!parent) {
             addList({
                 title,
-                boardId, 
-                newListId: currentParent.lists.length
+                boardId : match.params.id, 
+                listId : id
             })
         } else {
             addCard({
                 title,
-                listId: currentParent.listId, 
-                boardId,
-                newCardId: currentParent.cards.length
+                listId,
+                cardId : id
             })
         }
         toggleInput()
@@ -71,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(AddNewItem);
+export default withRouter(connect(null, mapDispatchToProps)(AddNewItem));

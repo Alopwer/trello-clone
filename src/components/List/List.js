@@ -14,8 +14,8 @@ const List = ({ list, changeListName, deleteList }) => {
 
     const onDeleteList = () => {
         deleteList({
-            boardId: list.boardId,
-            listId: list.listId
+            boardId,
+            listId
         })
     }
     
@@ -28,8 +28,7 @@ const List = ({ list, changeListName, deleteList }) => {
                     onChange={(e) => {
                         setValue(e.currentTarget.value)
                         changeListName({
-                            title: e.currentTarget.value, 
-                            boardId: boardId,
+                            title: e.currentTarget.value,
                             listId
                         })
                     }}
@@ -40,7 +39,7 @@ const List = ({ list, changeListName, deleteList }) => {
                 </div>
             </div>
             <div className='cards-wrapper'>
-                <Cards list={list} />
+                <Cards listId={list.listId} />
             </div>
         </div>
     )

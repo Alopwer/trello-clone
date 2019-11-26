@@ -4,7 +4,7 @@ import { ListContext } from '../CardModalContent';
 
 const CardModalHeader = ({ closeModal }) => {
     const { list, card } = useContext(ListContext)
-
+    
     return (
         <>
             <div className='modal-header'>

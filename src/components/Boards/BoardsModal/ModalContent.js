@@ -3,16 +3,16 @@ import Times from '../../svg/Times';
 import { connect } from 'react-redux';
 import { addBoard } from '../../../actions/index';
 
-const ModalContent = ({ lastId, closeModal, color, addBoard, items }) => {
+const ModalContent = ({ closeModal, color, addBoard, items }) => {
     const inputEl = useRef('')
     const [input, setInput] = useState('')
     
-    const id = lastId ? lastId++ : 0
+    const boardId = '_' + Math.random().toString(36).substr(2, 9);
     
     const createBoard = () => {
         addBoard({
             title: input,
-            boardId: id,
+            boardId,
             cover: color
         })
         closeModal()
@@ -35,7 +35,7 @@ const ModalContent = ({ lastId, closeModal, color, addBoard, items }) => {
                         className='modal-input' 
                         type='text' 
                         placeholder='Add board title'
-                        maxLength='18'
+                        maxLength='17'
                         onChange={() => setInput(inputEl.current.value)}
                     />
                     <div onClick={closeModal}>
@@ -57,14 +57,10 @@ const ModalContent = ({ lastId, closeModal, color, addBoard, items }) => {
     )
 }
 
-const mapStateToProps = ({ boards }) => {
-    return { lastId: boards.length }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
         addBoard: (board) => dispatch(addBoard(board))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);
+export default connect(null, mapDispatchToProps)(ModalContent);

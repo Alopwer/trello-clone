@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import Card from '../Card';
 import AddNewItem from '../AddNewItem';
 import './Cards.css';
 
-const Cards = ({ list }) => {
+const Cards = ({ cards, listId }) => {
     const [inputOpened, setInputOpened] = useState(false)
-    const cards = list.cards || false
 
     const toggleInput = () => {
         setInputOpened(!inputOpened)
     }
 
     const items = cards &&
-        cards.map((card, i) => 
-            <div key={i}>
+        Object.values(cards).map(card => card.listId === listId &&
+            <div key={card.cardId}>
                 <Card card={card} />
             </div>
         )
     
     const addCardItem = inputOpened ? 
         <AddNewItem
-            currentParent={list}
+            currentParent={'cards'}
             toggleInput={toggleInput} 
             setInputOpened={setInputOpened}
+            listId={listId}
         /> 
             :  
         <button className='cards-btn' onClick={toggleInput}>
@@ -31,10 +32,14 @@ const Cards = ({ list }) => {
 
     return (
         <div className='cards'>
-            {items}
-            {addCardItem}
+            { items }
+            { addCardItem }
         </div>
     )
 }
 
-export default Cards;
+const mapStateToProps = ({ cards : { byId } }) => ({
+    cards : byId
+})
+
+export default connect(mapStateToProps)(Cards);

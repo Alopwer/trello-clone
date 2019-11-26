@@ -5,20 +5,20 @@ import ListsPage from '../../pages/ListsPage/ListsPage';
 import './Board.css';
 
 const Board = ({ boards, match }) => {
-    const currentBoard = boards.find(board => board.boardId === +match.params.id)
+    const currentBoard = Object.values(boards).find(board => board.boardId === match.params.id)
     
     return (
-        <div style={{background: currentBoard.cover}} className='board'>
+        <div style={{ background: currentBoard.cover }} className='board'>
             <h3>
-                {currentBoard.title}
+                { currentBoard.title }
             </h3>
             <ListsPage />
         </div>
     )
 }
 
-const mapStateToProps = ({ boards }) => {
-    return { boards }
+const mapStateToProps = ({ boards : { byId } }) => {
+    return { boards : byId }
 }
 
 export default withRouter(connect(mapStateToProps)(Board));

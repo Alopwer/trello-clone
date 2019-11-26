@@ -5,12 +5,11 @@ import { ListContext } from '../../Card/Card-modal/CardModalContent';
 import { deleteCard } from '../../../actions';
 
 const DeleteCard = ({ history, deleteCard }) => {
-    const { list, card } = useContext(ListContext)
+    const { card } = useContext(ListContext)
 
     const onDeleteCard = () => {
         deleteCard({
-            boardId: list.boardId,
-            listId: list.listId,
+            listId: card.listId,
             cardId: card.cardId
         })
         history.goBack()

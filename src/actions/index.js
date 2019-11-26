@@ -8,9 +8,9 @@ const addBoard = (board) => ({
     payload: board
 })
 
-const deleteBoard = (board) => ({
+const deleteBoard = (boardId) => ({
     type: 'DELETE_BOARD',
-    payload: board
+    payload: boardId
 })
 
 const addList = (value) => ({

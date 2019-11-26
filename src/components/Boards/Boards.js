@@ -6,12 +6,10 @@ import CreateBoard from './BoardsModal/ModalCreateBoard';
 import BoardsCells from './BoardsCells';
 
 const Boards = ({ boards }) => {
-    
-    const boardsItems = boards.map(board => (
-        <BoardsCells
-            key={board.boardId} 
-            board={board} 
-        />
+    const boardsItems = Object.values(boards).map(board => (
+        <div key={board.boardId}>
+            <BoardsCells board={board} />
+        </div>
     ))
 
     return (
@@ -27,8 +25,8 @@ const Boards = ({ boards }) => {
     )
 }
 
-const mapStateToProps = ({ boards }) => {
-    return { boards }
+const mapStateToProps = ({ boards : { byId } }) => {
+    return { boards : byId }
 }
 
 export default connect(mapStateToProps)(Boards)

@@ -5,25 +5,23 @@ import List from '../List';
 import AddNewItem from '../AddNewItem';
 import './Lists.css';
 
-const Lists = ({ boards, match }) => {
+const Lists = ({ lists, match }) => {
     const [inputOpened, setInputOpened] = useState(false)
-    const currentBoard = boards.find(board => board.boardId === +match.params.id)
-    const lists = currentBoard.lists || false
 
     const toggleInput = () => {
         setInputOpened(!inputOpened)
     }
-
+    
     const items = lists &&
-        lists.map((list, i) => 
-            <div className='lists-item' key={i}>
+        Object.values(lists).map(list => list.boardId === match.params.id &&
+            <div className='lists-item' key={list.listId}>
                 <List list={list} />
             </div>
         )
 
     const addListItem = inputOpened ? 
         <AddNewItem 
-            currentParent={currentBoard} 
+            currentParent={'list'} 
             toggleInput={toggleInput} 
             setInputOpened={setInputOpened}
         /> 
@@ -34,14 +32,14 @@ const Lists = ({ boards, match }) => {
 
     return (
         <div className='lists__wrapper'>
-            {items}
-            {addListItem}
+            { items }
+            { addListItem }
         </div>
     )
 }
 
-const mapStateToProps = ({ boards }) => {
-    return { boards }
+const mapStateToProps = ({ lists : { byId } }) => {
+    return { lists : byId }
 }
 
 export default withRouter(connect(mapStateToProps)(Lists));
