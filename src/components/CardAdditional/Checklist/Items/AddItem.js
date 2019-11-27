@@ -1,16 +1,14 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addItemToList } from '../../../../actions/index';
 import Times from '../../../svg/Times';
-import { ListContext } from '../../../Card/Card-modal/CardModalContent';
 import './Item.css';
 
 const AddItem = ({ addItemToList, checklist }) => {
-    const { list, card } = useContext(ListContext)
     const inputEl = useRef('')
-
     const [addItem, setAddItem] = useState(true)
     const [value, setValue] = useState('')
+    const checklistItemId = '_' + Math.random().toString(36).substr(2, 9);
 
     useEffect(() => {
         setValue('')
@@ -21,10 +19,7 @@ const AddItem = ({ addItemToList, checklist }) => {
             addItemToList({
                 title: value,
                 checklistId: checklist.checklistId,
-                cardId: card.cardId,
-                listId: list.listId,
-                boardId: list.boardId,
-                itemId: checklist.items.length
+                checklistItemId
             })
         }
     }

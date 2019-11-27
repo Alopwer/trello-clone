@@ -4,17 +4,20 @@ import { toggleCheckStatus, deleteItem } from '../../../../actions';
 import Times from '../../../svg/Times';
 import { ListContext } from '../../../Card/Card-modal/CardModalContent';
 
-const Item = ({ item, checklistId, toggleCheckStatus, deleteItem }) => {
-    const { list, card } = useContext(ListContext)
+const Item = ({ item, toggleCheckStatus, deleteItem }) => {
     const checkboxEl = useRef(null)
-
-    let itemInfo = {
-        boardId : list.boardId,
-        listId : list.listId,
-        cardId : card.cardId,
-        checklistId,
-        itemId : item.itemId
+    const onDeleteItem = () => {
+        deleteItem({
+            checklistId : item.checklistId, 
+            checklistItemId : item.checklistItemId
+        })
     }
+    const onToggleCheckStatus = () => {
+        toggleCheckStatus({
+            checklistId : item.checklistId, 
+            checklistItemId : item.checklistItemId
+        })
+    } 
 
     return (
         <>
@@ -23,12 +26,12 @@ const Item = ({ item, checklistId, toggleCheckStatus, deleteItem }) => {
                     type="checkbox" 
                     checked={item.done}
                     ref={checkboxEl}
-                    onChange={() => toggleCheckStatus(itemInfo)}  
+                    onChange={onToggleCheckStatus}  
                 />
                 <span></span>
             </label>
                 <p className='checkbox-item-title'>{item.title}</p>
-            <div className='item-delete' onClick={() => deleteItem(itemInfo)}>
+            <div className='item-delete' onClick={onDeleteItem}>
                 <Times width='8' className='item-delete-times'/>
             </div>
         </>

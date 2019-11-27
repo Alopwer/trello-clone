@@ -4,13 +4,11 @@ import { updateCardDescr } from '../../../actions';
 import { ListContext } from '../../Card/Card-modal/CardModalContent';
 
 const Description = ({ updateDescr }) => {
-    const { list, card } = useContext(ListContext)
+    const { card } = useContext(ListContext)
 
     const textarea = useRef('')
     const onTextareaChange = (text) => {
         updateDescr({
-            boardId: list.boardId,
-            listId: list.listId,
             cardId: card.cardId,
             text
         })

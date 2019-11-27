@@ -1,9 +1,63 @@
 import { combineReducers } from 'redux'
 
+const deleteChecklist = (state, action) => {
+    const { payload : { checklistId, cardId } } = action
+    const card = state[cardId]
+    return {
+        ...state,
+        [cardId] : {
+            ...card,
+            checklists : card.checklists.filter(id => id !== checklistId)
+        }
+    }
+}
+
 const deleteCard = (state, action) => {
     const { payload : { cardId } } = action
     const { [cardId]: card, ...withDeletedCard } = state
     return withDeletedCard
+}
+
+const changeDateStatus = (state, action) => {
+    const { payload : { cardId, value } } = action
+    const card = state[cardId]
+    return {
+        ...state,
+        [cardId] : {
+            ...card,
+            dueDate : {
+                ...card.dueDate,
+                done : value
+            }
+        }
+    }
+}
+
+const updateDueDate = (state, action) => {
+    const { payload : { cardId, value } } = action
+    const card = state[cardId]
+    return {
+        ...state,
+        [cardId] : {
+            ...card,
+            dueDate : {
+                ...card.dueDate,
+                date : value
+            }
+        }
+    }
+}
+
+const updateCardDescr = (state, action) => {
+    const { payload : { cardId, text : descr } } = action
+    const card = state[cardId]
+    return {
+        ...state,
+        [cardId] : {
+            ...card,
+            descr
+        }
+    }
 }
 
 const addChecklist = (state, action) => {
@@ -35,7 +89,10 @@ const addCardEntity = (state, action) => {
             cardId, 
             title, 
             descr: '',
-            dueDate : {},
+            dueDate : {
+                date : '',
+                done : false
+            },
             labels : [],
             checklists : []
         }
@@ -50,8 +107,16 @@ function cardsById(state = {}, action) {
             return addLabel(state, action)
         case 'ADD_CHECKLIST':
             return addChecklist(state, action)
+        case 'UPDATE_CARD_DESCR':
+            return updateCardDescr(state, action)
+        case 'UPDATE_DUE_DATE':
+            return updateDueDate(state, action)
+        case 'CHANGE_DUE_DATE_STATUS':
+            return changeDateStatus(state, action)
         case 'DELETE_CARD':
             return deleteCard(state, action)
+        case 'DELETE_CHECKLIST':
+            return deleteChecklist(state, action)
         default:
             return state
     }

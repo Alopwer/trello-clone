@@ -9,6 +9,5 @@ const store = createStore(rootReducer, persistedState,
 
 store.subscribe(()=>{
     saveState(store.getState());
-    console.log(store.getState())
 })
 export default store;

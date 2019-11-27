@@ -7,7 +7,7 @@ const deleteCard = (state, action) => {
         ...state,
         [listId] : {
             ...list,
-            cards : lists.cards.filter(id => id !== cardId)
+            cards : list.cards.filter(id => id !== cardId)
         }
     }
 }
@@ -60,7 +60,7 @@ function listsById(state = {}, action) {
             return changeListName(state, action)
         case 'DELETE_LIST':
             return deleteList(state, action)
-        case 'DELETE_LIST':
+        case 'DELETE_CARD':
             return deleteCard(state, action)
         default:
             return state

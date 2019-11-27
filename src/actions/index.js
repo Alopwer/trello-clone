@@ -54,7 +54,7 @@ const deleteChecklist = (value) => ({
 })
 
 const addItemToList = (value) => ({
-    type: 'ADD_ITEM',
+    type: 'ADD_CHECKLIST_ITEM',
     payload: value
 })
 
@@ -64,7 +64,7 @@ const toggleCheckStatus = (value) => ({
 })
 
 const deleteItem = (value) => ({
-    type: 'DELETE_ITEM',
+    type: 'DELETE_CHECKLIST_ITEM',
     payload: value
 })
 
@@ -78,17 +78,17 @@ const changeDateStatus = (value) => ({
     payload: value
 })
 
-const createNewLabel = (value) => ({
-    type: 'CREATE_NEW_LABEL',
+const addLabel = (value) => ({
+    type: 'ADD_LABEL',
     payload: value
 })
 
-const modifiedLabelSave = (value) => ({
+const updateLabel = (value) => ({
     type: 'UPDATE_LABEL',
     payload: value
 })
 
-const labelDelete = (value) => ({
+const deleteLabel = (value) => ({
     type: 'DELETE_LABEL',
     payload: value
 })
@@ -110,7 +110,7 @@ export {
     deleteItem,
     updateDueDate,
     changeDateStatus,
-    createNewLabel,
-    modifiedLabelSave,
-    labelDelete
+    addLabel,
+    updateLabel,
+    deleteLabel
 }

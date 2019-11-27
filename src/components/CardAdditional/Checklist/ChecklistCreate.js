@@ -6,17 +6,16 @@ import Times from '../../svg/Times';
 import '../CardAdditional.css';
 
 const ChecklistCreate = ({ onClose, addChecklist }) => {
-    const { list, card } = useContext(ListContext)
+    const { card } = useContext(ListContext)
     const inputEl = useRef('Checklist')
     const [inputValue, setInputValue] = useState('')
+    const checklistId = '_' + Math.random().toString(36).substr(2, 9)
 
     const createChecklist = () => {
         if (inputValue) addChecklist({
-            title: inputEl.current.value,
-            boardId : list.boardId,
-            listId: list.listId,
+            title: inputValue,
             cardId : card.cardId,
-            checklistId: card.checklists.length
+            checklistId 
         })
         onClose(false)
     }

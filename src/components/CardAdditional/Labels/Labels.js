@@ -1,22 +1,24 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
+import { connect } from 'react-redux';
 import LabelCreate from './LabelsCreate';
+import { ListContext } from '../../Card/Card-modal/CardModalContent';
 
 const Labels = ({ labels }) => {
-
+    const { card } = useContext(ListContext)
     const [create, setCreate] = useState(false)
 
-    const items = labels.map(label => (
+    const labelItems = Object.values(labels).map(label => label.cardId === card.cardId && (
         <li key={label.labelId} style={{ background: label.color }}>
             <span>{ label.name }</span>
         </li>
     ))
 
-    return (
+    return labelItems.length !== 0 && (
         <div className='labels-section'>
             <h5 className='labels-section-title'>Labels</h5>
             <div className='labels-items'>
                 <ul className='labels-items-list'>
-                    { items }
+                    { labelItems }
                 </ul>
                 <div className='labels-add-btn'>
                     <button className='lbl-btn' onClick={() => setCreate(!create)}>+</button>
@@ -29,4 +31,8 @@ const Labels = ({ labels }) => {
     )
 }
 
-export default Labels;
+const mapStateToProps = ({ labels : { byId } }) => ({
+    labels : byId
+})
+
+export default connect(mapStateToProps)(Labels);

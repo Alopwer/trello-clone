@@ -7,9 +7,10 @@ import { getDateParts } from './dateFunctions';
 import '../Checklist/Items/Item.css';
 
 const DueDate = ({ dueDate, changeDateStatus }) => {
-    const { date, done } = dueDate  
+    const { card } = useContext(ListContext)
     const checkbox = useRef('')
-    const { list, card } = useContext(ListContext)
+    
+    const { date, done } = dueDate  
 
     const [create, setCreate] = useState(false)
     const [dateStatus, setDateStatus] = useState('')
@@ -54,11 +55,9 @@ const DueDate = ({ dueDate, changeDateStatus }) => {
                             checked={done}
                             type="checkbox" 
                             onChange={() => changeDateStatus({
-                                    boardId: list.boardId,
-                                    listId: list.listId,
-                                    cardId: card.cardId,
-                                    value: !done
-                                })}
+                                cardId: card.cardId,
+                                value: !done
+                            })}
                         />
                         <span></span>
                     </label>

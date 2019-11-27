@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import './ProgressBar.css';
 
-const ProgressBar = ({ items }) => {
+const ProgressBar = ({ items, checklistId }) => {
     const [percentage, setPercentage] = useState(0)
-    const filteredItems = items.filter(item => item.done).length
+    const currentItems = Object.values(items).filter(item => item.checklistId === checklistId)
+    const filteredItems = currentItems.filter(item => item.done).length
 
     useEffect(() => {
-        const percentageDoneItems = Math.floor(filteredItems * 100 / items.length) || 0
+        const percentageDoneItems = Math.floor(filteredItems * 100 / currentItems.length) || 0
         setPercentage(percentageDoneItems)
     }, [items, filteredItems])
 
     return (
         <div className='checklist__progress'>
-            <span>{percentage || 0}%</span>
+            <span>{ percentage }%</span>
             <div className='progress-bar'>
                 <div className='filler' style={{ width: `${percentage}%` }}>
                     
@@ -22,4 +24,8 @@ const ProgressBar = ({ items }) => {
     )
 }
 
-export default ProgressBar;
+const mapStateToProps = ({ checklistItems : { byId } }) => ({
+    items : byId
+})
+
+export default connect(mapStateToProps)(ProgressBar);

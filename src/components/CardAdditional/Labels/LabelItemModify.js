@@ -1,7 +1,7 @@
 import React, { useRef, useState, useContext } from 'react';
 import Times from '../../svg/Times';
 
-const LabelItemModify = ({ setItemCreate, onClose, onLabelSave, colors, colorValue, label }) => {
+const LabelItemModify = ({ setItemCreate, onClose, onAddLabel, onUpdateLabel, onDeleteLabel, colors, colorValue, label }) => {
     const inputEl = useRef('')
     const name = label ? label.name : ''
     const [inputValue, setInputValue] = useState(name)
@@ -42,9 +42,9 @@ const LabelItemModify = ({ setItemCreate, onClose, onLabelSave, colors, colorVal
                         onClick={() => { 
                             if (colorValue && inputValue) {
                                 return label ? 
-                                    onLabelSave(colorValue, inputValue, label.labelId) 
+                                    onUpdateLabel(colorValue, inputValue, label.labelId) 
                                         : 
-                                    onLabelSave(colorValue, inputValue)
+                                    onAddLabel(colorValue, inputValue)
                             }
                         }}
                     >
@@ -54,7 +54,7 @@ const LabelItemModify = ({ setItemCreate, onClose, onLabelSave, colors, colorVal
                     </button>
                     <button 
                         className='label-btn' 
-                        onClick={() => label && onLabelSave(null,null,label.labelId)}
+                        onClick={() => label && onDeleteLabel(label.labelId)}
                     >
                         <span className='light-layer'>
                             Delete

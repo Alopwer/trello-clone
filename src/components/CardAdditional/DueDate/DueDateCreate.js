@@ -7,7 +7,7 @@ import { ListContext } from '../../Card/Card-modal/CardModalContent';
 import '../CardAdditional.css';
 
 const DueDateCreate = ({ onClose, updateDueDate }) => {
-    const { list, card } = useContext(ListContext)
+    const { card } = useContext(ListContext)
     const [date, setDate] = useState()
     const [transformedDate, setTransformedDate] = useState(card.dueDate.date)
 
@@ -32,8 +32,6 @@ const DueDateCreate = ({ onClose, updateDueDate }) => {
     const onDueDate = (value) => {
         if (checkDate(transformedDate)) {
             updateDueDate({
-                boardId: list.boardId,
-                listId: list.listId,
                 cardId: card.cardId,
                 value
             })
@@ -42,7 +40,6 @@ const DueDateCreate = ({ onClose, updateDueDate }) => {
             const [day, month, year] = getDateParts(value)
             setDate(new Date(year, month, day))
         } else {
-            // console.log(value)
             setDate(new Date())
         }
     }

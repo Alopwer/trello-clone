@@ -13,10 +13,10 @@ const CardModalMain = () => {
     return (
         <div className='modal-main'>
             <div className='modal-content'>
-                {/* { card.labels.length !== 0 && <Labels labels={card.labels}/> }
-                { card.dueDate.date && <DueDate dueDate={card.dueDate}/> } */}
+                <Labels />
+                { card.dueDate.date && <DueDate dueDate={card.dueDate}/> }
                 <Description />
-                <Checklists checklists={card.checklists} />
+                <Checklists />
                 <DeleteCard />
             </div>
             <CardModalAside />

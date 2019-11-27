@@ -5,32 +5,35 @@ import Checklist from './Checklist';
 import { ListContext } from '../../Card/Card-modal/CardModalContent';
 import './Checklist.css';
 
-const Checklists = ({ deleteChecklist }) => {
-    const { list, card } = useContext(ListContext)
+const Checklists = ({ checklists, deleteChecklist }) => {
+    const { card } = useContext(ListContext)
+
     const onDeleteChecklist = (checklistId) => {
         deleteChecklist({
-            boardId: list.boardId,
-            listId: list.listId,
             cardId: card.cardId,
             checklistId
         })
     }
 
+    const checklistsItems = Object.values(checklists).map(checklist => checklist.cardId === card.cardId && (
+        <div className='checklist' key={checklist.checklistId}>
+            <Checklist checklist={checklist} onDeleteChecklist={onDeleteChecklist}/>
+        </div>
+    ))
+
     return (
         <>
-            {
-                card.checklists.map(checklist => (
-                    <div className='checklist' key={checklist.checklistId}>
-                        <Checklist checklist={checklist} onDeleteChecklist={onDeleteChecklist}/>
-                    </div>
-                ))
-            }
+            { checklistsItems }
         </>
     )
 }
+
+const mapStateToProps = ({ checklists : { byId } }) => ({
+    checklists : byId
+})
 
 const mapDispatchToProps = (dispatch) => ({
     deleteChecklist: (value) => dispatch(deleteChecklist(value))
 })
 
-export default connect(null, mapDispatchToProps)(Checklists);
+export default connect(mapStateToProps, mapDispatchToProps)(Checklists);
