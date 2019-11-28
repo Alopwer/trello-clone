@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { addList, addCard } from '../../actions/index';
@@ -7,24 +7,12 @@ import './AddNewItem.css';
 
 const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpened, match, listId }) => {
     const inputEl = useRef('')
-    const [parent, setParent] = useState('')
-    const [name, setName] = useState('')
-
-    useEffect(() => {
-        if (currentParent === 'cards') {
-            setParent('cards-')
-            setName('Card')
-        } else {
-            setParent('')
-            setName('List')
-        }
-    }, [currentParent])
 
     const inputComplete = () => {
         const title = inputEl.current.value || 'Default title'
         const id = '_' + Math.random().toString(36).substr(2, 9);
 
-        if (!parent) {
+        if (currentParent === 'list') {
             addList({
                 title,
                 boardId : match.params.id, 
@@ -41,11 +29,11 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
     }
 
     return (
-        <div className={`${parent}input-container`} onKeyPress={(e) => e.which === 13 && inputComplete()}>
+        <div className={`${currentParent + '-'}input-container`} onKeyPress={(e) => e.which === 13 && inputComplete()}>
             <input 
                 type='text' 
-                placeholder={`Enter ${name} title...`}
-                className={`${parent}input`}
+                placeholder={`Enter ${currentParent} title...`}
+                className={`${currentParent + '-input'} input`}
                 autoFocus
                 ref={inputEl}
                 maxLength='24'
@@ -53,12 +41,12 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
             <div>
                 <button
                     onClick={inputComplete}
-                    className='input-btn'
+                    className={`${currentParent + '-btn'} input-btn`}
                 >
-                    Add {name}
+                    Add {currentParent}
                 </button>
-                <div onClick={() => setInputOpened(false)}>
-                    <Times className='input-times' width='12' />
+                <div className='input-times-block' onClick={() => setInputOpened(false)}>
+                    <Times className='input-times' width='11' />
                 </div>
             </div>
         </div>

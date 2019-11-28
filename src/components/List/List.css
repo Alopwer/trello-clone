@@ -18,11 +18,11 @@
 }
 
 .list-times:hover path {
-    fill: rgba(23, 43, 77, 0.75);
+    fill: rgb(23, 43, 77);
 }
 
 .list-times path {
-    fill: rgb(23, 43, 77);
+    fill: rgba(23, 43, 77, 0.75);
 }
 
 .list-title {

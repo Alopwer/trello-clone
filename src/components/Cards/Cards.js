@@ -20,7 +20,7 @@ const Cards = ({ cards, listId }) => {
     
     const addCardItem = inputOpened ? 
         <AddNewItem
-            currentParent={'cards'}
+            currentParent={'card'}
             toggleInput={toggleInput} 
             setInputOpened={setInputOpened}
             listId={listId}
