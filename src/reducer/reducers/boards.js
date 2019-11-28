@@ -53,6 +53,11 @@ const boardsById = (state = {}, action) => {
     }
 }
 
+const deleteBoardId = (state, action) => {
+    const { payload : { boardId } } = action
+    return state.filter(id => id !== boardId)
+}
+
 const addBoardId = (state, action) => {
     const { payload : { boardId } } = action
     return state.concat(boardId)
@@ -62,6 +67,8 @@ const allBoards = (state = [], action) => {
     switch(action.type){
         case 'ADD_BOARD':
             return addBoardId(state, action)
+        case 'DELETE_BOARD':
+                return deleteBoardId(state, action)
         default:
             return state
     }

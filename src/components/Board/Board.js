@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import ListsPage from '../../pages/ListsPage/ListsPage';
+import Lists from '../Lists';
 import './Board.css';
 
 const Board = ({ boards, match }) => {
@@ -12,7 +12,7 @@ const Board = ({ boards, match }) => {
             <h3>
                 { currentBoard.title }
             </h3>
-            <ListsPage />
+            <Lists />
         </div>
     )
 }

@@ -9,7 +9,7 @@ const Labels = ({ labels }) => {
 
     const labelItems = Object.values(labels).map(label => label.cardId === card.cardId && (
         <li key={label.labelId} style={{ background: label.color }}>
-            <span>{ label.name }</span>
+            <span>{ label.title }</span>
         </li>
     ))
 

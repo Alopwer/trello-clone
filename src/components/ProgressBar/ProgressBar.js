@@ -10,7 +10,7 @@ const ProgressBar = ({ items, checklistId }) => {
     useEffect(() => {
         const percentageDoneItems = Math.floor(filteredItems * 100 / currentItems.length) || 0
         setPercentage(percentageDoneItems)
-    }, [items, filteredItems])
+    }, [filteredItems, currentItems.length])
 
     return (
         <div className='checklist__progress'>

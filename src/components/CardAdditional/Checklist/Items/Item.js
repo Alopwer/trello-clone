@@ -1,8 +1,7 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { toggleCheckStatus, deleteItem } from '../../../../actions';
 import Times from '../../../svg/Times';
-import { ListContext } from '../../../Card/Card-modal/CardModalContent';
 
 const Item = ({ item, toggleCheckStatus, deleteItem }) => {
     const checkboxEl = useRef(null)

@@ -1,5 +1,17 @@
 import { combineReducers } from 'redux'
 
+const deleteLabel = (state, action) => {
+    const { payload : { cardId, labelId } } = action
+    const card = state[cardId]
+    return {
+        ...state,
+        [cardId] : {
+            ...card,
+            labels : card.labels.filter(id => id !== labelId)
+        }
+    }
+}
+
 const deleteChecklist = (state, action) => {
     const { payload : { checklistId, cardId } } = action
     const card = state[cardId]
@@ -117,6 +129,8 @@ function cardsById(state = {}, action) {
             return deleteCard(state, action)
         case 'DELETE_CHECKLIST':
             return deleteChecklist(state, action)
+        case 'DELETE_LABEL':
+            return deleteLabel(state, action)
         default:
             return state
     }

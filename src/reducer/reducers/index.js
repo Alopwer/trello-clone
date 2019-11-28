@@ -4,6 +4,7 @@ import cards from './cards';
 import labels from './labels';
 import checklists from './checklists';
 import checklistItems from './checklistItems';
+import currentColor from './currentColor';
 
 export {
     boards,
@@ -11,5 +12,6 @@ export {
     cards,
     labels,
     checklists,
-    checklistItems
+    checklistItems,
+    currentColor
 }

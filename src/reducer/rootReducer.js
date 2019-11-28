@@ -1,23 +1,13 @@
 import { combineReducers } from 'redux';
-
-// import { updateBoards } from './boards';
-// import { updateColor } from './current-color';
-
 import {
     boards,
     lists,
     cards,
     labels,
     checklists,
-    checklistItems
+    checklistItems,
+    currentColor
 } from './reducers/index';
-
-// const reducer = (state, action) => {
-//     return {
-//         boards: updateBoards(state, action),
-//         currentColor: updateColor(action)
-//     }
-// }
 
 const reducer = combineReducers({
     boards,
@@ -25,7 +15,8 @@ const reducer = combineReducers({
     cards,
     labels,
     checklists,
-    checklistItems
+    checklistItems,
+    currentColor
 })
 
 export default reducer;

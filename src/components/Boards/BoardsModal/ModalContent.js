@@ -51,7 +51,7 @@ const ModalContent = ({ closeModal, color, addBoard, items }) => {
                 disabled={!input}
                 onClick={createBoard}
             >
-                <p>Create Board</p>
+                <span>Create Board</span>
             </button>
         </div>
     )

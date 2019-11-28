@@ -9,9 +9,9 @@ const CreateBoard = () => {
     }
 
     return (
-        <div className='boards__item'>
-            <div className='boards-fade'>
-                <div className='boards__add' onClick={() => setModalOpened(true)}>
+        <div className='board__cell'>
+            <div className='board-fade'>
+                <div className='board__add' onClick={() => setModalOpened(true)}>
                     <p>Create new board</p>
                     <span>+</span>
                 </div>

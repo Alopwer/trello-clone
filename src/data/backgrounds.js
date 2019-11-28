@@ -7,5 +7,4 @@ export const backgrounds = [
     'rgb(205, 90, 145)',
     'rgb(75, 191, 107)',
     'rgb(0, 174, 204)',
-    'rgb(131, 140, 145)',
 ]

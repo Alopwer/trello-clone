@@ -18,7 +18,7 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
             setParent('')
             setName('List')
         }
-    }, [])
+    }, [currentParent])
 
     const inputComplete = () => {
         const title = inputEl.current.value || 'Default title'

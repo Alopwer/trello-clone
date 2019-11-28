@@ -93,6 +93,11 @@ const deleteLabel = (value) => ({
     payload: value
 })
 
+const changeLabelStatus = (value) => ({
+    type: 'CHANGE_LABEL_STATUS',
+    payload: value
+})
+
 export {
     setCurrentColor,
     addBoard,
@@ -112,5 +117,6 @@ export {
     changeDateStatus,
     addLabel,
     updateLabel,
-    deleteLabel
+    deleteLabel,
+    changeLabelStatus
 }

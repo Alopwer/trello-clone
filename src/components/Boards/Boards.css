@@ -12,15 +12,19 @@
     flex-wrap: wrap;
 }
 
-.boards__item {
+.board__cell {
     min-width: 190px;
     width: 18%;
     margin: 10px 20px 0 0;
     border-radius: 3px;
 }
 
-.boards-fade {
+.board-fade {
     position: relative;
+}
+.board-fade:hover {
+    background: rgba(0,0,0,.15);
+    border-radius: 3px;
 }
 
 .board-times {
@@ -36,25 +40,22 @@
     fill: rgba(255, 255, 255, 0.8);
 }
 
-.boards-fade:hover {
-    background: rgba(0,0,0,.15);
-    border-radius: 3px;
-}
-
-.boards__item-link, .boards__add {
-    display: block;
-    height: 90px;
+.board__cell-link {
     color: white;
-    text-decoration: none;
-    padding: 5px 10px;
     font-weight: bold;
 }
 
-.boards__add {
+.board__cell-link, .board__add {
+    display: block;
+    height: 90px;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.board__add {
     color: rgb(23, 43, 77);
     font-size: 0.9rem;
     text-align: center;
-    padding: 0;
     padding-top: 13%;
     background: rgba(9,30,66,.04);
     font-weight: normal;
@@ -101,11 +102,9 @@
     padding: 5px 8px;
     border-radius: 3px;
 }
-
 .modal-input:hover {
     background: rgba(255,255,255,.25);
 }
-
 .modal-input:focus {
     background: rgba(255,255,255,.35);
 }
@@ -113,17 +112,17 @@
 .modal__grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     list-style: none;
-    max-width: 100px;
+    max-width: 110px;
 }
 
 .modal__grid-elem button{
     border: none;
+    border-radius: 3px;
     cursor: pointer;
     height: 30px;
     width: 30px;
-    border-radius: 3px;
+    margin-left: 4px;
 }
 
 .modal__grid-elem button div {
@@ -147,7 +146,8 @@
     cursor: not-allowed;
 }
 
-.modal-button p {
+.modal-button span {
+    display: inline-block;
     border-radius: 3px;
     padding: 8px 10px;
 }
@@ -156,7 +156,7 @@
     background: #5aac44;
     color: white
 }
-.modal-button:enabled div:hover {
+.modal-button:enabled:hover {
     background: rgba(97, 189, 79);
 }
 

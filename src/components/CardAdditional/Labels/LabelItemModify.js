@@ -1,9 +1,9 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, { useRef, useState } from 'react';
 import Times from '../../svg/Times';
 
 const LabelItemModify = ({ setItemCreate, onClose, onAddLabel, onUpdateLabel, onDeleteLabel, colors, colorValue, label }) => {
+    const name = label && label.title || ''
     const inputEl = useRef('')
-    const name = label ? label.name : ''
     const [inputValue, setInputValue] = useState(name)
 
     return (

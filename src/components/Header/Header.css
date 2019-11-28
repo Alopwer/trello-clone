@@ -1,40 +1,27 @@
 .header {
-    --bg-color: hsla(0,0%,100%,.3);
-    --bg-color-hover: hsla(0,0%,100%,.2);
+    --bg-color-hover: hsla(0,0%,100%,.3);
+    --bg-color: hsla(0,0%,100%,.2);
     background: rgb(2, 106, 167);
 }
 
 .header__wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding-left: 10px;
     background: rgba(0,0,0,0.25);
-    min-height: 5vh;
+    height: 50px;
 }
 
 .header__logo-link {
     color: white;
     text-decoration: none;
     font-size: 1.5em;
-    border-radius: 2px;
+    border-radius: 3px;
     background: var(--bg-color);
     padding: 0 5px;
 }
 
-.header__logo-link:hover,
-.header-btn button:hover {
+.header__logo-link:hover {
     background: var(--bg-color-hover);
     transition: background 0.2s;
-}
-
-.header-btn button {
-    color: white;
-    background: var(--bg-color);
-    border: none;
-    cursor: pointer;
-    padding: 5px 10px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 2px;
 }
