@@ -12,6 +12,19 @@ const changeLabelStatus = (state, action) => {
     }
 }
 
+const updateLabel = (state, action) => {
+    const { payload : { labelId, title, color } } = action
+    const label = state[labelId]
+    return {
+        ...state,
+        [labelId] : {
+            ...label,
+            title,
+            color
+        }
+    }
+}
+
 const deleteLabel = (state, action) => {
     const { payload : { labelId } } = action
     const { [labelId] : label, ...withDeletedLabel } = state
@@ -36,6 +49,8 @@ function labelsById(state = {}, action) {
     switch(action.type){
         case 'ADD_LABEL':
             return addLabelEntity(state, action)
+        case 'UPDATE_LABEL':
+            return updateLabel(state, action)
         case 'DELETE_LABEL':
             return deleteLabel(state, action)
         case 'CHANGE_LABEL_STATUS':

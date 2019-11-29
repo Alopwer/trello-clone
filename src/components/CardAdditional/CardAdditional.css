@@ -84,11 +84,6 @@
     margin-bottom: 10px;
 }
 
-.date-title {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-}
-
 .date-create {
     position: absolute;
     left: 345px;
@@ -191,138 +186,9 @@
     height: 40px
 }
 
-/* LABELS */
-
-.labels-title {
-    font-size: 0.9rem;
-}
-
-.labels__list {
-    list-style: none;
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-top: 5px;
-}
-
-.labels__list-item {
-    display: flex;
-    margin-top: 4px;
-    align-items: center;
-}
-
-.outer-div {
-    flex-basis: 90%;
-    border-radius: 3px;
-    color: white;
-    cursor: pointer;
-}
-
-.span-fade{
-    display: flex;
-    justify-content: space-between;
-}
-
-.outer-div:hover .span-fade{
-    background-color: rgba(0,0,0,.3);
-    border-radius: 3px;
-    display: flex;
-}
-.labels__list-item-color {
-    display: inline-block;
-    padding: 5px 8px;
-}
-
-.labels__list-item-btn {
-    text-align: center;
-    flex-basis: 10%;
-    cursor: pointer;
-    margin-left: 5px;
-    padding: 5px;
-    border-radius: 3px;
-}
-.labels__list-item-btn:hover{
-    background: #ecedf0
-}
-.labels__list-item-btn:hover path{
-    fill: black
-}
-
-.labels-create-btn {
-    cursor: pointer;
-    border: none;
-    border-radius: 3px;
-    background: rgba(9, 30, 66, 0.04);
-    padding: 8px 12px;
-    width: 100%;
-    margin-bottom: 6px;
-    transition: all 0.1s;
-    color: #172b4d;
-}
-
-.labels-create-btn:hover {
-    background: rgb(236, 237, 240);
-}
-
-.labels-input {
-    width: 100%
-}
-
-/* LABELS SECTION */
-
-.labels-section {
-    margin-bottom: 10px;
-}
-
-.labels-section-title {
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-}
-
-.labels-items {
-    display: flex;
-}
-
-.labels-items-list {
-    list-style: none;
-    display: flex;
-}
-
-.labels-items-list li {
-    color: white;
-    padding: 4px 6px;
-}
-
-.labels-items-list li, .labels-add-btn button {
-    margin-right: 10px;
-    margin-bottom: 5px;
-    border-radius: 3px;
-    cursor: pointer;
-    border: none;
-}
-
-.labels-add-btn {
-    position: relative;
-}
-
-.lbl-btn {
-    color: rgb(23, 43, 77);
-    font-size: 1.3rem;
-    background: rgb(234, 236, 240);
-    min-width: 30px;
-    padding: 4px 6px;
-}
-
-.labels-create-block {
-    position: absolute;
-    z-index: 2;
-    left: 300px;
-}
-
 .delete-card-btn {
     margin-top: 10px;
 }
-
 .delete-card-btn button {
     border: none;
     border-radius: 3px;

@@ -17,9 +17,11 @@ const CardModalMain = () => {
                 { card.dueDate.date && <DueDate dueDate={card.dueDate}/> }
                 <Description />
                 <Checklists />
+            </div>
+            <div className='aside-main'>
+                <CardModalAside />
                 <DeleteCard />
             </div>
-            <CardModalAside />
         </div>
     )
 }

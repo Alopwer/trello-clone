@@ -15,16 +15,16 @@ const Labels = ({ labels }) => {
 
     return labelItems.length !== 0 && (
         <div className='labels-section'>
-            <h5 className='labels-section-title'>Labels</h5>
+            <h5 className='modal-section-title'>Labels</h5>
             <div className='labels-items'>
                 <ul className='labels-items-list'>
                     { labelItems }
-                </ul>
-                <div className='labels-add-btn'>
-                    <button className='lbl-btn' onClick={() => setCreate(!create)}>+</button>
-                    <div className='labels-create-block'>
-                        { create && <LabelCreate onClose={setCreate} /> }
+                    <div className='labels-add-btn'>
+                        <button className='lbl-btn' onClick={() => setCreate(!create)}>+</button>
                     </div>
+                </ul>
+                <div className='labels-create-block'>
+                    { create && <LabelCreate onClose={setCreate} /> }
                 </div>
             </div>
         </div>

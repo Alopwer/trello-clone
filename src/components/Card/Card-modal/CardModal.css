@@ -40,7 +40,11 @@
 }
 
 .modal-section-title {
+    font-size: 1rem;
     margin-bottom: 10px;
+}
+.modal-section-main-title {
+    font-size: 1.2rem;
 }
 .modal-section-main-title + p {
     font-size: 0.85rem;
@@ -70,16 +74,12 @@
     overflow: auto;
 }
 
-.modal-date {
-
-}
-
 .modal-close {
     position: absolute;
     top: 5px;
     right: 5px;
-    padding: 7px 10px 3px;
-    border-radius: 70%;
+    padding: 8px 9px 4px 10px;  
+    border-radius: 3px;
     transition: all 0.1s linear;
     cursor: pointer;
 }
@@ -94,6 +94,12 @@
 .modal-aside {
     margin-right: 25px;
     flex-basis: 18%;
+}
+
+.aside-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .aside-title {
@@ -140,8 +146,7 @@
        width: 70%;
        min-width: 100px;
     }
-}
-
-@media (max-width: 576px) {
-
+    .aside-main {
+        margin-top: 20px;
+    }
 }

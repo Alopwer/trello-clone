@@ -46,7 +46,7 @@ const DueDate = ({ dueDate, changeDateStatus }) => {
 
     return (
         <div className='date-section'>
-            <h5 className='date-title'>Due Date</h5>
+            <h5 className='modal-section-title'>Due Date</h5>
             <div className='date-btn-block'>
                 <div className='date-content'>
                     <label className="checkbox">
