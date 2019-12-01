@@ -2,6 +2,15 @@
 This web application is a [trello](https://trello.com) clone.
 I made it by using React-Redux.
 
+## Features
+- Create dashboards, lists, cards
+- Change list name
+- Create checklists, due date, labels in a card
+- Progress bar in checklist
+- Write description for card
+- Search for label
+- Deleting all of these items
+
 ## Demo
 You can see the demo [here](https://react-redux-trello.herokuapp.com/).
 
