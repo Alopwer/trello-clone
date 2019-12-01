@@ -25,7 +25,7 @@ const LabelItemModify = ({ setItemCreate, onClose, onAddLabel, onUpdateLabel, on
                         className='card__addit-input labels-input'
                         ref={inputEl}
                         value={inputValue}
-                        maxLength='28'
+                        maxLength='12'
                         autoFocus
                         onChange={() => setInputValue(inputEl.current.value)}
                     />

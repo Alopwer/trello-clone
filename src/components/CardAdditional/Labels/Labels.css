@@ -106,30 +106,17 @@
     padding: 4px 6px;
 }
 
-.labels-items-list li, .labels-add-btn button {
+.labels-items-list li {
     margin-right: 10px;
     margin-bottom: 5px;
     border-radius: 3px;
-    cursor: pointer;
     border: none;
-}
-
-.labels-add-btn {
-    position: relative;
-}
-
-.lbl-btn {
-    color: rgb(23, 43, 77);
-    font-size: 1.25rem;
-    background: rgb(234, 236, 240);
-    min-width: 30px;
-    padding: 4px 6px;
 }
 
 .labels-create-block {
     position: absolute;
     z-index: 2;
-    left: 300px;
+    right: 0
 }
 
 .labels__list-item-color {
@@ -207,12 +194,4 @@
     background-color: rgba(0,0,0,.3);
     border-radius: 3px;
     display: flex;
-}
-
-@media (max-width: 768px) {
-    .labels-create-block {
-        position: absolute;
-        z-index: 2;
-        left: 10px;
-    }
 }
