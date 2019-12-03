@@ -59,7 +59,7 @@ const LabelsCreate = ({ labels, onClose, addLabel, updateLabel, deleteLabel, cha
         setItemCreate(true)
     }
 
-    const items = Object.values(labels).map(label => label.title.match(filter) && (
+    const items = Object.values(labels).map(label => label.cardId === card.cardId && label.title.match(filter) && (
         <li className='labels__list-item' key={label.labelId}>
             <div className='outer-div' style={{ background: label.color }} onClick={() => onChangeLabelStatus(label.labelId)}>
                 <span className='span-fade'>
