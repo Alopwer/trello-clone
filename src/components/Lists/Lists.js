@@ -7,12 +7,11 @@ import './Lists.css';
 
 const Lists = ({ lists, match }) => {
     const [inputOpened, setInputOpened] = useState(false)
-
     const toggleInput = () => {
         setInputOpened(!inputOpened)
     }
     
-    const items = lists &&
+    const listItems = lists &&
         Object.values(lists).map(list => list.boardId === match.params.id &&
             <div className='lists-item' key={list.listId}>
                 <List list={list} />
@@ -32,7 +31,7 @@ const Lists = ({ lists, match }) => {
 
     return (
         <div className='lists__wrapper'>
-            { items }
+            { listItems }
             { addListItem }
         </div>
     )

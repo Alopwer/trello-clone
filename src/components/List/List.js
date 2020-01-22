@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { deleteList } from '../../actions';
 import { changeListName } from '../../actions/index';
 import Cards from '../Cards';
@@ -9,9 +8,7 @@ import Times from '../svg/Times';
 
 const List = ({ list, changeListName, deleteList }) => {
     const { listId, boardId, title } = list
-
     const [value, setValue] = useState(title)
-
     const onDeleteList = () => {
         deleteList({
             boardId,
@@ -35,7 +32,7 @@ const List = ({ list, changeListName, deleteList }) => {
                     maxLength='22'
                 />
                 <div className='list-times' onClick={onDeleteList}>
-                    <Times width='10'/>
+                    <Times width={11}/>
                 </div>
             </div>
             <div className='cards-wrapper'>
@@ -52,4 +49,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(List));
+export default connect(null, mapDispatchToProps)(List);

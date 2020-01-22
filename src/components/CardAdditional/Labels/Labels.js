@@ -9,9 +9,9 @@ const Labels = ({ labels }) => {
         <li key={label.labelId} style={{ background: label.color }}>
             <span>{ label.title }</span>
         </li>
-    ))
-
-    return labelItems.length !== 0 && (
+    )).filter(Boolean)
+        
+    return  labelItems.length !== 0 && (
         <div className='labels-section'>
             <h5 className='modal-section-title'>Labels</h5>
             <div className='labels-items'>

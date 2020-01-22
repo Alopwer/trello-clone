@@ -6,7 +6,7 @@ import './Item.css';
 
 const AddItem = ({ addItemToList, checklist }) => {
     const inputEl = useRef('')
-    const [addItem, setAddItem] = useState(true)
+    const [addItem, setAddItem] = useState(false)
     const [value, setValue] = useState('')
     const checklistItemId = '_' + Math.random().toString(36).substr(2, 9);
 
@@ -22,10 +22,11 @@ const AddItem = ({ addItemToList, checklist }) => {
                 checklistItemId
             })
         }
+        setAddItem(false)
     }
 
     const addBtn = (
-        <button className='add__item-btn' onClick={() => setAddItem(false)}>
+        <button className='add__item-btn' onClick={() => setAddItem(true)}>
             Add an item
         </button>
     )
@@ -39,14 +40,14 @@ const AddItem = ({ addItemToList, checklist }) => {
                 className='add__item-input' 
                 autoFocus 
                 onChange={() => setValue(inputEl.current.value)}
-                onBlur={() => setAddItem(true)}
+                onBlur={() => setAddItem(false)}
             />
             <div>
                 <button className='add__item-add-btn' onMouseDown={createItem}>
                     Add
                 </button>
-                <div onMouseDown={() => setAddItem(true)}>
-                    <Times width='14' className='add__item-times' />
+                <div onMouseDown={() => setAddItem(false)}>
+                    <Times width={11} className='add__item-times' />
                 </div>
             </div>
         </div>
@@ -54,7 +55,7 @@ const AddItem = ({ addItemToList, checklist }) => {
 
     return (
         <div className='add__item'>
-            { addItem ? addBtn : itemView }
+            { addItem ? itemView : addBtn }
         </div>   
     )
 }

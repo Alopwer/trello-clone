@@ -1,7 +1,6 @@
 import React from 'react';
-import './Boards.css';
-
 import { connect } from 'react-redux';
+import './Boards.css';
 import CreateBoard from './BoardsModal/ModalCreateBoard';
 import BoardsCells from './BoardsCells';
 
@@ -11,7 +10,7 @@ const Boards = ({ boards }) => {
             <BoardsCells board={board} />
         </div>
     ))
-
+        
     return (
         <div className='boards'>
             <div className='container'>

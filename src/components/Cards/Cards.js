@@ -6,7 +6,6 @@ import './Cards.css';
 
 const Cards = ({ cards, listId }) => {
     const [inputOpened, setInputOpened] = useState(false)
-
     const toggleInput = () => {
         setInputOpened(!inputOpened)
     }

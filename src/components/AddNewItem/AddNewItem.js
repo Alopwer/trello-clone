@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { addList, addCard } from '../../actions/index';
@@ -46,7 +46,7 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
                     Add {currentParent}
                 </button>
                 <div className='input-times-block' onClick={() => setInputOpened(false)}>
-                    <Times className='input-times' width='11' />
+                    <Times className='input-times' width={11} />
                 </div>
             </div>
         </div>

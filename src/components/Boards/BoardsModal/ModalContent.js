@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import Times from '../../svg/Times';
 import { connect } from 'react-redux';
 import { addBoard } from '../../../actions/index';
+import Times from '../../svg/Times';
 
-const ModalContent = ({ closeModal, color, addBoard, items }) => {
+const ModalContent = ({ closeModal, color, addBoard, bgItems }) => {
     const inputEl = useRef('')
     const [input, setInput] = useState('')
     
@@ -27,7 +27,7 @@ const ModalContent = ({ closeModal, color, addBoard, items }) => {
             }}
         >
             <div className='modal__content-main'>
-                <div style={{background: color}}>
+                <div style={{ background: color }}>
                     <input 
                         autoFocus
                         value={input} 
@@ -39,11 +39,11 @@ const ModalContent = ({ closeModal, color, addBoard, items }) => {
                         onChange={() => setInput(inputEl.current.value)}
                     />
                     <div onClick={closeModal}>
-                        <Times width='10' className='closeBtn' />
+                        <Times width={10} className='closeBtn' />
                     </div>
                 </div>
                 <ul className='modal__grid'>
-                    { items }
+                    { bgItems }
                 </ul>
             </div>
             <button 

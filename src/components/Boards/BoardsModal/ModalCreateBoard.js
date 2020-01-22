@@ -3,7 +3,6 @@ import ModalComponent from './ModalComponent';
 
 const CreateBoard = () => {
     const [modalOpened, setModalOpened] = useState(false)
-
     const closeModal = () => {
         setModalOpened(false);
     }
