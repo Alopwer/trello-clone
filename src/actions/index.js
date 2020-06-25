@@ -3,6 +3,10 @@ const setCurrentColor = (color) => ({
     payload: color
 })
 
+const setDefaultColor = () => ({
+    type: 'SET_DEFAULT_COLOR'
+})
+
 const addBoard = (board) => ({
     type: 'ADD_BOARD',
     payload: board
@@ -118,5 +122,6 @@ export {
     addLabel,
     updateLabel,
     deleteLabel,
-    changeLabelStatus
+    changeLabelStatus,
+    setDefaultColor
 }

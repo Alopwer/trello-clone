@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './Boards.css';
 import CreateBoard from './BoardsModal/ModalCreateBoard';
 import BoardsCells from './BoardsCells';
+import { setDefaultColor } from '../../actions';
 
-const Boards = ({ boards }) => {
+const Boards = ({ boards, setDefaultColor }) => {
+    useEffect(() => {
+        setDefaultColor()
+    }, [])
+
     const boardsItems = Object.values(boards).map(board => (
         <div key={board.boardId}>
             <BoardsCells board={board} />
@@ -28,4 +33,10 @@ const mapStateToProps = ({ boards : { byId } }) => {
     return { boards : byId }
 }
 
-export default connect(mapStateToProps)(Boards)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setDefaultColor: () => dispatch(setDefaultColor())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Boards)
