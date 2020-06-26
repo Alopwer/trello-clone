@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "firebase": "^7.15.4",
     "react": "^16.11.0",
     "react-calendar": "^2.19.2",
@@ -15,6 +16,16 @@
     "redux": "^4.0.4",
     "redux-firestore": "^0.13.0",
     "redux-thunk": "^2.3.0"
+=======
+    "react": "^16.13.1",
+    "react-calendar": "^2.19.2",
+    "react-dom": "^16.13.1",
+    "react-modal": "^3.11.2",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.5"
+>>>>>>> 90abfba32158bd2ad713bb11683929fbd4127ef0
   },
   "scripts": {
     "start": "react-scripts start",
