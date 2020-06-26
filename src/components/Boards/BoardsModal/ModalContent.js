@@ -1,31 +1,27 @@
 import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { addBoard } from '../../../actions/index';
 import Times from '../../svg/Times';
+import { createBoardThunk } from '../../../actions/thunkCreators'
 
-const ModalContent = ({ closeModal, color, addBoard, bgItems }) => {
+const ModalContent = ({ closeModal, color, bgItems, createBoardThunk, uid }) => {
     const inputEl = useRef('')
     const [input, setInput] = useState('')
     
     const boardId = '_' + Math.random().toString(36).substr(2, 9);
     
     const createBoard = () => {
-        addBoard({
+        createBoardThunk({
             title: input,
             boardId,
-            cover: color
+            cover: color,
+            createdAt: new Date(),
+            uid
         })
         closeModal()
     }
 
     return (
-        <div className='modal__content'
-            onKeyPress={(e) => {
-                if (e.which === 13) {
-                    createBoard()
-                }
-            }}
-        >
+        <div className='modal__content' onKeyPress={(e) => { if (e.which === 13) createBoard()}}>
             <div className='modal__content-main'>
                 <div style={{ background: color }}>
                     <input 
@@ -57,10 +53,12 @@ const ModalContent = ({ closeModal, color, addBoard, bgItems }) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addBoard: (board) => dispatch(addBoard(board))
-    }
-}
+const mapStateToProps = ({ firebase : { auth } }) => ({
+    uid : auth.uid
+})
 
-export default connect(null, mapDispatchToProps)(ModalContent);
+const mapDispatchToProps = (dispatch) => ({
+    createBoardThunk: (board) => dispatch(createBoardThunk(board)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);

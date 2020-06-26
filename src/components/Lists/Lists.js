@@ -4,17 +4,19 @@ import { withRouter } from 'react-router-dom';
 import List from '../List';
 import AddNewItem from '../AddNewItem';
 import './Lists.css';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
-const Lists = ({ lists, match }) => {
+const Lists = ({ lists, match, requesting }) => {
     const [inputOpened, setInputOpened] = useState(false)
     const toggleInput = () => {
         setInputOpened(!inputOpened)
     }
     
     const listItems = lists &&
-        Object.values(lists).map(list => list.boardId === match.params.id &&
-            <div className='lists-item' key={list.listId}>
-                <List list={list} />
+        Object.entries(lists).map(list => list[1]?.boardId === match.params.id &&
+            <div className='lists-item' key={list[0]}>
+                <List list={list[1]} listId={list[0]} />
             </div>
         )
 
@@ -31,14 +33,21 @@ const Lists = ({ lists, match }) => {
 
     return (
         <div className='lists__wrapper'>
-            { listItems }
+            { !requesting && listItems }
             { addListItem }
         </div>
     )
 }
 
-const mapStateToProps = ({ lists : { byId } }) => {
-    return { lists : byId }
-}
+const mapStateToProps = ({ firestore : { data, status } }) => ({ 
+    lists : data.lists,
+    requesting: status.requesting['lists?orderBy=createdAt:asc']
+})
 
-export default withRouter(connect(mapStateToProps)(Lists));
+export default compose(
+    withRouter,
+    firestoreConnect([
+        { collection: 'lists', orderBy: ['createdAt', 'asc'] }
+    ]),
+    connect(mapStateToProps)
+)(Lists);

@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import { addList, addCard } from '../../actions/index';
 import Times from '../svg/Times';
 import './AddNewItem.css';
+import { createListThunk } from '../../actions/thunkCreators';
 
-const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpened, match, listId }) => {
+const AddNewItem = ({ currentParent, createListThunk, addCard, toggleInput, setInputOpened, match, listId }) => {
     const inputEl = useRef('')
 
     const inputComplete = () => {
@@ -13,10 +14,11 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
         const id = '_' + Math.random().toString(36).substr(2, 9);
 
         if (currentParent === 'list') {
-            addList({
+            createListThunk({
                 title,
                 boardId : match.params.id, 
-                listId : id
+                listId : id,
+                createdAt: new Date()
             })
         } else {
             addCard({
@@ -55,7 +57,7 @@ const AddNewItem = ({ currentParent, addList, addCard, toggleInput, setInputOpen
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addList : (value) => dispatch(addList(value)),
+        createListThunk : (value) => dispatch(createListThunk(value)),
         addCard : (value) => dispatch(addCard(value))
     }
 }

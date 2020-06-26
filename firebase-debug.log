@@ -1,0 +1,30 @@
+[debug] [2020-06-25T11:14:16.375Z] ----------------------------------------------------------------------
+[debug] [2020-06-25T11:14:16.377Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\nikita.calmic\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2020-06-25T11:14:16.377Z] CLI Version:   8.4.3
+[debug] [2020-06-25T11:14:16.378Z] Platform:      win32
+[debug] [2020-06-25T11:14:16.378Z] Node Version:  v14.4.0
+[debug] [2020-06-25T11:14:16.379Z] Time:          Thu Jun 25 2020 14:14:16 GMT+0300 (Eastern European Summer Time)
+[debug] [2020-06-25T11:14:16.379Z] ----------------------------------------------------------------------
+[debug] [2020-06-25T11:14:16.379Z] 
+[info] Already logged in as collidem31@gmail.com
+[debug] [2020-06-25T11:14:46.032Z] ----------------------------------------------------------------------
+[debug] [2020-06-25T11:14:46.034Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\nikita.calmic\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-06-25T11:14:46.035Z] CLI Version:   8.4.3
+[debug] [2020-06-25T11:14:46.035Z] Platform:      win32
+[debug] [2020-06-25T11:14:46.035Z] Node Version:  v14.4.0
+[debug] [2020-06-25T11:14:46.036Z] Time:          Thu Jun 25 2020 14:14:46 GMT+0300 (Eastern European Summer Time)
+[debug] [2020-06-25T11:14:46.036Z] ----------------------------------------------------------------------
+[debug] [2020-06-25T11:14:46.036Z] 
+[debug] [2020-06-25T11:14:46.044Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-06-25T11:14:46.045Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\nikita.calmic\Desktop\stuff\trello-clone
+

@@ -6,8 +6,12 @@ import {
     labels,
     checklists,
     checklistItems,
-    currentColor
+    currentColor,
+    auth,
+    fetchReducer
 } from './reducers/index';
+import { firestoreReducer } from 'redux-firestore';
+import { firebaseReducer } from 'react-redux-firebase';
 
 const reducer = combineReducers({
     boards,
@@ -16,7 +20,11 @@ const reducer = combineReducers({
     labels,
     checklists,
     checklistItems,
-    currentColor
+    currentColor,
+    auth,
+    firebase: firebaseReducer,
+    firestore: firestoreReducer,
+    fetchReducer
 })
 
 export default reducer;

@@ -5,6 +5,8 @@ import labels from './labels';
 import checklists from './checklists';
 import checklistItems from './checklistItems';
 import currentColor from './currentColor';
+import auth from './auth';
+import fetchReducer from './fetch';
 
 export {
     boards,
@@ -13,5 +15,7 @@ export {
     labels,
     checklists,
     checklistItems,
-    currentColor
+    currentColor,
+    auth,
+    fetchReducer
 }

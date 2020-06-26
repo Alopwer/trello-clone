@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 const deleteList = (state, action) => {
     const { payload : { listId, boardId } } = action
     const board = state[boardId]
@@ -14,8 +12,8 @@ const deleteList = (state, action) => {
 
 const deleteBoard = (state, action) => {
     const { payload } = action
-    const { [payload]: board, ...withDeletedBoard } = state
-    return withDeletedBoard
+    const { [payload]: board, ...withoutDeletedBoard } = state
+    return withoutDeletedBoard
 }
 
 const addList = (state, action) => {
@@ -34,7 +32,7 @@ const addBoardEntity = (state, action) => {
     const { payload : { title, boardId, cover } } = action
     return {
         ...state,
-        [boardId] : { boardId, title, cover, lists : [] }
+        [boardId] : { title, cover, lists : [] }
     }
 }
 
@@ -53,30 +51,8 @@ const boardsById = (state = {}, action) => {
     }
 }
 
-const deleteBoardId = (state, action) => {
-    const { payload : { boardId } } = action
-    return state.filter(id => id !== boardId)
+const boards = {
+    byId: boardsById
 }
-
-const addBoardId = (state, action) => {
-    const { payload : { boardId } } = action
-    return state.concat(boardId)
-}
-
-const allBoards = (state = [], action) => {
-    switch(action.type){
-        case 'ADD_BOARD':
-            return addBoardId(state, action)
-        case 'DELETE_BOARD':
-                return deleteBoardId(state, action)
-        default:
-            return state
-    }
-}
-
-const boards = combineReducers({
-    byId: boardsById,
-    allIds: allBoards
-})
 
 export default boards;

@@ -3,6 +3,10 @@ const setCurrentColor = (color) => ({
     payload: color
 })
 
+const setDefaultColor = () => ({
+    type: 'SET_DEFAULT_COLOR'
+})
+
 const addBoard = (board) => ({
     type: 'ADD_BOARD',
     payload: board
@@ -98,6 +102,22 @@ const changeLabelStatus = (value) => ({
     payload: value
 })
 
+const login = () => ({
+    type: 'LOGIN_SUCCESS'
+})
+
+const logout = () => ({
+    type: 'LOGOUT_SUCCESS'
+})
+
+const fetching = () => ({
+    type: 'FETCHING'
+})
+
+const fetchingSuccess = () => ({
+    type: 'FETCHING_SUCCESS'
+})
+
 export {
     setCurrentColor,
     addBoard,
@@ -118,5 +138,10 @@ export {
     addLabel,
     updateLabel,
     deleteLabel,
-    changeLabelStatus
+    changeLabelStatus,
+    setDefaultColor,
+    login,
+    logout,
+    fetching,
+    fetchingSuccess
 }

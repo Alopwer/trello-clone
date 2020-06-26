@@ -90,7 +90,7 @@ function allLists(state = [], action) {
 
 const lists = combineReducers({
     byId: listsById,
-    allIds: allLists
+    // allIds: allLists
 })
 
 export default lists;

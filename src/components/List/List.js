@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { deleteList } from '../../actions';
+import { deleteListThunk } from '../../actions/thunkCreators';
 import { changeListName } from '../../actions/index';
 import Cards from '../Cards';
 import './List.css';
 import Times from '../svg/Times';
 
-const List = ({ list, changeListName, deleteList }) => {
-    const { listId, boardId, title } = list
+const List = ({ list, changeListName, deleteListThunk, listId }) => {
+    const { boardId, title } = list
     const [value, setValue] = useState(title)
     const onDeleteList = () => {
-        deleteList({
+        deleteListThunk({
             boardId,
             listId
         })
@@ -45,7 +45,7 @@ const List = ({ list, changeListName, deleteList }) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         changeListName: (value) => dispatch(changeListName(value)),
-        deleteList: (value) => dispatch(deleteList(value))
+        deleteListThunk: (value) => dispatch(deleteListThunk(value))
     }
 }
 
